@@ -1,0 +1,18 @@
+/* :root {
+  --primary-color: #000000;
+  --secondary-color: #db469a;
+  --secondary-color-contrast: #ffffff;
+  --primary-color-shade: #000;
+  --primary-color-tint: #222222;
+  --primary-color-contrast: #ffffff;
+  --highlight-color: #db469a;
+} */
+:root {
+  --secondary-color: #ffc629;
+  --secondary-color-contrast: #000000;
+  --primary-color: #000000;
+  --primary-color-shade: #141414;
+  --primary-color-tint: #222222;
+  --primary-color-contrast: #ffffff;
+  --highlight-color: #ffc629;
+}
