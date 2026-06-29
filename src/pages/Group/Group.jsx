@@ -5,6 +5,8 @@ import moment from "moment";
 import { useEffect, useMemo, useRef } from "react";
 import Upcoming from "../../components/modules/Group/Upcoming";
 import InPlayToday from "../../components/modules/Group/InPlayToday";
+import Header from "../../components/modules/Group/Header";
+import Tournament from "../Tournament/Tournament";
 
 const Group = () => {
   const ref = useRef();
@@ -92,54 +94,59 @@ const Group = () => {
     <div className="page-body">
       <div className="inplay-page-wrap ng-star-inserted">
         <div
-          className="mat-mdc-tab-group mat-primary not-loggedIn mat-mdc-tab-group-stretch-tabs ng-star-inserted"
+          className="sports-tabs-group mat-mdc-tab-group mat-primary not-loggedIn mat-mdc-tab-group-stretch-tabs ng-star-inserted"
           style={{ "--mat-tab-animation-duration": "0ms" }}
         >
+          <Header />
           <Tab type={type} groupedData={groupedData} />
-          <div className="mat-mdc-tab-body-wrapper">
-            <div
-              role="tabpanel"
-              className="mat-mdc-tab-body ng-tns-c737557735-1 mat-mdc-tab-body-active ng-star-inserted"
-              id="mat-tab-content-0-0"
-              aria-labelledby="mat-tab-label-0-0"
-              aria-hidden="false"
-            >
+          {eventTypeId == 10 ? (
+            <Tournament />
+          ) : (
+            <div className="mat-mdc-tab-body-wrapper">
               <div
-                className="mat-mdc-tab-body-content ng-tns-c737557735-1 ng-trigger ng-trigger-translateTab"
-                style={{ transform: "none" }}
+                role="tabpanel"
+                className="mat-mdc-tab-body ng-tns-c737557735-1 mat-mdc-tab-body-active ng-star-inserted"
+                id="mat-tab-content-0-0"
+                aria-labelledby="mat-tab-label-0-0"
+                aria-hidden="false"
               >
                 <div
-                  className="title-bar ng-star-inserted"
-                  style={{ display: "none" }}
+                  className="mat-mdc-tab-body-content ng-tns-c737557735-1 ng-trigger ng-trigger-translateTab"
+                  style={{ transform: "none" }}
                 >
-                  <h2 className="title" />
-                </div>
-                <div
-                  ref={ref}
-                  className="matches-wrap ng-star-inserted"
-                  style={{}}
-                >
-                  {data &&
-                  Object.values(data).length > 0 &&
-                  type === "upcoming" &&
-                  groupedData.upcoming ? (
-                    <Upcoming
-                      upcoming={groupedData.upcoming}
-                      navigateGameList={navigateGameList}
-                      formatDate={formatDate}
-                    />
-                  ) : (
-                    <InPlayToday
-                      data={data}
-                      finalData={finalData}
-                      formatDate={formatDate}
-                      navigateGameList={navigateGameList}
-                    />
-                  )}
+                  <div
+                    className="title-bar ng-star-inserted"
+                    style={{ display: "none" }}
+                  >
+                    <h2 className="title" />
+                  </div>
+                  <div
+                    ref={ref}
+                    className="matches-wrap ng-star-inserted"
+                    style={{}}
+                  >
+                    {data &&
+                    Object.values(data).length > 0 &&
+                    type === "upcoming" &&
+                    groupedData.upcoming ? (
+                      <Upcoming
+                        upcoming={groupedData.upcoming}
+                        navigateGameList={navigateGameList}
+                        formatDate={formatDate}
+                      />
+                    ) : (
+                      <InPlayToday
+                        data={data}
+                        finalData={finalData}
+                        formatDate={formatDate}
+                        navigateGameList={navigateGameList}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

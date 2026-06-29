@@ -7641,13 +7641,13 @@ app-homepage-sports:not(:has(.inplay-cont)) .nodata-wrap {
 }
 
 .tab-navigation button.active-link span.uIcons {
-  color: var(--primary-color-contrast);
+  color: var(--highlight-color);
   scale: 1.2;
-  text-shadow:
+  /* text-shadow:
     -1px -1px 0 var(--secondary-color),
     1px -1px 0 var(--secondary-color),
     -1px 1px 0 var(--secondary-color),
-    1px 1px 0 var(--secondary-color);
+    1px 1px 0 var(--secondary-color); */
 }
 
 .tab-navigation button.active-link p {

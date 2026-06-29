@@ -26,6 +26,7 @@ import APK from "../pages/APK/APK";
 import Promotions from "../pages/Promotions/Promotions";
 import LossBackClaims from "../pages/LossBackClaims/LossBackClaims";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
+import Panels from "../pages/Panels/Panels";
 
 export const router = createBrowserRouter(
   [
@@ -137,6 +138,10 @@ export const router = createBrowserRouter(
         {
           path: "/bonus-statement",
           element: <BonusStatement />,
+        },
+        {
+          path: "/panels",
+          element: <Panels />,
         },
       ],
     },

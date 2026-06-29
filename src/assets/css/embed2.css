@@ -7741,6 +7741,7 @@ div.mat-mdc-select-panel {
   line-height: normal;
   font-family: open_regular;
   white-space: nowrap;
+  color: var(--grey-00);
 }
 
 .game-tab

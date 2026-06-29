@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLogo } from "../../../context/ApiProvider";
-import { useGroupQuery } from "../../../redux/features/events/events";
+// import { useGroupQuery } from "../../../redux/features/events/events";
 import NotLoggedIn from "./NotLoggedIn";
 import { useDispatch, useSelector } from "react-redux";
 import LoggedIn from "./LoggedIn";
@@ -10,78 +10,78 @@ import {
   setHeaderHeight,
   setShowAPKModal,
   setShowAppPopUp,
-  setShowLoginModal,
+  // setShowLoginModal,
   setShowSidebar,
 } from "../../../redux/features/global/globalSlice";
 import { IoArrowBack } from "react-icons/io5";
-import LatestEvent from "./LatestEvent";
-import { removeHeaderPaths } from "../../../static/removeHeaderPaths";
+// import LatestEvent from "./LatestEvent";
+// import { removeHeaderPaths } from "../../../static/removeHeaderPaths";
 import Language from "../../modals/Language/Language";
-import Search from "./Search";
+// import Search from "./Search";
 import { Settings } from "../../../api";
 import AppPopup from "./AppPopUp";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import Notification from "./Notification";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
-import { LanguageKey } from "../../../const";
+// import { useLanguage } from "../../../context/LanguageProvider";
+// import { languageValue } from "../../../utils/language";
+// import { LanguageKey } from "../../../const";
 import TopPart from "./TopPart";
 import Withdraw from "../../modals/Withdraw/Withdraw";
 
 const Header = () => {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
-  const { valueByLanguage } = useLanguage();
+  // const { valueByLanguage } = useLanguage();
   const headerRef = useRef(null);
   const location = useLocation();
   const [showLanguage, setShowLanguage] = useState(false);
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { showAppPopUp, windowWidth, showAPKModal } = useSelector(
     (state) => state?.global,
   );
-  const { data } = useGroupQuery(
-    { sportsType: Number(0) },
-    {
-      pollingInterval: 1000,
-    },
-  );
+  // const { data } = useGroupQuery(
+  //   { sportsType: Number(0) },
+  //   {
+  //     pollingInterval: 1000,
+  //   },
+  // );
 
   const { logo } = useLogo();
   const navigate = useNavigate();
 
-  const groupedData = useMemo(() => {
-    if (!data) return { cricket: 0, football: 0, tennis: 0 };
+  // const groupedData = useMemo(() => {
+  //   if (!data) return { cricket: 0, football: 0, tennis: 0 };
 
-    return Object.values(data).reduce(
-      (acc, value) => {
-        if (!value.visible) return acc;
+  //   return Object.values(data).reduce(
+  //     (acc, value) => {
+  //       if (!value.visible) return acc;
 
-        if (value.eventTypeId === 4) acc.cricket++;
-        if (value.eventTypeId === 2) acc.tennis++;
-        if (value.eventTypeId === 1) acc.football++;
+  //       if (value.eventTypeId === 4) acc.cricket++;
+  //       if (value.eventTypeId === 2) acc.tennis++;
+  //       if (value.eventTypeId === 1) acc.football++;
 
-        return acc;
-      },
-      {
-        cricket: 0,
-        football: 0,
-        tennis: 0,
-      },
-    );
-  }, [data]);
+  //       return acc;
+  //     },
+  //     {
+  //       cricket: 0,
+  //       football: 0,
+  //       tennis: 0,
+  //     },
+  //   );
+  // }, [data]);
 
-  const handleNavigateToIFrame = (code, name) => {
-    if (token) {
-      navigate(`/casino/${name.replace(/ /g, "")}/${code}`);
-    } else {
-      dispatch(setShowLoginModal(true));
-    }
-  };
+  // const handleNavigateToIFrame = (code, name) => {
+  //   if (token) {
+  //     navigate(`/casino/${name.replace(/ /g, "")}/${code}`);
+  //   } else {
+  //     dispatch(setShowLoginModal(true));
+  //   }
+  // };
 
-  const shouldHideHeader = removeHeaderPaths.some((path) =>
-    pathname.startsWith(path),
-  );
+  // const shouldHideHeader = removeHeaderPaths.some((path) =>
+  //   pathname.startsWith(path),
+  // );
 
   useEffect(() => {
     const closePopupForForever = localStorage.getItem("closePopupForForever");
@@ -212,7 +212,7 @@ const Header = () => {
             )}
           </div>
         </div>
-        {!shouldHideHeader && (
+        {/* {!shouldHideHeader && (
           <div
             style={{
               position: "sticky",
@@ -496,7 +496,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </Fragment>
   );

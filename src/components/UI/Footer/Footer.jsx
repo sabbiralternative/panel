@@ -74,6 +74,34 @@ const Footer = () => {
               <span className="mat-mdc-button-touch-target" />
             </button>
             <button
+              onClick={() =>
+                handleNavigate("/group/tournaments/10?type=tournaments")
+              }
+              className={`home mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname.includes("/group") ? "active-link" : ""} `}
+              tabIndex={0}
+            >
+              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+              <span className="mdc-button__label">
+                <span className="uIcons uIcons_sports" />
+                <p className="notranslate"> Sports</p>{" "}
+              </span>
+              <span className="mat-mdc-focus-indicator" />
+              <span className="mat-mdc-button-touch-target" />
+            </button>
+            <button
+              onClick={() => handleNavigate("/casino")}
+              className={`home mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "/casino" ? "active-link" : ""} `}
+              tabIndex={0}
+            >
+              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+              <span className="mdc-button__label">
+                <span className="uIcons uIcons_casino_1" />
+                <p className="notranslate"> Casino</p>{" "}
+              </span>
+              <span className="mat-mdc-focus-indicator" />
+              <span className="mat-mdc-button-touch-target" />
+            </button>
+            <button
               onClick={() => handleNavigate("/in-play")}
               className={`market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "/in-play" ? "active-link" : ""}`}
               tabIndex={0}
@@ -143,6 +171,19 @@ const Footer = () => {
                 </button>
               </Fragment>
             )}
+            <button
+              onClick={() => handleNavigate("/panels")}
+              className={`market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "panels" ? "active-link" : ""}`}
+              tabIndex={0}
+            >
+              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+              <span className="mdc-button__label">
+                <span className="uIcons uIcons_id_panel" />
+                <p className="notranslate">Panels</p>{" "}
+              </span>
+              <span className="mat-mdc-focus-indicator" />
+              <span className="mat-mdc-button-touch-target" />
+            </button>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Settings } from "../../../api";
 import {
   setShowDepositModal,
   setShowLoginModal,
+  setShowRegisterModal,
   setShowSidebar,
 } from "../../../redux/features/global/globalSlice";
 import { languageValue } from "../../../utils/language";
@@ -116,7 +117,16 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                       <span onClick={() => dispatch(setShowLoginModal(true))}>
                         {languageValue(valueByLanguage, LanguageKey.LOGIN)}
                       </span>{" "}
-                      | <span>Signup</span>
+                      {Settings.registration && (
+                        <Fragment>
+                          |{" "}
+                          <span
+                            onClick={() => dispatch(setShowRegisterModal(true))}
+                          >
+                            Signup
+                          </span>
+                        </Fragment>
+                      )}
                     </span>
                     <span className="mat-mdc-focus-indicator" />
                     <span className="mat-mdc-button-touch-target" />

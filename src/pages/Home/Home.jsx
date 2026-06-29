@@ -37,6 +37,64 @@ const Home = () => {
               {data?.banner?.length > 0 && (
                 <SliderImage bannerImage={data?.banner} />
               )}
+              <div className="create-acc ng-star-inserted">
+                <div className="active-acc-tab">
+                  <div size={12} className="btnWrap">
+                    <button className="create-btn full-width mb-5">
+                      <div className="create-icon-wrap"> Create Panel </div>
+                    </button>
+                    <div className="hGame-btn-wrap ng-star-inserted">
+                      <div className="jetBtnWrap ng-star-inserted">
+                        <button className="jetxBtn animated-border-box-glow mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base">
+                          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+                          <span className="mdc-button__label">
+                            <img
+                              className="background"
+                              src="https://ss.manage90.com/panel-wl/commonAssets/chickenroad_bg.png"
+                            />
+                            <img
+                              className="img-text"
+                              src="https://ss.manage90.com/panel-wl/commonAssets/chickenroad_text.png"
+                            />
+                            <img
+                              alt="game.game_name"
+                              className="game-icon"
+                              src="https://ss.manage90.com/panel-wl/commonAssets/chickenroad_icon.png"
+                            />
+                          </span>
+                          <span className="mat-mdc-focus-indicator" />
+                          <span className="mat-mdc-button-touch-target" />
+                          <span className="mat-ripple mat-mdc-button-ripple" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="hGame-btn-wrap ng-star-inserted">
+                      <div className="jetBtnWrap ng-star-inserted">
+                        <button className="jetxBtn animated-border-box-glow mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base">
+                          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+                          <span className="mdc-button__label">
+                            <img
+                              className="background"
+                              src="https://ss.manage90.com/panel-wl/commonAssets/aviator_bg.png"
+                            />
+                            <img
+                              className="img-text"
+                              src="https://ss.manage90.com/panel-wl/commonAssets/aviator_text.png"
+                            />
+                            <img
+                              alt="game.game_name"
+                              className="game-icon"
+                              src="https://ss.manage90.com/panel-wl/commonAssets/aviator_icon.png"
+                            />
+                          </span>
+                          <span className="mat-mdc-focus-indicator" />
+                          <span className="mat-mdc-button-touch-target" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <CasinoProviders />
               <InPlay />
               <CardGames />
