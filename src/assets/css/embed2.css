@@ -21167,6 +21167,7 @@ button.btn {
 .modal-body p {
   font-size: 12px;
   margin: 0;
+  color: var(--grey-00);
 }
 /* Reffer modal */
 
@@ -21443,10 +21444,12 @@ button.btn {
   font-size: 10px;
   font-family: open_regular;
   opacity: 0.7;
+  color: var(--grey-00);
 }
 
 .transactions-wrap .transaction-item ul li p.txn-type {
   align-items: flex-start;
+  color: var(--grey-00);
 }
 
 .transactions-wrap .transaction-item ul li p.amount {
@@ -21480,6 +21483,7 @@ button.btn {
   display: flex;
   align-items: center;
   column-gap: 2px;
+  color: var(--grey-00);
 }
 
 .transactions-wrap

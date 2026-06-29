@@ -1608,7 +1608,7 @@ svg.mdc-button__icon {
   z-index: 10000;
 }
 .main .container {
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
   display: flex;
   flex-direction: column;
   overflow: hidden;

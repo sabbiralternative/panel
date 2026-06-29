@@ -89,8 +89,8 @@ const Footer = () => {
               <span className="mat-mdc-button-touch-target" />
             </button>
             <button
-              onClick={() => handleNavigate("/casino")}
-              className={`home mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "/casino" ? "active-link" : ""} `}
+              onClick={() => handleNavigate("/live-casino")}
+              className={`home mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "/live-casino" ? "active-link" : ""} `}
               tabIndex={0}
             >
               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
