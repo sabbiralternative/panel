@@ -25,8 +25,11 @@ import Notification from "./Notification";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import TopPart from "./TopPart";
+import Withdraw from "../../modals/Withdraw/Withdraw";
 
 const Header = () => {
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   const { valueByLanguage } = useLanguage();
   const headerRef = useRef(null);
   const location = useLocation();
@@ -126,6 +129,9 @@ const Header = () => {
 
   return (
     <Fragment>
+      {showWithdrawModal && (
+        <Withdraw setShowWithdrawModal={setShowWithdrawModal} />
+      )}
       {Settings.apk_link && showAPKModal && <DownloadAPK />}
       {showLanguage && <Language setShowLanguage={setShowLanguage} />}
       <div
@@ -150,46 +156,60 @@ const Header = () => {
         {Settings.apk_link && showAppPopUp && windowWidth < 1040 && (
           <AppPopup />
         )}
+
         <div>
           <div className="header-wrapper top-header">
-            <div className="logo">
-              {location?.pathname === "/" ? (
-                <span
-                  onClick={() => dispatch(setShowSidebar(true))}
-                  style={{ color: "white" }}
-                  role="img"
-                  className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                  aria-hidden="true"
-                  data-mat-icon-type="font"
-                >
-                  menu
-                </span>
-              ) : (
-                <IoArrowBack
-                  size={25}
-                  color="#fff"
-                  style={{ cursor: "pointer" }}
-                  /* Navigate back */
-                  onClick={() => {
-                    navigate(-1);
-                  }}
-                />
-              )}
-
-              <img
-                onClick={() => navigate("/")}
-                alt="logo"
-                src={logo}
-                className="ng-star-inserted"
+            {location.pathname === "/" && (
+              <TopPart
+                setShowLanguage={setShowLanguage}
+                setShowWithdrawModal={setShowWithdrawModal}
               />
-            </div>
-            <div className="header-right-cont" style={{ marginRight: "0px" }}>
-              {token ? (
-                <LoggedIn setShowLanguage={setShowLanguage} />
-              ) : (
-                <NotLoggedIn setShowLanguage={setShowLanguage} />
-              )}
-            </div>
+            )}
+
+            {location.pathname !== "/" && (
+              <Fragment>
+                <div className="logo">
+                  {location?.pathname === "/" ? (
+                    <span
+                      onClick={() => dispatch(setShowSidebar(true))}
+                      style={{ color: "white" }}
+                      role="img"
+                      className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                      aria-hidden="true"
+                      data-mat-icon-type="font"
+                    >
+                      menu
+                    </span>
+                  ) : (
+                    <IoArrowBack
+                      size={25}
+                      color="#fff"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        navigate(-1);
+                      }}
+                    />
+                  )}
+
+                  <img
+                    onClick={() => navigate("/")}
+                    alt="logo"
+                    src={logo}
+                    className="ng-star-inserted"
+                  />
+                </div>
+                <div
+                  className="header-right-cont"
+                  style={{ marginRight: "0px" }}
+                >
+                  {token ? (
+                    <LoggedIn setShowLanguage={setShowLanguage} />
+                  ) : (
+                    <NotLoggedIn setShowLanguage={setShowLanguage} />
+                  )}
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
         {!shouldHideHeader && (

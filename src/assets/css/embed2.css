@@ -3743,8 +3743,8 @@ div.mat-mdc-select-panel {
   justify-content: flex-end;
   width: 100%;
   height: 40px;
-  border-top: 2px solid var(--primary-color);
-  border-bottom: 2px solid var(--primary-color);
+  /* border-top: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color); */
   background: var(--primary-color-90);
   position: sticky;
   top: 55px;
@@ -6387,7 +6387,7 @@ div.mat-mdc-select-panel {
   align-items: center;
   position: relative;
   min-height: 44px;
-  padding: 0 10px;
+  /* padding: 0 10px; */
 }
 
 .page-header .page-title {

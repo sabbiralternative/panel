@@ -4651,6 +4651,7 @@ div:where(.swal2-icon).swal2-success
   font-size: 12px;
   font-family: open_semiBold;
   line-height: 14px;
+  color: var(--grey-00);
 }
 
 .page-body
@@ -4668,6 +4669,7 @@ div:where(.swal2-icon).swal2-success
   line-height: normal;
   font-family: open_regular;
   font-size: 8px;
+  color: var(--grey-00);
 }
 
 .page-body

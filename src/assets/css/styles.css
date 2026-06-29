@@ -746,7 +746,7 @@ p {
 
 .badge.inplay-badge {
   background: var(--white-color);
-  color: var(--grey-900);
+  color: var(--grey-00);
   margin-left: 5px;
   min-width: 20px;
   height: 14px;
@@ -1061,7 +1061,7 @@ mat-form-field input[type="number"] {
 }
 
 .top-header {
-  padding: 10px;
+  /* padding: 10px; */
   background: var(--primary-color);
 }
 
@@ -1150,7 +1150,7 @@ mat-form-field input[type="number"] {
   align-items: center;
   position: relative;
   min-height: 44px;
-  padding: 0 10px;
+  /* padding: 0 10px; */
 }
 
 .page-header .page-title {
