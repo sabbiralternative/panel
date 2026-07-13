@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { eventNameList } from "../../../static/event-name-list";
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -196,6 +197,38 @@ const Header = () => {
                 <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />
               </span>
             </div>
+            {eventNameList.map((item) => {
+              return (
+                <div
+                  key={item.id}
+                  onClick={() =>
+                    navigate(`/group/${item.name}/${item.id}?type=inPlay`)
+                  }
+                  style={{ width: "auto" }}
+                  role="tab"
+                  className={`mdc-tab mat-mdc-tab mat-mdc-focus-indicator  ng-star-inserted   ${pathname === `/group/${item.name}/${item.id}` ? "mdc-tab--active mdc-tab-indicator--active" : ""}`}
+                  id="mat-tab-label-34-3"
+                  tabIndex={-1}
+                  aria-posinset={4}
+                  aria-setsize={4}
+                  aria-controls="mat-tab-content-34-3"
+                  aria-selected="false"
+                  aria-disabled="false"
+                >
+                  <span className="mdc-tab__ripple" />
+                  <div className="mat-ripple mat-mdc-tab-ripple" />
+                  <span className="mdc-tab__content">
+                    <span className="mdc-tab__text-label">
+                      <img alt="Tab Icon" src={item.image} />
+                      <p className="ng-star-inserted">{item.name}</p>
+                    </span>
+                  </span>
+                  <span className="mdc-tab-indicator">
+                    <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />
+                  </span>
+                </div>
+              );
+            })}
             <div
               onClick={() => navigate("/crash-games")}
               style={{ width: "auto" }}
