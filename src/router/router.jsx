@@ -27,6 +27,7 @@ import Promotions from "../pages/Promotions/Promotions";
 import LossBackClaims from "../pages/LossBackClaims/LossBackClaims";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import Panels from "../pages/Panels/Panels";
+import CreatePanel from "../pages/CreatePanel/CreatePanel";
 
 export const router = createBrowserRouter(
   [
@@ -142,6 +143,10 @@ export const router = createBrowserRouter(
         {
           path: "/panels",
           element: <Panels />,
+        },
+        {
+          path: "/panels/create",
+          element: <CreatePanel />,
         },
       ],
     },

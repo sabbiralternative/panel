@@ -1,0 +1,307 @@
+.ge-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 10px;
+  background: #0a0a0a;
+  box-sizing: border-box;
+}
+
+.ge-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+
+.ge-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ge-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ge-logo {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #e8a622;
+  color: #1a1204;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+}
+
+.ge-brand-title {
+  color: #f2f2f2;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ge-brand-sub {
+  color: #8a8a8a;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.ge-external {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #cfcfcf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.ge-external:hover {
+  background: #2a2a2a;
+}
+
+.ge-section-title {
+  margin: 0;
+  color: #f2f2f2;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ge-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ge-label {
+  color: #f2f2f2;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ge-required {
+  color: #e8a622;
+  margin-left: 2px;
+}
+
+.ge-input,
+.ge-select {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  color: #f2f2f2;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  appearance: none;
+}
+
+.ge-input::placeholder {
+  color: #6a6a6a;
+}
+
+.ge-input:focus,
+.ge-select:focus {
+  border-color: #e8a622;
+}
+
+.ge-select-wrap {
+  position: relative;
+}
+
+.ge-select {
+  cursor: pointer;
+  padding-right: 36px;
+}
+
+.ge-select-chevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8a8a8a;
+  pointer-events: none;
+}
+
+.ge-hint {
+  font-size: 12px;
+  color: #e8a622;
+}
+
+.ge-radio-row {
+  display: flex;
+  gap: 12px;
+}
+
+.ge-radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.ge-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ge-radio-dot {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #4a4a4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease;
+}
+
+.ge-radio-dot::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.ge-radio-label {
+  font-size: 14px;
+  color: #cfcfcf;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.ge-radio--active {
+  border-color: #e8a622;
+}
+
+.ge-radio--active .ge-radio-dot {
+  border-color: #e8a622;
+}
+
+.ge-radio--active .ge-radio-dot::after {
+  background: #e8a622;
+}
+
+.ge-radio--active .ge-radio-label {
+  color: #e8a622;
+}
+
+.ge-total {
+  padding-top: 6px;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ge-total-label {
+  font-size: 14px;
+  color: #cfcfcf;
+  font-weight: 500;
+}
+
+.ge-total-amount {
+  font-size: 30px;
+  font-weight: 700;
+  color: #f2f2f2;
+}
+
+.ge-total-words {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.ge-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.ge-btn {
+  /* flex: 1; */
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.ge-btn:active {
+  transform: scale(0.98);
+}
+
+.ge-btn-outline {
+  background: transparent;
+  border: 1px solid #e8a622;
+  color: #e8a622;
+}
+
+.ge-btn-outline:hover {
+  background: rgba(232, 166, 34, 0.08);
+}
+
+.ge-btn-fill {
+  background: #e8a622;
+  border: 1px solid #e8a622;
+  color: #1a1204;
+}
+
+.ge-btn-fill:hover {
+  background: #f0b23f;
+}
+
+@media (max-width: 420px) {
+  .ge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ge-actions {
+    flex-direction: column;
+  }
+}

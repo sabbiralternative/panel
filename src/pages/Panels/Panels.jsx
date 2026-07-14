@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const Panels = () => {
+  const navigate = useNavigate();
   return (
     <div className="page-body notranslate">
       <div className="ids-tabnav">
@@ -465,7 +468,10 @@ const Panels = () => {
                           </div>
                           <div className="ls-right">
                             <div className="btn-wrap">
-                              <button className="btn dark-outlined-btn create-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base">
+                              <button
+                                onClick={() => navigate("/panels/create")}
+                                className="btn dark-outlined-btn create-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                              >
                                 <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
                                 <span className="mdc-button__label">
                                   {" "}
@@ -535,7 +541,7 @@ const Panels = () => {
                                 <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
                                 <span className="mdc-button__label">
                                   {" "}
-                                  Create{" "}
+                                  Create
                                 </span>
                                 <span className="mat-mdc-focus-indicator" />
                                 <span className="mat-mdc-button-touch-target" />
