@@ -5450,7 +5450,7 @@ svg.mdc-button__icon {
 }
 .ids-tabnav .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content {
   height: calc(var(--vh, 1vh) * 100 - 145px);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .ids-tabnav .mat-tab-group .mat-tab-body .id-list {
   display: flex;
