@@ -4,6 +4,7 @@ import "./TopPart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Settings } from "../../../api";
 import {
+  setShowBanner,
   setShowDepositModal,
   setShowLoginModal,
   setShowRegisterModal,
@@ -17,8 +18,11 @@ import useBalance from "../../../hooks/balance";
 import { Fragment } from "react";
 import toast from "react-hot-toast";
 import { useLogo } from "../../../context/ApiProvider";
+import { setUser } from "../../../redux/features/auth/authSlice";
+import { useLoginMutation } from "../../../redux/features/auth/authApi";
 
 const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
+  const closePopupForForever = localStorage.getItem("closePopupForForever");
   const { logo } = useLogo();
   const { token } = useSelector((state) => state.auth);
   const { data } = useBalance();
@@ -27,12 +31,49 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
   const { valueByLanguage } = useLanguage();
   const language = localStorage.getItem("language");
   const dispatch = useDispatch();
-
+  const [handleLogin] = useLoginMutation();
   // const openWhatsapp = () => {
   //   if (Settings?.whatsapplink) {
   //     window.open(Settings?.whatsapplink, "_blank");
   //   }
   // };
+
+  const loginWithDemo = async () => {
+    /* Random token generator */
+    /* Encrypted the post data */
+    const loginData = {
+      username: "demo",
+      password: "",
+      b2c: Settings.b2c,
+      apk: closePopupForForever ? true : false,
+      nonce: crypto.randomUUID(),
+    };
+    const result = await handleLogin(loginData).unwrap();
+
+    if (result.success) {
+      const token = result?.result?.token;
+      const bonusToken = result?.result?.bonusToken;
+      const user = result?.result?.loginName;
+      const game = result?.result?.buttonValue?.game;
+      const banner = result?.result?.banner;
+
+      dispatch(setUser({ user, token }));
+      localStorage.setItem("buttonValue", JSON.stringify(game));
+      localStorage.setItem("token", token);
+
+      localStorage.setItem("bonusToken", bonusToken);
+      if (banner) {
+        localStorage.setItem("banner", banner);
+        dispatch(setShowBanner(true));
+      }
+      if (token && user) {
+        dispatch(setShowLoginModal(false));
+        toast.success("Login successful");
+      }
+    } else {
+      toast.error(result?.error);
+    }
+  };
   return (
     <div
       className="page-header not-loggedIn"
@@ -131,17 +172,16 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                     <span className="mat-mdc-focus-indicator" />
                     <span className="mat-mdc-button-touch-target" />
                   </button>
-                  {/* {Settings.registration_whatsapp && Settings?.whatsapplink && (
-                    <button
-                      onClick={openWhatsapp}
-                      className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-                    >
-                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-                      <span className="mdc-button__label">Get ID</span>
-                      <span className="mat-mdc-focus-indicator" />
-                      <span className="mat-mdc-button-touch-target" />
-                    </button>
-                  )} */}
+
+                  <button
+                    onClick={loginWithDemo}
+                    className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                  >
+                    <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+                    <span className="mdc-button__label">Demo</span>
+                    <span className="mat-mdc-focus-indicator" />
+                    <span className="mat-mdc-button-touch-target" />
+                  </button>
                 </Fragment>
               )}
 

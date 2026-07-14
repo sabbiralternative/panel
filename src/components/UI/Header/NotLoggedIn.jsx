@@ -53,17 +53,12 @@ const NotLoggedIn = ({ setShowLanguage }) => {
         </button>
       )}
 
-      {/* {Settings.registration_whatsapp && Settings?.whatsapplink && (
-        <button
-          onClick={openWhatsapp}
-          className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-        >
-          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-          <span className="mdc-button__label">Get ID</span>
-          <span className="mat-mdc-focus-indicator" />
-          <span className="mat-mdc-button-touch-target" />
-        </button>
-      )} */}
+      <button className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base">
+        <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
+        <span className="mdc-button__label">Demo</span>
+        <span className="mat-mdc-focus-indicator" />
+        <span className="mat-mdc-button-touch-target" />
+      </button>
 
       {Settings.language && pathname !== "/passbook" && (
         <div

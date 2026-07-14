@@ -6,8 +6,11 @@ import LiveCasino from "../../components/modules/Home/LiveCasino";
 import useBannerImage from "../../hooks/banner";
 import SliderImage from "../../components/modules/Home/SliderImage";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Search from "../../components/modules/Home/Search";
 
 const Home = () => {
+  const navigate = useNavigate();
   const { data } = useBannerImage();
 
   useEffect(() => {
@@ -40,7 +43,10 @@ const Home = () => {
               <div className="create-acc ng-star-inserted">
                 <div className="active-acc-tab">
                   <div size={12} className="btnWrap">
-                    <button className="create-btn full-width mb-5">
+                    <button
+                      onClick={() => navigate("/panels")}
+                      className="create-btn full-width mb-5"
+                    >
                       <div className="create-icon-wrap"> Create Panel </div>
                     </button>
                     <div className="hGame-btn-wrap ng-star-inserted">
@@ -95,6 +101,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              <Search />
               <CasinoProviders />
               <InPlay />
               <CardGames />
