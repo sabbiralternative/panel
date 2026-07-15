@@ -268,20 +268,23 @@ const Panels = () => {
                                     ></div>
                                   </div>
                                   <div className="top-sites-promote ng-star-inserted">
-                                    {/* <div
-                                      role="img"
-                                      className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                                      aria-hidden="true"
-                                      data-mat-icon-type="font"
-                                    >
-                                      {" "}
-                                      emoji_events{" "}
-                                    </div> */}
-                                    {item?.show_top_flag}
+                                    {item?.show_top_flag === "trophy" && (
+                                      <div
+                                        role="img"
+                                        className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                                        aria-hidden="true"
+                                        data-mat-icon-type="font"
+                                      >
+                                        {" "}
+                                        emoji_events{" "}
+                                      </div>
+                                    )}
 
-                                    <span className="ng-star-inserted">
-                                      {item?.show_top_text}
-                                    </span>
+                                    {item?.show_top_text && (
+                                      <span className="ng-star-inserted">
+                                        {item?.show_top_text}
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
                               </div>
