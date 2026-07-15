@@ -1,5 +1,7 @@
 import { useState, useMemo } from "react";
 import "./GoExchangeForm.css";
+import { useGetIndex } from "../../hooks";
+import { useLocation } from "react-router-dom";
 
 // Converts a whole number into Indian-system words (e.g. 1400 -> "One Thousand Four Hundred")
 function numberToWordsIndian(num) {
@@ -69,23 +71,21 @@ function numberToWordsIndian(num) {
   return parts.join(" ");
 }
 
-const CURRENCIES = [
-  { code: "INR", symbol: "\u20B9", available: true },
-  { code: "USD", symbol: "$", available: false },
-  { code: "EUR", symbol: "\u20AC", available: false },
-];
-
-const ACCOUNT_TYPES = ["Admin", "Master", "Super Master", "Agent"];
-
 export default function CreatePanel() {
-  const [username, setUsername] = useState("");
-  const [rateType, setRateType] = useState("purchase");
-  const [accountType, setAccountType] = useState("Admin");
-  const [currency, setCurrency] = useState("INR");
-  const [coins, setCoins] = useState("10000");
-  const [rate, setRate] = useState("0.14");
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+  const { data } = useGetIndex({
+    type: "panel_info",
+    id,
+  });
 
-  const currencyInfo = CURRENCIES.find((c) => c.code === currency);
+  const [username, setUsername] = useState("");
+  const [rateType, setRateType] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [coins, setCoins] = useState("");
+  const [rate, setRate] = useState("");
 
   const total = useMemo(() => {
     const coinsNum = parseFloat(coins) || 0;
@@ -106,6 +106,27 @@ export default function CreatePanel() {
     return coinsNum ? numberToWordsIndian(coinsNum) + " coins" : "";
   }, [coins]);
 
+  if (!data || !data?.result) return;
+
+  const result = data?.result?.[0];
+
+  const handleRateChange = (e) => {
+    if (rateType === "Sharing") {
+      const findSharing = result?.rateData?.find(
+        (item) => item?.rate_type === "Sharing",
+      );
+      const rate = Number(e.target.value);
+
+      if (rate > findSharing?.min_rate && rate < findSharing?.max_rate) {
+        {
+          setRate(e.target.value);
+        }
+      }
+    } else {
+      setRate(e.target.value);
+    }
+  };
+
   return (
     <div
       className="page-body notranslate"
@@ -116,13 +137,16 @@ export default function CreatePanel() {
           <div className="ge-card">
             <div className="ge-header">
               <div className="ge-brand">
-                <div className="ge-logo">GO</div>
+                <div className="ge-logo">
+                  <img src={result?.img} alt="" />
+                </div>
                 <div className="ge-brand-text">
-                  <div className="ge-brand-title">Go Exchange (Original)</div>
-                  <div className="ge-brand-sub">goexch.com</div>
+                  <div className="ge-brand-title">{result?.site_name}</div>
+                  <div className="ge-brand-sub">{result?.site_url}</div>
                 </div>
               </div>
               <button
+                onClick={() => window.open(`https://${result?.site_url}`)}
                 type="button"
                 className="ge-external"
                 aria-label="Open external link"
@@ -160,32 +184,24 @@ export default function CreatePanel() {
                 Rate Type<span className="ge-required">*</span>
               </label>
               <div className="ge-radio-row">
-                <label
-                  className={`ge-radio ${rateType === "purchase" ? "ge-radio--active" : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="rateType"
-                    value="purchase"
-                    checked={rateType === "purchase"}
-                    onChange={() => setRateType("purchase")}
-                  />
-                  <span className="ge-radio-dot" />
-                  <span className="ge-radio-label">Purchase</span>
-                </label>
-                <label
-                  className={`ge-radio ${rateType === "sharing" ? "ge-radio--active" : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="rateType"
-                    value="sharing"
-                    checked={rateType === "sharing"}
-                    onChange={() => setRateType("sharing")}
-                  />
-                  <span className="ge-radio-dot" />
-                  <span className="ge-radio-label">Sharing</span>
-                </label>
+                {result?.rateType?.map((item) => {
+                  return (
+                    <label
+                      key={item?.rate_type}
+                      className={`ge-radio ${rateType === item?.rate_type ? "ge-radio--active" : ""}`}
+                    >
+                      <input
+                        type="radio"
+                        name="rateType"
+                        value={item?.rate_type}
+                        // checked={rateType === "purchase"}
+                        onChange={() => setRateType(item?.rate_type)}
+                      />
+                      <span className="ge-radio-dot" />
+                      <span className="ge-radio-label">{item?.rate_type}</span>
+                    </label>
+                  );
+                })}
               </div>
               <div className="ge-hint">Non Refundable coins</div>
             </div>
@@ -201,9 +217,9 @@ export default function CreatePanel() {
                   value={accountType}
                   onChange={(e) => setAccountType(e.target.value)}
                 >
-                  {ACCOUNT_TYPES.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
+                  {result?.roleData?.map((item) => (
+                    <option key={item?.role} value={item?.role}>
+                      {item?.role}
                     </option>
                   ))}
                 </select>
@@ -242,9 +258,9 @@ export default function CreatePanel() {
                     value={currency}
                     onChange={(e) => setCurrency(e.target.value)}
                   >
-                    {CURRENCIES.map((c) => (
-                      <option key={c.code} value={c.code}>
-                        {c.code}
+                    {result?.currencyData.map((c) => (
+                      <option key={c.currency} value={c.currency}>
+                        {c.currency}
                       </option>
                     ))}
                   </select>
@@ -265,9 +281,9 @@ export default function CreatePanel() {
                   </svg>
                 </div>
                 <div className="ge-hint">
-                  {currencyInfo?.available
+                  {/* {currencyInfo?.available
                     ? "Only INR is available"
-                    : "Currency unavailable"}
+                    : "Currency unavailable"} */}
                 </div>
               </div>
 
@@ -292,21 +308,18 @@ export default function CreatePanel() {
               </label>
               <input
                 id="rate"
-                type="number"
+                // type="number"
                 step="0.01"
                 className="ge-input"
                 value={rate}
-                onChange={(e) => setRate(e.target.value)}
+                onChange={handleRateChange}
               />
-              <div className="ge-hint">Fixed Rate</div>
+              {/* <div className="ge-hint">Fixed Rate</div> */}
             </div>
 
             <div className="ge-total">
               <div className="ge-total-label">Total Calculated Amount</div>
-              <div className="ge-total-amount">
-                {currencyInfo?.symbol}
-                {totalFormatted}
-              </div>
+              <div className="ge-total-amount">{totalFormatted}</div>
               <div className="ge-total-words">{totalInWords}</div>
             </div>
           </div>

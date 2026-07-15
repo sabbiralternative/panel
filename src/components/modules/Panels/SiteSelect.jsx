@@ -23,8 +23,8 @@ export default function SiteSelects({
       <div className="ss-select-wrap">
         <select className="ss-select" value={site} onChange={handleSiteChange}>
           <option value="all">All</option>
-          {data.map((opt) => (
-            <option key={opt?.site_url} value={opt?.site_url}>
+          {data.map((opt, i) => (
+            <option key={`opt-${i}`} value={opt?.site_url}>
               {opt?.site_name} {opt?.site_url}
             </option>
           ))}
@@ -54,7 +54,7 @@ export default function SiteSelects({
         >
           <option value="all">All</option>
           {siteTypeData.map((opt) => (
-            <option key={opt?.name} value={opt?.name}>
+            <option key={`opt-${opt?.name}`} value={opt?.name}>
               {opt.name}
             </option>
           ))}
