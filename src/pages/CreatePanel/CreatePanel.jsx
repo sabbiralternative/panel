@@ -226,7 +226,9 @@ export default function CreatePanel() {
                   );
                 })}
               </div>
-              <div className="ge-hint">Non Refundable coins</div>
+              <div className="ge-hint" style={{ color: "white" }}>
+                {selectedRateData?.rate_app_text}
+              </div>
             </div>
 
             <div className="ge-field">

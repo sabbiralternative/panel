@@ -12,13 +12,13 @@
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 14px;
-  padding: 18px 20px;
+  padding: 10px 15px;
 }
 
 .ge-section {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
 }
 
 .ge-header {
@@ -50,13 +50,13 @@
 
 .ge-brand-title {
   color: #f2f2f2;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .ge-brand-sub {
-  color: #8a8a8a;
-  font-size: 13px;
+  color: #f2f2f2;
+  font-size: 12px;
   margin-top: 2px;
 }
 
@@ -82,7 +82,7 @@
 .ge-section-title {
   margin: 0;
   color: #f2f2f2;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -100,7 +100,7 @@
 
 .ge-label {
   color: #f2f2f2;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 600;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .ge-hint {
-  font-size: 12px;
+  font-size: 10px;
   color: #e8a622;
 }
 
@@ -202,7 +202,7 @@
 }
 
 .ge-radio-label {
-  font-size: 14px;
+  font-size: 12px;
   color: #cfcfcf;
   font-weight: 500;
   transition: color 0.15s ease;
@@ -239,13 +239,13 @@
 }
 
 .ge-total-amount {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 700;
   color: #f2f2f2;
 }
 
 .ge-total-words {
-  font-size: 12px;
+  font-size: 10px;
   color: #9a9a9a;
 }
 
@@ -263,7 +263,7 @@
   justify-content: center;
   gap: 8px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition:
