@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import "./GoExchangeForm.css";
 import { useGetIndex } from "../../hooks";
 import { useLocation } from "react-router-dom";
@@ -81,7 +81,7 @@ export default function CreatePanel() {
   });
 
   const [username, setUsername] = useState("");
-  const [rateType, setRateType] = useState("");
+  const [rateType, setRateType] = useState("Purchase");
   const [accountType, setAccountType] = useState("");
   const [currency, setCurrency] = useState("");
   const [coins, setCoins] = useState("");
@@ -106,6 +106,21 @@ export default function CreatePanel() {
     return coinsNum ? numberToWordsIndian(coinsNum) + " coins" : "";
   }, [coins]);
 
+  const selectedRateData = data?.result?.[0]?.rateData?.find(
+    (item) => item?.rate_type === rateType,
+  );
+
+  useEffect(() => {
+    if (rateType) {
+      setRate(
+        rateType === "Purchase"
+          ? selectedRateData?.fixed_rate
+          : selectedRateData?.min_rate,
+      );
+    }
+    setCoins(selectedRateData?.min_deposit_coins);
+  }, [rateType, data]);
+
   if (!data || !data?.result) return;
 
   const result = data?.result?.[0];
@@ -117,13 +132,21 @@ export default function CreatePanel() {
       );
       const rate = Number(e.target.value);
 
-      if (rate > findSharing?.min_rate && rate < findSharing?.max_rate) {
+      if (rate >= findSharing?.min_rate && rate < findSharing?.max_rate) {
         {
           setRate(e.target.value);
         }
       }
-    } else {
-      setRate(e.target.value);
+    }
+  };
+
+  const handleCoinsChange = (e) => {
+    const coins = Number(e.target.value);
+    if (
+      coins >= selectedRateData?.min_deposit_coins &&
+      coins < selectedRateData?.max_deposit_coins
+    ) {
+      setCoins(e.target.value);
     }
   };
 
@@ -194,7 +217,7 @@ export default function CreatePanel() {
                         type="radio"
                         name="rateType"
                         value={item?.rate_type}
-                        // checked={rateType === "purchase"}
+                        checked={rateType}
                         onChange={() => setRateType(item?.rate_type)}
                       />
                       <span className="ge-radio-dot" />
@@ -296,8 +319,9 @@ export default function CreatePanel() {
                   type="number"
                   className="ge-input"
                   value={coins}
-                  onChange={(e) => setCoins(e.target.value)}
+                  onChange={handleCoinsChange}
                 />
+
                 <div className="ge-hint">{coinsInWords}</div>
               </div>
             </div>
@@ -307,14 +331,22 @@ export default function CreatePanel() {
                 Rate<span className="ge-required">*</span>
               </label>
               <input
+                type="text"
                 id="rate"
-                // type="number"
-                step="0.01"
+                readOnly={rateType === "Purchase"}
                 className="ge-input"
                 value={rate}
                 onChange={handleRateChange}
               />
-              {/* <div className="ge-hint">Fixed Rate</div> */}
+              {rateType === "Purchase" ? (
+                <div className="ge-hint">Fixed Rate</div>
+              ) : (
+                <div className="ge-hint">
+                  {" "}
+                  Enter rate between {selectedRateData?.min_rate} and{" "}
+                  {selectedRateData?.max_rate}
+                </div>
+              )}
             </div>
 
             <div className="ge-total">

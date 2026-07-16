@@ -229,6 +229,7 @@ const EventDetails = () => {
                         {bookmaker?.length > 0 && (
                           <Bookmaker data={bookmaker} />
                         )}
+
                         {data?.result?.length > 0 && (
                           <Fancy data={data?.result} />
                         )}
