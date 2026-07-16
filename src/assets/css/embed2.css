@@ -18294,6 +18294,7 @@ cdk-virtual-scroll-viewport {
 }
 
 .deposit-system-modal .modal-body .payment-wrap .payment-type-details h4 {
+  color: black;
   font-size: 10px;
   font-weight: 400;
   display: flex;
@@ -18621,6 +18622,7 @@ cdk-virtual-scroll-viewport {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: black;
 }
 
 .deposit-system-modal
@@ -18739,6 +18741,7 @@ cdk-virtual-scroll-viewport {
   left: 10px;
   transform: translateY(-50%) !important;
   cursor: pointer;
+  color: black;
 }
 
 .filepond--wrapper .filepond--root.filepond--hopper {

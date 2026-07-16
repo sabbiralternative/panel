@@ -1507,7 +1507,7 @@ svg.mdc-button__icon {
 }
 .mat-mdc-button > .mat-icon {
   margin-left: 0;
-  margin-right: 8px;
+  margin-right: 3px;
   display: inline-block;
   position: relative;
   vertical-align: top;

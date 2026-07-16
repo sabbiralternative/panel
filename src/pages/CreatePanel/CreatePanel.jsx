@@ -2,6 +2,9 @@ import { useState, useMemo, useEffect } from "react";
 import "./GoExchangeForm.css";
 import { useGetIndex } from "../../hooks";
 import { useLocation } from "react-router-dom";
+import BuyPanel from "../../components/modals/Panels/BuyPanel";
+import toast from "react-hot-toast";
+import Alert from "../../components/UI/Alert/Alert";
 
 // Converts a whole number into Indian-system words (e.g. 1400 -> "One Thousand Four Hundred")
 function numberToWordsIndian(num) {
@@ -72,6 +75,8 @@ function numberToWordsIndian(num) {
 }
 
 export default function CreatePanel() {
+  const [alert, setAlert] = useState(false);
+  const [buyPanelPayload, setBuyPanelPayload] = useState({});
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
@@ -150,11 +155,30 @@ export default function CreatePanel() {
     }
   };
 
+  const handleShowModal = () => {
+    if (username) {
+      setBuyPanelPayload({
+        site_id: result?.id,
+        username: username,
+        amount: total,
+      });
+    } else {
+      setAlert(true);
+    }
+  };
+
   return (
     <div
       className="page-body notranslate"
       style={{ height: "calc(100% - 100px)" }}
     >
+      {buyPanelPayload?.site_id && username && (
+        <BuyPanel
+          setBuyPanelPayload={setBuyPanelPayload}
+          buyPanelPayload={buyPanelPayload}
+        />
+      )}
+      {alert && <Alert setAlert={setAlert} />}
       <div className="ids-tabnav">
         <div className="ge-page">
           <div className="ge-card">
@@ -373,7 +397,11 @@ export default function CreatePanel() {
               </svg>
               Add to cart
             </button>
-            <button type="button" className="ge-btn ge-btn-fill">
+            <button
+              onClick={handleShowModal}
+              type="button"
+              className="ge-btn ge-btn-fill"
+            >
               Buy Now
             </button>
           </div>
