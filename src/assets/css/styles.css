@@ -1972,7 +1972,7 @@ mat-form-field input[type="number"] {
 }
 
 .mat-mdc-dialog-container.mdc-dialog .modal-footer {
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 .mat-mdc-dialog-container.mdc-dialog .modal-footer button {

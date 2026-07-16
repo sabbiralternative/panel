@@ -503,7 +503,7 @@
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
-  background-color: var(--mdc-dialog-container-color, white);
+  background-color: var(--grey-100);
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -12481,7 +12481,7 @@ p.report-issue .link-text {
 }
 
 .betslip-modal .modal-header {
-  background: var(--header-dark-color);
+  background: var(--grey-00);
   color: var(--white-color);
 }
 
@@ -18257,7 +18257,7 @@ cdk-virtual-scroll-viewport {
 }
 
 .mat-mdc-dialog-container.mdc-dialog .modal-footer {
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 .deposit-system-modal .modal-footer p {
@@ -18294,7 +18294,7 @@ cdk-virtual-scroll-viewport {
 }
 
 .deposit-system-modal .modal-body .payment-wrap .payment-type-details h4 {
-  color: black;
+  color: #fff;
   font-size: 10px;
   font-weight: 400;
   display: flex;
@@ -18346,7 +18346,7 @@ cdk-virtual-scroll-viewport {
 
 .deposit-system-modal .modal-body .payment-wrap .payment-type-details {
   padding: 10px;
-  background: var(--white-color);
+  background: var(--grey-100);
   border-radius: 10px;
 }
 
@@ -18522,7 +18522,7 @@ cdk-virtual-scroll-viewport {
   font-size: 10px;
   display: flex;
   align-items: center;
-  color: var(--black-color);
+  color: white;
   font-family: open_semiBold;
 }
 
@@ -18579,7 +18579,7 @@ cdk-virtual-scroll-viewport {
 
 .deposit-system-modal .modal-body .payment-wrap .upload-screenshot-wrap {
   min-height: auto;
-  background: var(--white-color);
+  background: var(--grey-100);
   margin-top: 0;
   border-radius: 10px;
   padding: 10px;
@@ -18677,6 +18677,7 @@ cdk-virtual-scroll-viewport {
   padding: 0 60px 0 10px;
   font-size: 10px;
   width: 100%;
+  background: var(--grey-50);
 }
 
 .deposit-system-modal
@@ -18779,7 +18780,7 @@ cdk-virtual-scroll-viewport {
 }
 
 .mat-mdc-dialog-container.mdc-dialog .modal-footer {
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 /* casino provider start  */
@@ -19698,7 +19699,7 @@ cdk-virtual-scroll-viewport {
 }
 
 .modal-header {
-  background: var(--header-dark-color);
+  background: var(--grey-00);
   color: var(--white-color);
 }
 
@@ -21170,7 +21171,7 @@ button.btn {
 .modal-body p {
   font-size: 12px;
   margin: 0;
-  color: var(--grey-00);
+  color: white;
 }
 /* Reffer modal */
 

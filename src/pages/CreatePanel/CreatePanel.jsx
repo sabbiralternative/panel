@@ -383,20 +383,6 @@ export default function CreatePanel() {
           </div>
 
           <div className="ge-actions">
-            <button type="button" className="ge-btn ge-btn-outline">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-                <path
-                  d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="9" cy="21" r="1.5" fill="currentColor" />
-                <circle cx="18" cy="21" r="1.5" fill="currentColor" />
-              </svg>
-              Add to cart
-            </button>
             <button
               onClick={handleShowModal}
               type="button"

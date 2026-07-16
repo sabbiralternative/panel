@@ -71,6 +71,8 @@ const DepositPaymentGateway = ({
       }
     }
   };
+
+  console.log(buyPanelPayload);
   return (
     <div className="ng-star-inserted">
       <div className="deposit-system-modal">
@@ -130,15 +132,22 @@ const DepositPaymentGateway = ({
                 alignItems: "center",
                 gap: "20px",
                 marginBottom: "20px",
+                color: "white",
               }}
             >
               <input
+                disabled={data?.availBalance < buyPanelPayload?.amount}
+                // readOnly={data?.availBalance < buyPanelPayload?.amount}
                 type="checkbox"
                 onChange={(e) => setCurrent_wallet(e.target.checked ? 1 : 0)}
               />
-              <div>
-                <p>Current Wallet balance {data?.availBalance} </p>
-                <p>Pay from wallet</p>
+              <div style={{}}>
+                <p style={{ color: "white", fontSize: "12px" }}>
+                  Current Wallet balance {data?.availBalance}{" "}
+                </p>
+                <p style={{ color: "white", fontSize: "10px" }}>
+                  Pay from wallet
+                </p>
               </div>
             </div>
             {Array.isArray(depositMethods) &&

@@ -176,6 +176,7 @@ const UploadTransaction = ({
                           display: "flex",
                           alignItems: "center",
                           gap: "10px",
+                          color: "white",
                         }}
                         htmlFor="filepond--browser-e1yxutkfw"
                         id="filepond--drop-label-e1yxutkfw"
@@ -237,7 +238,7 @@ const UploadTransaction = ({
         </div>
         <div className="utr-wrapper ng-star-inserted">
           <div className="input-wrap">
-            <label>
+            <label style={{ color: "white" }}>
               {methodType === "usdt" || methodType === "usdt_bep20"
                 ? "Hash Code"
                 : " Unique Transaction Reference"}
@@ -254,6 +255,7 @@ const UploadTransaction = ({
               </span>
             </label>
             <input
+              style={{ color: "white" }}
               onChange={handleUTRChange}
               placeholder={
                 methodType === "usdt" || methodType === "usdt_bep20"
@@ -266,10 +268,11 @@ const UploadTransaction = ({
               value={utr !== null ? utr : null}
             />
             <span
+              style={{ color: "white" }}
               onClick={handlePasteClick}
               className="paste-icon ng-star-inserted"
             >
-              <GrCopy style={{ marginRight: "5px" }} /> Paste
+              <GrCopy style={{ marginRight: "5px", color: "white" }} /> Paste
             </span>
           </div>
         </div>
