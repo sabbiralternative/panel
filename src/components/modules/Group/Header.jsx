@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { eventNameList } from "../../../static/event-name-list";
+// import { eventNameList } from "../../../static/event-name-list";
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -134,7 +134,7 @@ const Header = () => {
                 <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />
               </span>
             </div>
-            <div
+            {/* <div
               onClick={() => navigate("/group/kabaddi/5?type=inPlay")}
               style={{ width: "auto" }}
               role="tab"
@@ -368,7 +368,7 @@ const Header = () => {
               <span className="mdc-tab-indicator">
                 <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />
               </span>
-            </div>
+            </div> 
             <div
               onClick={() => navigate("/slots")}
               style={{ width: "auto" }}
@@ -396,7 +396,7 @@ const Header = () => {
               <span className="mdc-tab-indicator">
                 <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />
               </span>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>
