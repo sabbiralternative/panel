@@ -1,4 +1,4 @@
-const MyPanelSection = () => {
+const MyPanelSection = ({ data }) => {
   return (
     <div className="mat-mdc-tab-body-wrapper" style={{}}>
       <div
@@ -36,70 +36,76 @@ const MyPanelSection = () => {
             style={{ "--offset-top": "0px", "--offset-bottom": "0px" }}
           >
             <div className="id-list my-id">
-              <div className="ls-cont ng-star-inserted" style={{}}>
-                <div className="list-wrap">
-                  <div className="id-info">
-                    <div className="ls-detail">
-                      <img
-                        alt="ID Image"
-                        src="https://ss.gopunt.com/go-punt/uploads/panel_icons/Lotusbook247.games.png"
-                      />
-                      <div className="ls-info">
-                        <h4>admin.lotusbook.io</h4>
-                        <p>richie12</p>
-                        <p className="currency-type">Rate @ 0.19</p>
-                        <p className="rate-account-type"> Sharing - Admin </p>
-                      </div>
-                    </div>
-                    <div className="ls-right">
-                      <div className="btn-wrap">
-                        <button
-                          aria-label="Deposit Button"
-                          className="d-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
-                        >
-                          <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
-                          <span className="mdc-button__label"> D </span>
-                          <span className="mat-mdc-focus-indicator" />
-                          <span className="mat-mdc-button-touch-target" />
-                        </button>
-                        <button
-                          aria-label="Withdraw Button"
-                          className="w-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
-                        >
-                          <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
-                          <span className="mdc-button__label"> W </span>
-                          <span className="mat-mdc-focus-indicator" />
-                          <span className="mat-mdc-button-touch-target" />
-                        </button>
-                        <button
-                          aria-label="Menu Button"
-                          className="mat-mdc-menu-trigger menu-btn mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
-                          aria-haspopup="menu"
-                          aria-expanded="false"
-                        >
-                          <span className="mat-mdc-button-persistent-ripple mdc-icon-button__ripple" />
-                          <div
-                            role="img"
-                            className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                            aria-hidden="true"
-                            data-mat-icon-type="font"
-                          >
-                            more_vert
+              {data?.result?.map((item) => {
+                return (
+                  <div
+                    key={item?.id}
+                    className="ls-cont ng-star-inserted"
+                    style={{}}
+                  >
+                    <div className="list-wrap">
+                      <div className="id-info">
+                        <div className="ls-detail">
+                          <img alt="ID Image" src={item?.img} />
+                          <div className="ls-info">
+                            <h4>
+                              {item?.panel_type} {item?.site_url}
+                            </h4>
+                            <p>{item?.username}</p>
+                            <p className="currency-type">
+                              Rate @ {item?.panel_rate}
+                            </p>
+                            <p className="rate-account-type">
+                              {" "}
+                              {item?.panel_rate_type} - {item?.panel_type}{" "}
+                            </p>
                           </div>
-                          <span className="mat-mdc-focus-indicator" />
-                          <span className="mat-mdc-button-touch-target" />
-                        </button>
-
-                        <mat-menu
-                          ngskiphydration
-                          xposition="before"
-                          className="ng-star-inserted"
-                        ></mat-menu>
+                        </div>
+                        <div className="ls-right">
+                          <div className="btn-wrap">
+                            <button
+                              aria-label="Deposit Button"
+                              className="d-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
+                              <span className="mdc-button__label"> D </span>
+                              <span className="mat-mdc-focus-indicator" />
+                              <span className="mat-mdc-button-touch-target" />
+                            </button>
+                            <button
+                              aria-label="Withdraw Button"
+                              className="w-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
+                              <span className="mdc-button__label"> W </span>
+                              <span className="mat-mdc-focus-indicator" />
+                              <span className="mat-mdc-button-touch-target" />
+                            </button>
+                            <button
+                              aria-label="Menu Button"
+                              className="mat-mdc-menu-trigger menu-btn mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
+                              aria-haspopup="menu"
+                              aria-expanded="false"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-icon-button__ripple" />
+                              <div
+                                role="img"
+                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                                aria-hidden="true"
+                                data-mat-icon-type="font"
+                              >
+                                more_vert
+                              </div>
+                              <span className="mat-mdc-focus-indicator" />
+                              <span className="mat-mdc-button-touch-target" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>

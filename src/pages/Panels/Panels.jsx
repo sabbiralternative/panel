@@ -8,6 +8,7 @@ const Panels = () => {
   const [site, setSite] = useState("all");
   const [siteType, setSiteType] = useState("all");
   const { data } = useGetIndex({ type: "panel_sites" });
+  const { data: my_panels } = useGetIndex({ type: "my_panels" });
 
   const filterData = useMemo(() => {
     if (!data?.result) return [];
@@ -115,7 +116,9 @@ const Panels = () => {
                     <span className="mdc-tab__ripple" />
                     <div className="mat-ripple mat-mdc-tab-ripple" />
                     <span className="mdc-tab__content">
-                      <span className="mdc-tab__text-label">MY PANELS (0)</span>
+                      <span className="mdc-tab__text-label">
+                        MY PANELS ({my_panels?.result?.length})
+                      </span>
                     </span>
                     <span className="mdc-tab-indicator">
                       <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />
@@ -165,7 +168,7 @@ const Panels = () => {
               filterData={filterData}
             />
           )}
-          {tab === 0 && <MyPanelSection />}
+          {tab === 0 && <MyPanelSection data={my_panels} />}
         </div>
       </div>
     </div>
