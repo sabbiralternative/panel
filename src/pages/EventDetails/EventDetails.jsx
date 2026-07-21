@@ -15,7 +15,7 @@ import OpenBets from "../../components/modules/EventDetails/OpenBets";
 import { useCurrentBets } from "../../hooks/currentBets";
 import { useAccessTokenQuery } from "../../hooks/accessToken";
 import { Settings } from "../../api";
-import Premium from "../../components/modules/EventDetails/Premium";
+// import Premium from "../../components/modules/EventDetails/Premium";
 
 const EventDetails = () => {
   const [eventTab, setEventTab] = useState("market");
@@ -236,9 +236,9 @@ const EventDetails = () => {
                         {tiedMatch?.length > 0 && (
                           <MatchOdds data={tiedMatch} />
                         )}
-                        {data?.premium && data?.premium?.eventId && (
+                        {/* {data?.premium && data?.premium?.eventId && (
                           <Premium premium={data?.premium} />
-                        )}
+                        )} */}
                       </div>
                     </div>
                   </div>
