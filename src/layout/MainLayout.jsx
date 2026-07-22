@@ -68,7 +68,8 @@ const MainLayout = () => {
           <Outlet />
         </div>
         {!pathname.includes("/casino/") &&
-          !pathname.includes("/event-details") && <Footer />}
+          !pathname.includes("/event-details") &&
+          !pathname.includes("/panel-dw") && <Footer />}
       </LeftSidebar>
     </Fragment>
   );

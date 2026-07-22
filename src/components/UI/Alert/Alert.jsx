@@ -2,7 +2,7 @@ import { useRef } from "react";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 
-const Alert = ({ setAlert }) => {
+const Alert = ({ setAlert, title, description }) => {
   const ref = useRef();
 
   useCloseModalClickOutside(ref, () => {
@@ -36,7 +36,7 @@ const Alert = ({ setAlert }) => {
         <div className="swal2-icon swal2-icon-show" style={{ display: "flex" }}>
           <div className="swal2-icon-content">
             <img src={images.warning} />
-            <p>Alert</p>
+            <p>{title}</p>
           </div>
         </div>
         <img className="swal2-image" style={{ display: "none" }} />
@@ -50,7 +50,7 @@ const Alert = ({ setAlert }) => {
           id="swal2-html-container"
           style={{ display: "block" }}
         >
-          Username is required !
+          {description}
         </div>
         <input
           id="swal2-input"

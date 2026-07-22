@@ -28,6 +28,8 @@ import LossBackClaims from "../pages/LossBackClaims/LossBackClaims";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import Panels from "../pages/Panels/Panels";
 import CreatePanel from "../pages/CreatePanel/CreatePanel";
+import PanelDW from "../pages/Panels/PanelDW";
+import PanelTransaction from "../pages/Panels/PanelTransaction";
 
 export const router = createBrowserRouter(
   [
@@ -147,6 +149,14 @@ export const router = createBrowserRouter(
         {
           path: "/panels/create",
           element: <CreatePanel />,
+        },
+        {
+          path: "/panel-dw",
+          element: <PanelDW />,
+        },
+        {
+          path: "/panel-transaction",
+          element: <PanelTransaction />,
         },
       ],
     },

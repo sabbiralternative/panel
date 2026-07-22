@@ -1,6 +1,31 @@
+import { useState } from "react";
+import Dropdown from "./Dropdown";
+import { useNavigate } from "react-router-dom";
+import Alert from "../../UI/Alert/Alert";
+import ClosePanel from "../../modals/ClosePanel/ClosePanel";
+
 const MyPanelSection = ({ data }) => {
+  const [alert, setAlert] = useState(false);
+  const [closePanel, setClosePanel] = useState(false);
+  const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
   return (
     <div className="mat-mdc-tab-body-wrapper" style={{}}>
+      {showDropdown && (
+        <Dropdown
+          setClosePanel={setClosePanel}
+          setShowDropdown={setShowDropdown}
+          setAlert={setAlert}
+        />
+      )}
+      {alert && (
+        <Alert
+          setAlert={setAlert}
+          title="Request Panel's Password"
+          description="Are you sure you want to request for new panel password"
+        />
+      )}
+      {closePanel && <ClosePanel setClosePanel={setClosePanel} />}
       <div
         role="tabpanel"
         className="mat-mdc-tab-body ng-tns-c737557735-58 ng-star-inserted mat-mdc-tab-body-active mat-tab-body"
@@ -64,6 +89,7 @@ const MyPanelSection = ({ data }) => {
                         <div className="ls-right">
                           <div className="btn-wrap">
                             <button
+                              onClick={() => navigate("/panel-dw")}
                               aria-label="Deposit Button"
                               className="d-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
@@ -73,6 +99,7 @@ const MyPanelSection = ({ data }) => {
                               <span className="mat-mdc-button-touch-target" />
                             </button>
                             <button
+                              onClick={() => navigate("/panel-dw")}
                               aria-label="Withdraw Button"
                               className="w-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
@@ -82,6 +109,7 @@ const MyPanelSection = ({ data }) => {
                               <span className="mat-mdc-button-touch-target" />
                             </button>
                             <button
+                              onClick={() => setShowDropdown(true)}
                               aria-label="Menu Button"
                               className="mat-mdc-menu-trigger menu-btn mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
                               aria-haspopup="menu"

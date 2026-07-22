@@ -3,7 +3,6 @@ import "./GoExchangeForm.css";
 import { useGetIndex } from "../../hooks";
 import { useLocation } from "react-router-dom";
 import BuyPanel from "../../components/modals/Panels/BuyPanel";
-import toast from "react-hot-toast";
 import Alert from "../../components/UI/Alert/Alert";
 
 // Converts a whole number into Indian-system words (e.g. 1400 -> "One Thousand Four Hundred")
@@ -178,7 +177,13 @@ export default function CreatePanel() {
           buyPanelPayload={buyPanelPayload}
         />
       )}
-      {alert && <Alert setAlert={setAlert} />}
+      {alert && (
+        <Alert
+          setAlert={setAlert}
+          title="Alert"
+          description="Username is required !"
+        />
+      )}
       <div className="ids-tabnav">
         <div className="ge-page">
           <div className="ge-card">
