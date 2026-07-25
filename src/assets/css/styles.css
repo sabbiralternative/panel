@@ -1952,7 +1952,7 @@ mat-form-field input[type="number"] {
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 4px;
-  color: var(--grey-00);
+  color: var(--grey-900);
 }
 
 .mat-mdc-dialog-container.mdc-dialog .modal-body .form-wrap input {

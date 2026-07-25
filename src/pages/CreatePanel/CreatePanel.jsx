@@ -4,6 +4,7 @@ import { useGetIndex } from "../../hooks";
 import { useLocation } from "react-router-dom";
 import BuyPanel from "../../components/modals/Panels/BuyPanel";
 import Alert from "../../components/UI/Alert/Alert";
+import toast from "react-hot-toast";
 
 // Converts a whole number into Indian-system words (e.g. 1400 -> "One Thousand Four Hundred")
 function numberToWordsIndian(num) {
@@ -131,16 +132,17 @@ export default function CreatePanel() {
 
   const handleRateChange = (e) => {
     if (rateType === "Sharing") {
-      const findSharing = result?.rateData?.find(
-        (item) => item?.rate_type === "Sharing",
-      );
-      const rate = Number(e.target.value);
+      // const findSharing = result?.rateData?.find(
+      //   (item) => item?.rate_type === "Sharing",
+      // );
+      // const rate = Number(e.target.value);
+      setRate(e.target.value);
 
-      if (rate >= findSharing?.min_rate && rate < findSharing?.max_rate) {
-        {
-          setRate(e.target.value);
-        }
-      }
+      // if (rate >= findSharing?.min_rate && rate <= findSharing?.max_rate) {
+      //   {
+      //     setRate(e.target.value);
+      //   }
+      // }
     }
   };
 
@@ -155,6 +157,17 @@ export default function CreatePanel() {
   };
 
   const handleShowModal = () => {
+    const findSharing = result?.rateData?.find(
+      (item) => item?.rate_type === "Sharing",
+    );
+    if (rate < findSharing?.min_rate || rate > findSharing?.max_rate) {
+      return toast.error(
+        "Rate should be between " +
+          findSharing?.min_rate +
+          " and " +
+          findSharing?.max_rate,
+      );
+    }
     if (username) {
       setBuyPanelPayload({
         site_id: result?.id,
@@ -169,7 +182,7 @@ export default function CreatePanel() {
   return (
     <div
       className="page-body notranslate"
-      style={{ height: "calc(100% - 100px)" }}
+      style={{ height: "calc(100% - 100px)", overflow: "auto" }}
     >
       {buyPanelPayload?.site_id && username && (
         <BuyPanel
