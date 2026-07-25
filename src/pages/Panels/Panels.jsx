@@ -2,9 +2,13 @@ import { useGetIndex } from "../../hooks";
 import { useMemo, useState } from "react";
 import CreatePanelSection from "../../components/modules/Panels/CreatePanelSection";
 import MyPanelSection from "../../components/modules/Panels/MyPanelSection";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Panels = () => {
-  const [tab, setTab] = useState(1);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const tab = params.get("tab");
+  const navigate = useNavigate();
   const [site, setSite] = useState("all");
   const [siteType, setSiteType] = useState("all");
   const { data } = useGetIndex({ type: "panel_sites" });
@@ -102,9 +106,9 @@ const Panels = () => {
               >
                 <div className="mat-mdc-tab-labels">
                   <div
-                    onClick={() => setTab(0)}
+                    onClick={() => navigate("/panels?tab=0")}
                     role="tab"
-                    className={`mdc-tab mat-mdc-tab mat-mdc-focus-indicator mdc-tab--active  ng-star-inserted ${tab === 0 ? "mdc-tab-indicator--active" : ""}`}
+                    className={`mdc-tab mat-mdc-tab mat-mdc-focus-indicator mdc-tab--active  ng-star-inserted ${tab == 0 ? "mdc-tab-indicator--active" : ""}`}
                     id="mat-tab-label-0-0"
                     tabIndex={-1}
                     aria-posinset={1}
@@ -125,9 +129,9 @@ const Panels = () => {
                     </span>
                   </div>
                   <div
-                    onClick={() => setTab(1)}
+                    onClick={() => navigate("/panels?tab=1")}
                     role="tab"
-                    className={`mdc-tab mat-mdc-tab mat-mdc-focus-indicator mdc-tab--active  ng-star-inserted ${tab === 1 ? "mdc-tab-indicator--active" : ""}`}
+                    className={`mdc-tab mat-mdc-tab mat-mdc-focus-indicator mdc-tab--active  ng-star-inserted ${tab == 1 ? "mdc-tab-indicator--active" : ""}`}
                     id="mat-tab-label-0-1"
                     tabIndex={0}
                     aria-posinset={2}
@@ -158,7 +162,7 @@ const Panels = () => {
               <div className="mat-mdc-tab-header-pagination-chevron" />
             </button> */}
           </div>
-          {tab === 1 && (
+          {tab == 1 && (
             <CreatePanelSection
               data={data}
               site={site}
@@ -168,7 +172,7 @@ const Panels = () => {
               filterData={filterData}
             />
           )}
-          {tab === 0 && <MyPanelSection data={my_panels} />}
+          {tab == 0 && <MyPanelSection data={my_panels} />}
         </div>
       </div>
     </div>

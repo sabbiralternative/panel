@@ -172,7 +172,7 @@ const Footer = () => {
               </Fragment>
             )}
             <button
-              onClick={() => handleNavigate("/panels")}
+              onClick={() => handleNavigate("/panels?tab=1")}
               className={`market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "panels" ? "active-link" : ""}`}
               tabIndex={0}
             >

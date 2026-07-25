@@ -1,9 +1,11 @@
 import { useBankAccountQuery } from "../../../hooks/bankAccount";
-import { API } from "../../../api";
+import { API, Settings } from "../../../api";
 import { AxiosSecure } from "../../../lib/AxiosSecure";
 import toast from "react-hot-toast";
 
 import useBalance from "../../../hooks/balance";
+import { useIndex } from "../../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const DepositPaymentGateway = ({
   setDepositTab,
@@ -16,7 +18,9 @@ const DepositPaymentGateway = ({
   current_wallet,
   setCurrent_wallet,
 }) => {
+  const navigate = useNavigate();
   const { data } = useBalance();
+  const { mutateAsync } = useIndex();
 
   const { data: depositMethods } = useBankAccountQuery({
     type: "depositMethods",
@@ -71,8 +75,21 @@ const DepositPaymentGateway = ({
       }
     }
   };
-
-  console.log(buyPanelPayload);
+  const handleCreatePanel = async () => {
+    const payload = {
+      type: "create_panel",
+      currency: Settings.casino_currency,
+      ...buyPanelPayload,
+    };
+    const res = await mutateAsync(payload);
+    if (res?.success) {
+      toast.success(res?.result?.message);
+      setBuyPanelPayload({});
+      navigate("/panels?tab=0");
+    } else {
+      toast.error(res?.error?.errorMessage);
+    }
+  };
   return (
     <div className="ng-star-inserted">
       <div className="deposit-system-modal">
@@ -126,31 +143,53 @@ const DepositPaymentGateway = ({
         </div>
         <div className="modal-body ng-star-inserted">
           <div className="pay-methods-wrap">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                marginBottom: "20px",
-                color: "white",
-              }}
-            >
-              <input
-                disabled={data?.availBalance < buyPanelPayload?.amount}
-                // readOnly={data?.availBalance < buyPanelPayload?.amount}
-                type="checkbox"
-                onChange={(e) => setCurrent_wallet(e.target.checked ? 1 : 0)}
-              />
-              <div style={{}}>
-                <p style={{ color: "white", fontSize: "12px" }}>
-                  Current Wallet balance {data?.availBalance}{" "}
-                </p>
-                <p style={{ color: "white", fontSize: "10px" }}>
-                  Pay from wallet
-                </p>
+            {data?.availBalance >= buyPanelPayload?.amount ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginBottom: "20px",
+                  color: "white",
+                }}
+              >
+                <input
+                  disabled={data?.availBalance < buyPanelPayload?.amount}
+                  // readOnly={data?.availBalance < buyPanelPayload?.amount}
+                  type="checkbox"
+                  onChange={(e) => setCurrent_wallet(e.target.checked ? 1 : 0)}
+                />
+                <div style={{}}>
+                  <p style={{ color: "white", fontSize: "12px" }}>
+                    Current Wallet balance {data?.availBalance}{" "}
+                  </p>
+                  <p style={{ color: "white", fontSize: "10px" }}>
+                    Pay from wallet
+                  </p>
+                </div>
               </div>
-            </div>
-            {Array.isArray(depositMethods) &&
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginBottom: "20px",
+                  color: "white",
+                }}
+              >
+                <div style={{}}>
+                  <p style={{ color: "white", fontSize: "12px" }}>
+                    Insufficient balance in your wallet, Deposit{" "}
+                    {buyPanelPayload?.amount - data?.availBalance} more in your
+                    wallet first, then create panel.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {data?.availBalance < buyPanelPayload?.amount ? (
+              Array.isArray(depositMethods) &&
               depositMethods?.length > 0 &&
               depositMethods
                 ?.sort((a, b) => a?.sort - b?.sort)
@@ -182,7 +221,16 @@ const DepositPaymentGateway = ({
                       </div>
                     </div>
                   );
-                })}
+                })
+            ) : (
+              <button
+                onClick={handleCreatePanel}
+                className="btn secondary-btn ng-star-inserted"
+                style={{ padding: "14px 0px" }}
+              >
+                Create Panel
+              </button>
+            )}
           </div>
         </div>
         {/* <div className="modal-footer ng-star-inserted">

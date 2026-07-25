@@ -173,6 +173,10 @@ export default function CreatePanel() {
         site_id: result?.id,
         username: username,
         amount: total,
+        rate_type: rateType,
+        account_type: accountType,
+        coins,
+        rate,
       });
     } else {
       setAlert(true);
