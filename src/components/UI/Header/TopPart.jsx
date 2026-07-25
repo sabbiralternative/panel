@@ -4,6 +4,7 @@ import "./TopPart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Settings } from "../../../api";
 import {
+  setAddBank,
   setShowBanner,
   setShowDepositModal,
   setShowLoginModal,
@@ -20,8 +21,10 @@ import toast from "react-hot-toast";
 import { useLogo } from "../../../context/ApiProvider";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
+import { useBankAccountMutation } from "../../../hooks/bankAccount";
 
 const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
+  const { mutateAsync } = useBankAccountMutation();
   const closePopupForForever = localStorage.getItem("closePopupForForever");
   const { logo } = useLogo();
   const { token } = useSelector((state) => state.auth);
@@ -72,6 +75,26 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
       }
     } else {
       toast.error(result?.error);
+    }
+  };
+
+  const handleShowWithdrawModal = async () => {
+    if (token) {
+      const payload = {
+        type: "getBankAccounts",
+        status: "1",
+      };
+
+      const res = await mutateAsync(payload);
+      if (res?.success) {
+        if (res?.result?.length > 0) {
+          setShowWithdrawModal(true);
+        } else {
+          dispatch(setAddBank(true));
+        }
+      }
+    } else {
+      toast.error("Please login to continue");
     }
   };
   return (
@@ -266,16 +289,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
               </div>
             </div>
           </div>
-          <div
-            onClick={() => {
-              if (token) {
-                setShowWithdrawModal(true);
-              } else {
-                toast.error("Please login to continue");
-              }
-            }}
-            className="wa-item"
-          >
+          <div onClick={handleShowWithdrawModal} className="wa-item">
             <div className="withdraw-wrap">
               <p>Withdraw</p>
               <div className="img-wrap">

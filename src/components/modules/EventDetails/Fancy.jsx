@@ -136,7 +136,7 @@ const Fancy = ({ data }) => {
   return (
     <Fragment>
       {fancyData?.length > 0 && (
-        <div className="card-outer f-order-8 fancy-card ng-star-inserted">
+        <div className="card-outer  fancy-card ng-star-inserted">
           <div className="head-wrap">
             <h2 className="card-heading">Fancy</h2>
           </div>

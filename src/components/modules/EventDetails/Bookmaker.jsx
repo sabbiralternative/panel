@@ -232,7 +232,7 @@ const Bookmaker = ({ data }) => {
             (profit) => profit?.gameId === game?.id && profit?.speedCashOut,
           );
           return (
-            <div key={game?.id} className="f-order-3 ng-star-inserted">
+            <div key={game?.id} className="f-order ng-star-inserted">
               <div className="ng-star-inserted">
                 <div className="ng-star-inserted">
                   <div className="bookmaker-card card-outer" id="YBJVTEX">
