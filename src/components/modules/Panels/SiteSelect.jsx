@@ -19,7 +19,7 @@ export default function SiteSelects({
 
   const siteTypeData =
     data && Array.from(new Set(data.map((item) => item.site_type)));
-
+  console.log(data);
   return (
     <div className="ss-row">
       <div className="ss-select-wrap">
@@ -27,7 +27,7 @@ export default function SiteSelects({
           <option value="all">All</option>
           {data?.map((opt, i) => (
             <option key={`opt-${i}`} value={opt?.site_url}>
-              {opt?.site_name} {opt?.site_url}
+              {opt?.site_name} ({opt?.site_type}) ({opt?.site_url})
             </option>
           ))}
         </select>
