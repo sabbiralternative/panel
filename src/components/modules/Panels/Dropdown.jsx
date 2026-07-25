@@ -2,27 +2,32 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useNavigate } from "react-router-dom";
 
-const Dropdown = ({ setShowDropdown, setAlert, setClosePanel }) => {
+const Dropdown = ({
+  setSelectedDropdown,
+  setAlert,
+  setClosePanel,
+  selectedDropdown,
+}) => {
   const ref = useRef();
   const navigate = useNavigate();
   useCloseModalClickOutside(ref, () => {
-    setShowDropdown(false);
+    setSelectedDropdown(null);
   });
 
   const handleNavigate = (link) => {
-    setShowDropdown(false);
+    setSelectedDropdown(null);
     navigate(link);
   };
   return (
-    <div className="cdk-overlay-container">
+    <div className="cdk-overlay-container" style={{ position: "absolute" }}>
       <div className="cdk-overlay-backdrop cdk-overlay-transparent-backdrop cdk-overlay-backdrop-showing" />
       <div
         ref={ref}
         className="cdk-overlay-connected-position-bounding-box"
         dir="ltr"
         style={{
-          top: "233.941px",
-          right: "226.269px",
+          top: "100px",
+          right: "0px",
           height: "596.059px",
           width: "954.731px",
           alignItems: "flex-end",
@@ -43,7 +48,11 @@ const Dropdown = ({ setShowDropdown, setAlert, setClosePanel }) => {
           >
             <div className="mat-mdc-menu-content ng-tns-c2786309385-114">
               <button
-                onClick={() => handleNavigate("/panel-dw")}
+                onClick={() =>
+                  handleNavigate(
+                    `/panel-dw?id=${selectedDropdown?.hyper_master_id}&type=deposit`,
+                  )
+                }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
                 role="menuitem"
                 tabIndex={0}
@@ -55,7 +64,11 @@ const Dropdown = ({ setShowDropdown, setAlert, setClosePanel }) => {
               </button>
 
               <button
-                onClick={() => handleNavigate("/panel-dw")}
+                onClick={() =>
+                  handleNavigate(
+                    `/panel-dw?id=${selectedDropdown?.hyper_master_id}&type=withdraw`,
+                  )
+                }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
                 role="menuitem"
                 tabIndex={0}
@@ -78,7 +91,7 @@ const Dropdown = ({ setShowDropdown, setAlert, setClosePanel }) => {
               </button>
               <button
                 onClick={() => {
-                  setShowDropdown(false);
+                  setSelectedDropdown(null);
                   setAlert(true);
                 }}
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
@@ -93,7 +106,7 @@ const Dropdown = ({ setShowDropdown, setAlert, setClosePanel }) => {
 
               <button
                 onClick={() => {
-                  setShowDropdown(false);
+                  setSelectedDropdown(null);
                   setClosePanel(true);
                 }}
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"

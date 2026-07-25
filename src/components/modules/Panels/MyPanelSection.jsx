@@ -8,16 +8,9 @@ const MyPanelSection = ({ data }) => {
   const [alert, setAlert] = useState(false);
   const [closePanel, setClosePanel] = useState(false);
   const navigate = useNavigate();
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedDropdown, setSelectedDropdown] = useState(null);
   return (
     <div className="mat-mdc-tab-body-wrapper" style={{}}>
-      {showDropdown && (
-        <Dropdown
-          setClosePanel={setClosePanel}
-          setShowDropdown={setShowDropdown}
-          setAlert={setAlert}
-        />
-      )}
       {alert && (
         <Alert
           setAlert={setAlert}
@@ -65,34 +58,44 @@ const MyPanelSection = ({ data }) => {
               style={{ background: "transparent", border: "none" }}
             >
               {data?.result?.map((item) => {
+                console.log(item);
                 return (
                   <div
                     key={item?.id}
                     className="ls-cont ng-star-inserted"
-                    style={{}}
+                    style={{ position: "relative" }}
                   >
                     <div className="list-wrap">
                       <div className="id-info">
                         <div className="ls-detail">
                           <img alt="ID Image" src={item?.img} />
                           <div className="ls-info">
-                            <h4>
-                              {item?.panel_type} {item?.site_url}
-                            </h4>
+                            <h4>{item?.site_url}</h4>
                             <p>{item?.username}</p>
                             <p className="currency-type">
                               Rate @ {item?.panel_rate}
                             </p>
                             <p className="rate-account-type">
                               {" "}
-                              {item?.panel_rate_type} - {item?.panel_type}{" "}
+                              {item?.panel_rate_type} - {item?.panel_type}
+                            </p>
+                            <p className="currency-typee">
+                              {" "}
+                              Admin Link :{" "}
+                              <a onClick={() => window.open(item.admin_url)}>
+                                {item?.admin_url}
+                              </a>
                             </p>
                           </div>
                         </div>
                         <div className="ls-right">
                           <div className="btn-wrap">
                             <button
-                              onClick={() => navigate("/panel-dw")}
+                              onClick={() =>
+                                navigate(
+                                  `/panel-dw?id=${item?.hyper_master_id}&type=deposit`,
+                                )
+                              }
                               aria-label="Deposit Button"
                               className="d-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
@@ -102,7 +105,11 @@ const MyPanelSection = ({ data }) => {
                               <span className="mat-mdc-button-touch-target" />
                             </button>
                             <button
-                              onClick={() => navigate("/panel-dw")}
+                              onClick={() =>
+                                navigate(
+                                  `/panel-dw?id=${item?.hyper_master_id}&type=withdraw`,
+                                )
+                              }
                               aria-label="Withdraw Button"
                               className="w-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
@@ -112,7 +119,7 @@ const MyPanelSection = ({ data }) => {
                               <span className="mat-mdc-button-touch-target" />
                             </button>
                             <button
-                              onClick={() => setShowDropdown(true)}
+                              onClick={() => setSelectedDropdown(item)}
                               aria-label="Menu Button"
                               className="mat-mdc-menu-trigger menu-btn mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
                               aria-haspopup="menu"
@@ -134,6 +141,16 @@ const MyPanelSection = ({ data }) => {
                         </div>
                       </div>
                     </div>
+                    {selectedDropdown &&
+                      item?.hyper_master_id ===
+                        selectedDropdown?.hyper_master_id && (
+                        <Dropdown
+                          setClosePanel={setClosePanel}
+                          setSelectedDropdown={setSelectedDropdown}
+                          setAlert={setAlert}
+                          selectedDropdown={selectedDropdown}
+                        />
+                      )}
                   </div>
                 );
               })}

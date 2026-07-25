@@ -6970,3 +6970,49 @@ svg.mdc-button__icon {
   color: var(--secondary-color);
 }
 /*! Panel Transaction  */
+/* Panel Transaction */
+.withdraw-option {
+  width: 100%;
+  background: #0f0f0f;
+  padding: 14px 10px;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-wrapper input {
+  display: none;
+}
+
+.custom-radio {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.radio-wrapper input:checked + .custom-radio::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.label-text {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+}
+/* Panel Transaction */
