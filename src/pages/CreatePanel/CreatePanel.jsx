@@ -147,13 +147,7 @@ export default function CreatePanel() {
   };
 
   const handleCoinsChange = (e) => {
-    const coins = Number(e.target.value);
-    if (
-      coins >= selectedRateData?.min_deposit_coins &&
-      coins < selectedRateData?.max_deposit_coins
-    ) {
-      setCoins(e.target.value);
-    }
+    setCoins(Number(e.target.value));
   };
 
   const handleShowModal = () => {
@@ -168,6 +162,23 @@ export default function CreatePanel() {
           findSharing?.max_rate,
       );
     }
+
+    if (
+      coins < selectedRateData?.min_deposit_coins ||
+      coins > selectedRateData?.max_deposit_coins
+    ) {
+      return toast.error(
+        "Coins should be between " +
+          selectedRateData?.min_deposit_coins +
+          " and " +
+          selectedRateData?.max_deposit_coins,
+      );
+    }
+
+    if (!accountType) {
+      return toast.error("Account type is required");
+    }
+
     if (username) {
       setBuyPanelPayload({
         site_id: result?.id,
@@ -287,7 +298,9 @@ export default function CreatePanel() {
                   className="ge-select"
                   value={accountType}
                   onChange={(e) => setAccountType(e.target.value)}
+                  required
                 >
+                  <option value="">Select Account Type</option>
                   {result?.roleData?.map((item) => (
                     <option key={item?.role} value={item?.role}>
                       {item?.role}

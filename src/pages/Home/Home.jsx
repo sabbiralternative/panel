@@ -24,7 +24,7 @@ const Home = () => {
     });
   }, [data]);
   return (
-    <div className="page-body">
+    <div className="page-body" style={{ overflow: "auto" }}>
       <div className="ion-content-wrapper">
         <div
           role="main"
