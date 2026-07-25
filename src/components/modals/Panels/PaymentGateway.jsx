@@ -60,7 +60,6 @@ const DepositPaymentGateway = ({
         ...buyPanelPayload,
         current_wallet,
       };
-      console.log(depositDetail);
 
       const res = await AxiosSecure.post(API.bankAccount, depositDetail);
 
@@ -87,7 +86,7 @@ const DepositPaymentGateway = ({
       setBuyPanelPayload({});
       navigate("/panels?tab=0");
     } else {
-      toast.error(res?.error?.errorMessage);
+      toast.error(res?.error);
     }
   };
   return (
@@ -224,6 +223,7 @@ const DepositPaymentGateway = ({
                 })
             ) : (
               <button
+                disabled={current_wallet !== 1}
                 onClick={handleCreatePanel}
                 className="btn secondary-btn ng-star-inserted"
                 style={{ padding: "14px 0px" }}
