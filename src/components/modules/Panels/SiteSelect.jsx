@@ -19,7 +19,7 @@ export default function SiteSelects({
 
   const siteTypeData =
     data && Array.from(new Set(data.map((item) => item.site_type)));
-  console.log(data);
+
   return (
     <div className="ss-row">
       <div className="ss-select-wrap">
