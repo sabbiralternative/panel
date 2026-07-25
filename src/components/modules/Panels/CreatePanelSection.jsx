@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import SiteSelects from "./SiteSelect";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 
 const CreatePanelSection = ({
   data,
@@ -10,7 +12,17 @@ const CreatePanelSection = ({
   setSiteType,
   filterData,
 }) => {
+  const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleNavigate = (item) => {
+    if (token) {
+      navigate(`/panels/create?id=${item?.id}`);
+    } else {
+      dispatch(setShowLoginModal(true));
+    }
+  };
 
   return (
     <div className="mat-mdc-tab-body-wrapper">
@@ -147,9 +159,7 @@ const CreatePanelSection = ({
                         <div className="ls-right">
                           <div className="btn-wrap">
                             <button
-                              onClick={() =>
-                                navigate(`/panels/create?id=${item?.id}`)
-                              }
+                              onClick={() => handleNavigate(item)}
                               className="btn dark-outlined-btn create-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
                             >
                               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
