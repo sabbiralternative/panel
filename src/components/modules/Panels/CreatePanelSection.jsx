@@ -11,6 +11,7 @@ const CreatePanelSection = ({
   filterData,
 }) => {
   const navigate = useNavigate();
+
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -23,16 +24,13 @@ const CreatePanelSection = ({
           className="mat-mdc-tab-body-content ng-tns-c737557735-12 ng-trigger ng-trigger-translateTab"
           style={{ transform: "none" }}
         >
-          {data?.siteType && (
-            <SiteSelects
-              setSite={setSite}
-              site={site}
-              setSiteType={setSiteType}
-              siteType={siteType}
-              siteTypeData={data?.siteType}
-              data={data?.result}
-            />
-          )}
+          <SiteSelects
+            setSite={setSite}
+            site={site}
+            setSiteType={setSiteType}
+            siteType={siteType}
+            data={data?.result}
+          />
 
           <div
             className="ion-content ng-star-inserted md content-ltr hydrated"
@@ -84,7 +82,10 @@ const CreatePanelSection = ({
               </div>
             </div>
 
-            <div className="id-list create-id ng-star-inserted" style={{}}>
+            <div
+              className="id-list create-id ng-star-inserted"
+              style={{ background: "transparent", border: "none" }}
+            >
               {filterData?.map((item, i) => {
                 return (
                   <div key={i} className="ls-cont ng-star-inserted">

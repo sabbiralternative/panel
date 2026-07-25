@@ -60,7 +60,10 @@ const MyPanelSection = ({ data }) => {
             className="md content-ltr hydrated ng-star-inserted ion-content"
             style={{ "--offset-top": "0px", "--offset-bottom": "0px" }}
           >
-            <div className="id-list my-id">
+            <div
+              className="id-list my-id"
+              style={{ background: "transparent", border: "none" }}
+            >
               {data?.result?.map((item) => {
                 return (
                   <div

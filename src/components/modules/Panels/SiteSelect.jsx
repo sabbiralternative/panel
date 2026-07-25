@@ -1,7 +1,6 @@
 import "./SiteSelects.css";
 
 export default function SiteSelects({
-  siteTypeData,
   data,
   site,
   setSite,
@@ -18,12 +17,15 @@ export default function SiteSelects({
     setSite("all");
   };
 
+  const siteTypeData =
+    data && Array.from(new Set(data.map((item) => item.site_type)));
+
   return (
     <div className="ss-row">
       <div className="ss-select-wrap">
         <select className="ss-select" value={site} onChange={handleSiteChange}>
           <option value="all">All</option>
-          {data.map((opt, i) => (
+          {data?.map((opt, i) => (
             <option key={`opt-${i}`} value={opt?.site_url}>
               {opt?.site_name} {opt?.site_url}
             </option>
@@ -53,9 +55,9 @@ export default function SiteSelects({
           onChange={handleSiteTypeChange}
         >
           <option value="all">All</option>
-          {siteTypeData.map((opt) => (
-            <option key={`opt-${opt?.name}`} value={opt?.name}>
-              {opt.name}
+          {siteTypeData?.map((opt) => (
+            <option key={`opt-${opt}`} value={opt}>
+              {opt}
             </option>
           ))}
         </select>
