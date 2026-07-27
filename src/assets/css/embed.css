@@ -421,6 +421,7 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-right {
 
 div:where(.swal2-container) {
   display: grid;
+  place-content: center;
   position: fixed;
   z-index: 1060;
   inset: 0;

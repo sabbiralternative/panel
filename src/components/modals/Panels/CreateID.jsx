@@ -31,16 +31,17 @@ export default function CreateIdModal({
     const res = await mutateAsync(payload);
 
     if (res?.success) {
-      refetchMyPanel();
       // toast.success(res?.result?.message);
 
       if (!createIdModal?.create_direct) {
+        setCreateIdModal(false);
         setCreate_direct(true);
       } else {
+        refetchMyPanel();
         setCreateIdSuccess(true);
+        setCreateIdModal(false);
+        navigate("/panels?tab=0");
       }
-      setCreateIdModal(false);
-      navigate("/panels?tab=0");
     } else {
       setCreateIdError(true);
       setCreateIdModal(false);
@@ -53,7 +54,7 @@ export default function CreateIdModal({
       <div
         className="cdk-global-overlay-wrapper"
         dir="ltr"
-        style={{ justifyContent: "center", alignItems: "flex-end" }}
+        style={{ justifyContent: "center", alignItems: "center" }}
       >
         <div
           ref={ref}
