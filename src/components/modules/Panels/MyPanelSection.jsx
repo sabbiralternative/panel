@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 import Alert from "../../UI/Alert/Alert";
@@ -72,20 +72,27 @@ const MyPanelSection = ({ data }) => {
                           <div className="ls-info">
                             <h4>{item?.site_url}</h4>
                             <p>{item?.username}</p>
-                            <p className="currency-type">
-                              Rate @ {item?.panel_rate}
-                            </p>
-                            <p className="rate-account-type">
-                              {" "}
-                              {item?.panel_rate_type} - {item?.panel_type}
-                            </p>
-                            <p className="currency-typee">
-                              {" "}
-                              Admin Link :{" "}
-                              <a onClick={() => window.open(item.admin_url)}>
-                                {item?.admin_url}
-                              </a>
-                            </p>
+
+                            {!Settings.b2c && (
+                              <Fragment>
+                                <p className="currency-type">
+                                  Rate @ {item?.panel_rate}
+                                </p>
+                                <p className="rate-account-type">
+                                  {" "}
+                                  {item?.panel_rate_type} - {item?.panel_type}
+                                </p>
+                                <p className="currency-typee">
+                                  {" "}
+                                  Admin Link :{" "}
+                                  <a
+                                    onClick={() => window.open(item.admin_url)}
+                                  >
+                                    {item?.admin_url}
+                                  </a>
+                                </p>
+                              </Fragment>
+                            )}
                           </div>
                         </div>
                         <div className="ls-right">
