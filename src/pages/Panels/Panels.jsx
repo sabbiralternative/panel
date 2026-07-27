@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import CreatePanelSection from "../../components/modules/Panels/CreatePanelSection";
 import MyPanelSection from "../../components/modules/Panels/MyPanelSection";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Settings } from "../../api";
 
 const Panels = () => {
   const location = useLocation();
@@ -121,7 +122,8 @@ const Panels = () => {
                     <div className="mat-ripple mat-mdc-tab-ripple" />
                     <span className="mdc-tab__content">
                       <span className="mdc-tab__text-label">
-                        MY PANELS ({my_panels?.result?.length})
+                        MY {Settings.b2c ? "IDs" : "PANELS"} (
+                        {my_panels?.result?.length})
                       </span>
                     </span>
                     <span className="mdc-tab-indicator">
@@ -143,7 +145,9 @@ const Panels = () => {
                     <span className="mdc-tab__ripple" />
                     <div className="mat-ripple mat-mdc-tab-ripple" />
                     <span className="mdc-tab__content">
-                      <span className="mdc-tab__text-label">CREATE PANEL</span>
+                      <span className="mdc-tab__text-label">
+                        CREATE {Settings.b2c ? "ID" : "PANEL"}
+                      </span>
                     </span>
                     <span className="mdc-tab-indicator">
                       <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline" />

@@ -179,7 +179,9 @@ const Footer = () => {
               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
               <span className="mdc-button__label">
                 <span className="uIcons uIcons_id_panel" />
-                <p className="notranslate">Panels</p>{" "}
+                <p className="notranslate">
+                  {Settings.b2c ? "IDs" : "Panels"}
+                </p>{" "}
               </span>
               <span className="mat-mdc-focus-indicator" />
               <span className="mat-mdc-button-touch-target" />

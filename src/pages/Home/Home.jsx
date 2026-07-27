@@ -8,6 +8,7 @@ import SliderImage from "../../components/modules/Home/SliderImage";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "../../components/modules/Home/Search";
+import { Settings } from "../../api";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -44,10 +45,13 @@ const Home = () => {
                 <div className="active-acc-tab">
                   <div size={12} className="btnWrap">
                     <button
-                      onClick={() => navigate("/panels")}
+                      onClick={() => navigate("/panels?tab=1")}
                       className="create-btn full-width mb-5"
                     >
-                      <div className="create-icon-wrap"> Create Panel </div>
+                      <div className="create-icon-wrap">
+                        {" "}
+                        Create {Settings.b2c ? "IDs" : "Panels"}{" "}
+                      </div>
                     </button>
                     <div className="hGame-btn-wrap ng-star-inserted">
                       <div className="jetBtnWrap ng-star-inserted">

@@ -3,6 +3,7 @@ import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 import Alert from "../../UI/Alert/Alert";
 import ClosePanel from "../../modals/ClosePanel/ClosePanel";
+import { Settings } from "../../../api";
 
 const MyPanelSection = ({ data }) => {
   const [alert, setAlert] = useState(false);
@@ -58,7 +59,6 @@ const MyPanelSection = ({ data }) => {
               style={{ background: "transparent", border: "none" }}
             >
               {data?.result?.map((item) => {
-                console.log(item);
                 return (
                   <div
                     key={item?.id}
@@ -154,6 +154,24 @@ const MyPanelSection = ({ data }) => {
                   </div>
                 );
               })}
+              {data?.result?.length === 0 && (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    marginTop: "20px",
+                    fontSize: "13px",
+                  }}
+                >
+                  {" "}
+                  <p>
+                    {data?.result?.length >= 0 &&
+                      `You don't have any ${Settings.b2c ? "ID" : "panel"}  yet`}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
