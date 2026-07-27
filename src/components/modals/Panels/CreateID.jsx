@@ -1,12 +1,17 @@
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useIndex } from "../../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateIdModal({
   setCreateIdModal,
   setCreateIdSuccess,
   createIdModal,
+  setCreateIdError,
+  setCreate_direct,
+  refetchMyPanel,
 }) {
+  const navigate = useNavigate();
   const { mutateAsync } = useIndex();
   const [user, setUser] = useState("");
   const ref = useRef();
@@ -21,13 +26,24 @@ export default function CreateIdModal({
       type: "create_id",
       username: user,
       site: createIdModal?.site_url,
+      create_direct: createIdModal?.create_direct,
     };
     const res = await mutateAsync(payload);
 
     if (res?.success) {
+      refetchMyPanel();
       // toast.success(res?.result?.message);
+
+      if (!createIdModal?.create_direct) {
+        setCreate_direct(true);
+      } else {
+        setCreateIdSuccess(true);
+      }
       setCreateIdModal(false);
-      setCreateIdSuccess(true);
+      navigate("/panels?tab=0");
+    } else {
+      setCreateIdError(true);
+      setCreateIdModal(false);
     }
   };
 

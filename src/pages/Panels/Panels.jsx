@@ -4,6 +4,10 @@ import CreatePanelSection from "../../components/modules/Panels/CreatePanelSecti
 import MyPanelSection from "../../components/modules/Panels/MyPanelSection";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Settings } from "../../api";
+import CreateIdWarning from "../../components/modals/Panels/CreateIdWarning";
+import CreateIdModal from "../../components/modals/Panels/CreateID";
+import CreateIdSuccess from "../../components/modals/Panels/CreateIdSuccess";
+import CreateIdError from "../../components/modals/Panels/CreateIdError";
 
 const Panels = () => {
   const location = useLocation();
@@ -12,8 +16,13 @@ const Panels = () => {
   const navigate = useNavigate();
   const [site, setSite] = useState("all");
   const [siteType, setSiteType] = useState("all");
+  const [createIdWarning, setCreateIdWarning] = useState(false);
+  const [createIdModal, setCreateIdModal] = useState(false);
+  const [createIdSuccess, setCreateIdSuccess] = useState(false);
+  const [create_direct, setCreate_direct] = useState(false);
+  const [createIdError, setCreateIdError] = useState(false);
   const { data } = useGetIndex({ type: "panel_sites", b2c: Settings.b2c });
-  const { data: my_panels } = useGetIndex({
+  const { data: my_panels, refetch: refetchMyPanel } = useGetIndex({
     type: "my_panels",
     b2c: Settings.b2c,
   });
@@ -40,6 +49,47 @@ const Panels = () => {
 
   return (
     <div className="page-body notranslate">
+      {createIdWarning && (
+        <CreateIdWarning
+          title="Create Id"
+          description="Don't create an ID, play directly on this app to experience much faster withdrawals!"
+          setAlert={setCreateIdWarning}
+          setCreateIdModal={setCreateIdModal}
+          createIdWarning={createIdWarning}
+        />
+      )}
+      {createIdModal && (
+        <CreateIdModal
+          setCreateIdModal={setCreateIdModal}
+          setCreateIdSuccess={setCreateIdSuccess}
+          createIdModal={createIdModal}
+          setCreateIdError={setCreateIdError}
+          setCreate_direct={setCreate_direct}
+          refetchMyPanel={refetchMyPanel}
+        />
+      )}
+      {create_direct && (
+        <CreateIdSuccess
+          title="Request Placed"
+          description="Account creation request has been sent successfully placed. We will shortly confirm the status"
+          setAlert={setCreate_direct}
+        />
+      )}
+      {createIdSuccess && (
+        <CreateIdSuccess
+          title="YaY!! Instant Account Created"
+          description="Your account has been successfully created. Have fun with Games!"
+          setAlert={setCreateIdSuccess}
+        />
+      )}
+      {createIdError && (
+        <CreateIdError
+          title="Alert"
+          description="You already have 2 active IDs for this site. Maximum ID creation limit reached for this site. Please close any unused ID or contact support for limit increment."
+          setAlert={setCreateIdError}
+        />
+      )}
+
       <div className="ids-tabnav">
         <div className="app-for-internal">
           <div className="forSearchBar-internal">
@@ -177,6 +227,8 @@ const Panels = () => {
               siteType={siteType}
               setSiteType={setSiteType}
               filterData={filterData}
+              refetchMyPanel={refetchMyPanel}
+              setCreateIdWarning={setCreateIdWarning}
             />
           )}
           {tab == 0 && <MyPanelSection data={my_panels} />}
