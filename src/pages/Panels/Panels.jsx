@@ -12,8 +12,11 @@ const Panels = () => {
   const navigate = useNavigate();
   const [site, setSite] = useState("all");
   const [siteType, setSiteType] = useState("all");
-  const { data } = useGetIndex({ type: "panel_sites" });
-  const { data: my_panels } = useGetIndex({ type: "my_panels" });
+  const { data } = useGetIndex({ type: "panel_sites", b2c: Settings.b2c });
+  const { data: my_panels } = useGetIndex({
+    type: "my_panels",
+    b2c: Settings.b2c,
+  });
 
   const filterData = useMemo(() => {
     if (!data?.result) return [];

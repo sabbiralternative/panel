@@ -2539,7 +2539,7 @@ div.match-panel.mat-mdc-select-panel .mat-pseudo-checkbox {
 }
 
 .swal2-popup.alert-dialog .swal2-actions .swal2-styled.swal2-confirm {
-  background: var(--primary-color) !important;
+  background: var(--highlight-color) !important;
   margin: 0;
   border-radius: 10px;
   width: 100%;
@@ -2548,6 +2548,7 @@ div.match-panel.mat-mdc-select-panel .mat-pseudo-checkbox {
   line-height: 1;
   font-size: 12px;
   font-family: open_semiBold;
+  color: #000;
 }
 
 .swal2-popup.alert-dialog .swal2-actions .swal2-styled.swal2-confirm:focus {
@@ -2557,7 +2558,7 @@ div.match-panel.mat-mdc-select-panel .mat-pseudo-checkbox {
 .swal2-popup.alert-dialog .swal2-actions .swal2-styled.swal2-cancel {
   background: transparent !important;
   color: white;
-  border: 1px solid var(--grey-200);
+  border: 1px solid var(--highlight-color);
   margin: 0;
   border-radius: 10px;
   width: 100%;

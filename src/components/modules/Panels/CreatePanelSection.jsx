@@ -3,6 +3,11 @@ import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import SiteSelects from "./SiteSelect";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import { Settings } from "../../../api";
+import { useState } from "react";
+import CreateIdWarning from "../../modals/Panels/CreateIdWarning";
+import CreateIdModal from "../../modals/Panels/CreateID";
+import CreateIdSuccess from "../../modals/Panels/CreateIdSuccess";
 
 const CreatePanelSection = ({
   data,
@@ -12,13 +17,20 @@ const CreatePanelSection = ({
   setSiteType,
   filterData,
 }) => {
+  const [createIdWarning, setCreateIdWarning] = useState(false);
+  const [createIdModal, setCreateIdModal] = useState(false);
+  const [createIdSuccess, setCreateIdSuccess] = useState(false);
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleNavigate = (item) => {
     if (token) {
-      navigate(`/panels/create?id=${item?.id}`);
+      if (Settings.b2c) {
+        setCreateIdWarning(true);
+      } else {
+        navigate(`/panels/create?id=${item?.id}`);
+      }
     } else {
       dispatch(setShowLoginModal(true));
     }
@@ -26,6 +38,29 @@ const CreatePanelSection = ({
 
   return (
     <div className="mat-mdc-tab-body-wrapper">
+      {createIdWarning && (
+        <CreateIdWarning
+          title="Create Id"
+          description="Don't create an ID, play directly on this app to experience much faster withdrawals!"
+          setAlert={setCreateIdWarning}
+          setCreateIdModal={setCreateIdModal}
+        />
+      )}
+      {createIdModal && (
+        <CreateIdModal
+          setCreateIdModal={setCreateIdModal}
+          setCreateIdSuccess={setCreateIdSuccess}
+        />
+      )}
+      {createIdSuccess && (
+        <CreateIdSuccess
+          title="YaY!! Instant Account Created"
+          description="Your account has been successfully created. Have fun with Games!"
+          setAlert={setCreateIdSuccess}
+          setCreateIdSuccess={setCreateIdSuccess}
+        />
+      )}
+
       <div
         role="tabpanel"
         className="mat-mdc-tab-body ng-tns-c737557735-12 mat-mdc-tab-body-active ng-star-inserted mat-tab-body"

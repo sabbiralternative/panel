@@ -1,6 +1,7 @@
 import logo from "../img/logo.png";
 import defaultNotification from "../img/default_notification.svg";
 import warning from "../img/warning-yellow.svg";
+import success from "../img/warning-success-icon.svg";
 import gamblingCommission from "../img/gamblingCommission.svg";
 import cograE from "../img/cograE.svg";
 import BeGambleAware from "../img/BeGambleAware.svg";
@@ -66,4 +67,5 @@ export default {
   bankTransfer,
   upiIcon,
   kabbadi,
+  success,
 };
