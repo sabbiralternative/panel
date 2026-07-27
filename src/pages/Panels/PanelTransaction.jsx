@@ -1,4 +1,17 @@
+import { useLocation } from "react-router-dom";
+import { useGetIndex } from "../../hooks";
+import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
+
 const PanelTransaction = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+  const { data } = useGetIndex({
+    type: "view_panel_transaction",
+    id,
+  });
+
+  const result = data?.result;
   return (
     <div className="page-body">
       <div
@@ -12,17 +25,15 @@ const PanelTransaction = () => {
               <div className="acc-details">
                 <div className="site-icon">
                   <div className="img-wrap">
-                    <img
-                      className="tile-logo bronze"
-                      src="https://ss.gopunt.com/go-punt/uploads/panel_icons/Lotusbook247.games.png"
-                    />
+                    <img className="tile-logo bronze" src={result?.site_logo} />
                   </div>
                 </div>
                 <div className="site-detail-cont">
                   <h1>
                     {" "}
-                    Lotus Book{" "}
+                    <span>{result?.site_name}</span>
                     <div
+                      onClick={() => window.open(`https://${result?.site_url}`)}
                       role="img"
                       aria-hidden="true"
                       className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
@@ -31,7 +42,7 @@ const PanelTransaction = () => {
                       open_in_new
                     </div>
                   </h1>
-                  <p className="notranslate">lotusbook.io</p>
+                  <p className="notranslate">{result?.site_url}</p>
                 </div>
               </div>
               <div className="creds-wrapper">
@@ -44,8 +55,9 @@ const PanelTransaction = () => {
                   >
                     person
                   </div>{" "}
-                  Username: richie12{" "}
+                  Username: {result?.username}{" "}
                   <div
+                    onClick={() => handleCopyToClipBoard(result?.username)}
                     role="img"
                     aria-hidden="true"
                     className="mat-icon notranslate material-icons copy-icon mat-ligature-font mat-icon-no-color"
@@ -63,8 +75,9 @@ const PanelTransaction = () => {
                   >
                     key
                   </div>{" "}
-                  Password: Truck163{" "}
+                  Password: {result?.password}{" "}
                   <div
+                    onClick={() => handleCopyToClipBoard(result?.password)}
                     role="img"
                     aria-hidden="true"
                     className="mat-icon notranslate material-icons copy-icon mat-ligature-font mat-icon-no-color"
@@ -74,16 +87,16 @@ const PanelTransaction = () => {
                   </div>
                 </p>
 
-                <p className="password-highlighter ng-star-inserted">
+                {/* <p className="password-highlighter ng-star-inserted">
                   {" "}
                   Pasword is with capital T{" "}
-                </p>
+                </p> */}
               </div>
-              <p className="data-time"> ID Created on: 06 Apr 26 08:12 PM </p>
+              <p className="data-time"> ID Created on: {result?.date_added} </p>
             </div>
           </div>
 
-          <div className="transactions-wrap">
+          {/* <div className="transactions-wrap">
             <div className="page-heading">
               <h3>Transaction History</h3>
             </div>
@@ -109,7 +122,7 @@ const PanelTransaction = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -56,7 +56,11 @@ const MyPanelSection = ({ data }) => {
           >
             <div
               className="id-list my-id"
-              style={{ background: "transparent", border: "none" }}
+              style={{
+                background: "transparent",
+                border: "none",
+                height: "100%",
+              }}
             >
               {data?.result?.map((item) => {
                 return (

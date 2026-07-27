@@ -18,6 +18,7 @@ const Dropdown = ({
     setSelectedDropdown(null);
     navigate(link);
   };
+
   return (
     <div className="cdk-overlay-container" style={{ position: "absolute" }}>
       <div className="cdk-overlay-backdrop cdk-overlay-transparent-backdrop cdk-overlay-backdrop-showing" />
@@ -26,7 +27,7 @@ const Dropdown = ({
         className="cdk-overlay-connected-position-bounding-box"
         dir="ltr"
         style={{
-          top: "100px",
+          top: "60px",
           right: "0px",
           height: "596.059px",
           width: "954.731px",
@@ -80,7 +81,11 @@ const Dropdown = ({
               </button>
 
               <button
-                onClick={() => handleNavigate("/panel-transaction")}
+                onClick={() =>
+                  handleNavigate(
+                    `/panel-transaction?id=${selectedDropdown?.id}`,
+                  )
+                }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114"
                 role="menuitem"
                 tabIndex={0}

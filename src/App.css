@@ -5457,7 +5457,7 @@ svg.mdc-button__icon {
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
-  padding: 0 10px 180px;
+  /* padding: 0 10px 180px; */
   margin: 0;
   flex-direction: column;
   row-gap: 8px;
