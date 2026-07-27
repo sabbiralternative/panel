@@ -51,7 +51,7 @@ const Dropdown = ({
               <button
                 onClick={() =>
                   handleNavigate(
-                    `/panel-dw?id=${selectedDropdown?.hyper_master_id}&type=deposit`,
+                    `/panel-dw?id=${selectedDropdown?.id}&type=deposit`,
                   )
                 }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
@@ -67,7 +67,7 @@ const Dropdown = ({
               <button
                 onClick={() =>
                   handleNavigate(
-                    `/panel-dw?id=${selectedDropdown?.hyper_master_id}&type=withdraw`,
+                    `/panel-dw?id=${selectedDropdown?.id}&type=withdraw`,
                   )
                 }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"

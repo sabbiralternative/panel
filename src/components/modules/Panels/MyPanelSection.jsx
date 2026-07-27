@@ -4,19 +4,59 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../../UI/Alert/Alert";
 import ClosePanel from "../../modals/ClosePanel/ClosePanel";
 import { Settings } from "../../../api";
+import Deposit from "../../modals/Panels/Deposit";
+import Toast from "../../modals/Panels/Toast";
+import Withdraw from "../../modals/Panels/Withdraw";
 
 const MyPanelSection = ({ data }) => {
   const [alert, setAlert] = useState(false);
   const [closePanel, setClosePanel] = useState(false);
   const navigate = useNavigate();
-  const [selectedDropdown, setSelectedDropdown] = useState(null);
+  const [selectedDropdown, setSelectedDropdown] = useState(false);
+  const [depositPayload, setDepositPayload] = useState(null);
+  const [withdrawPayload, setWithdrawPayload] = useState(null);
+  const [message, setMessage] = useState(null);
+
+  const handleNavigate = (link, type, item) => {
+    if (Settings.b2c) {
+      if (type === "deposit") {
+        setDepositPayload(item);
+      } else if (type === "withdraw") {
+        setWithdrawPayload(item);
+      }
+    } else {
+      navigate(link);
+    }
+  };
   return (
     <div className="mat-mdc-tab-body-wrapper" style={{}}>
+      {depositPayload && (
+        <Deposit
+          setDepositPayload={setDepositPayload}
+          setMessage={setMessage}
+          depositPayload={depositPayload}
+        />
+      )}
+      {withdrawPayload && (
+        <Withdraw
+          setWithdrawPayload={setWithdrawPayload}
+          setMessage={setMessage}
+          depositPayload={depositPayload}
+        />
+      )}
       {alert && (
         <Alert
           setAlert={setAlert}
           title="Request Panel's Password"
           description="Are you sure you want to request for new panel password"
+        />
+      )}
+      {message && (
+        <Toast
+          description={message?.message}
+          setAlert={setMessage}
+          success={message?.success}
+          title={message?.title}
         />
       )}
       {closePanel && <ClosePanel setClosePanel={setClosePanel} />}
@@ -103,8 +143,10 @@ const MyPanelSection = ({ data }) => {
                           <div className="btn-wrap">
                             <button
                               onClick={() =>
-                                navigate(
-                                  `/panel-dw?id=${item?.hyper_master_id}&type=deposit`,
+                                handleNavigate(
+                                  `/panel-dw?id=${item?.id}&type=deposit`,
+                                  "deposit",
+                                  item,
                                 )
                               }
                               aria-label="Deposit Button"
@@ -117,8 +159,10 @@ const MyPanelSection = ({ data }) => {
                             </button>
                             <button
                               onClick={() =>
-                                navigate(
-                                  `/panel-dw?id=${item?.hyper_master_id}&type=withdraw`,
+                                handleNavigate(
+                                  `/panel-dw?id=${item?.id}&type=withdraw`,
+                                  "withdraw",
+                                  item,
                                 )
                               }
                               aria-label="Withdraw Button"
