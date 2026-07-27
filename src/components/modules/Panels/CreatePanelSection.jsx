@@ -27,7 +27,7 @@ const CreatePanelSection = ({
   const handleNavigate = (item) => {
     if (token) {
       if (Settings.b2c) {
-        setCreateIdWarning(true);
+        setCreateIdWarning(item);
       } else {
         navigate(`/panels/create?id=${item?.id}`);
       }
@@ -44,12 +44,14 @@ const CreatePanelSection = ({
           description="Don't create an ID, play directly on this app to experience much faster withdrawals!"
           setAlert={setCreateIdWarning}
           setCreateIdModal={setCreateIdModal}
+          createIdWarning={createIdWarning}
         />
       )}
       {createIdModal && (
         <CreateIdModal
           setCreateIdModal={setCreateIdModal}
           setCreateIdSuccess={setCreateIdSuccess}
+          createIdModal={createIdModal}
         />
       )}
       {createIdSuccess && (

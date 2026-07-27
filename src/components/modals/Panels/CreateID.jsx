@@ -1,20 +1,34 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import { useIndex } from "../../../hooks";
 
 export default function CreateIdModal({
   setCreateIdModal,
   setCreateIdSuccess,
+  createIdModal,
 }) {
+  const { mutateAsync } = useIndex();
+  const [user, setUser] = useState("");
   const ref = useRef();
 
   useCloseModalClickOutside(ref, () => {
     setCreateIdModal(false);
   });
 
-  const handleCreateIdSuccess = (e) => {
+  const handleCreateIdSuccess = async (e) => {
     e.preventDefault();
-    setCreateIdModal(false);
-    setCreateIdSuccess(true);
+    const payload = {
+      type: "create_id",
+      username: user,
+      site: createIdModal?.site_url,
+    };
+    const res = await mutateAsync(payload);
+
+    if (res?.success) {
+      // toast.success(res?.result?.message);
+      setCreateIdModal(false);
+      setCreateIdSuccess(true);
+    }
   };
 
   return (
@@ -83,19 +97,20 @@ export default function CreateIdModal({
                       <div className="modal-body">
                         <div className="card-wrap">
                           <div className="avl-bal show-bal">
-                            <img
-                              src="https://mythemedata.com/sitethemes/goexch.zip/logo.svg"
-                              alt=""
-                            />
+                            <img src={createIdModal?.img} alt="" />
                             <span className="mat-label">
-                              Go Exchange (Original)
+                              {createIdModal?.site_name}
                             </span>
-                            <p className="ng-star-inserted"> goexch.com</p>
+                            <p className="ng-star-inserted">
+                              {" "}
+                              {createIdModal?.site_url}
+                            </p>
                           </div>
                         </div>
                         <div className="form-wrap">
                           <label>Username *</label>
                           <input
+                            onChange={(e) => setUser(e.target.value)}
                             placeholder="Enter username"
                             type="text"
                             className="mat-mdc-input-element cdk-text-field-autofill-monitored ng-touched ng-dirty ng-invalid"

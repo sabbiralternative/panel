@@ -7,6 +7,7 @@ const CreateIdWarning = ({
   title,
   description,
   setCreateIdModal,
+  createIdWarning,
 }) => {
   const ref = useRef();
 
@@ -103,8 +104,8 @@ const CreateIdWarning = ({
           </button>
           <button
             onClick={() => {
+              setCreateIdModal(createIdWarning);
               setAlert(false);
-              setCreateIdModal(true);
             }}
             type="button"
             className="swal2-cancel swal2-styled"
