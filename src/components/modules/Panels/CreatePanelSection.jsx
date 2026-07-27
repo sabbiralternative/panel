@@ -162,9 +162,11 @@ const CreatePanelSection = ({
                                 </div>
                               </span>
                             </p>
-                            <p className="yellow-text ng-star-inserted">
-                              Starting INR {item?.minPanelRate?.min_rate}
-                            </p>
+                            {!Settings.b2c && (
+                              <p className="yellow-text ng-star-inserted">
+                                Starting INR {item?.minPanelRate?.min_rate}
+                              </p>
+                            )}
 
                             <div className="games-available">
                               <div
