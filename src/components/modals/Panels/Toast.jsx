@@ -2,7 +2,7 @@ import { useRef } from "react";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 
-const CreateIdError = ({ setAlert, title, description }) => {
+const Toast = ({ setAlert, title, description, success }) => {
   const ref = useRef();
 
   useCloseModalClickOutside(ref, () => {
@@ -35,7 +35,7 @@ const CreateIdError = ({ setAlert, title, description }) => {
         <ul className="swal2-progress-steps" style={{ display: "none" }} />
         <div className="swal2-icon swal2-icon-show" style={{ display: "flex" }}>
           <div className="swal2-icon-content">
-            <img src={images.warning} />
+            <img src={success ? images.success : images.warning} />
             <p>{title}</p>
           </div>
         </div>
@@ -104,4 +104,4 @@ const CreateIdError = ({ setAlert, title, description }) => {
   );
 };
 
-export default CreateIdError;
+export default Toast;

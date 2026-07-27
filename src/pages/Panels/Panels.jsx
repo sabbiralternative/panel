@@ -6,8 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Settings } from "../../api";
 import CreateIdWarning from "../../components/modals/Panels/CreateIdWarning";
 import CreateIdModal from "../../components/modals/Panels/CreateID";
-import CreateIdSuccess from "../../components/modals/Panels/CreateIdSuccess";
-import CreateIdError from "../../components/modals/Panels/CreateIdError";
+import Toast from "../../components/modals/Panels/Toast";
 
 const Panels = () => {
   const location = useLocation();
@@ -17,11 +16,10 @@ const Panels = () => {
   const [site, setSite] = useState("all");
   const [siteType, setSiteType] = useState("all");
   const [createIdWarning, setCreateIdWarning] = useState(false);
-  const [createIdModal, setCreateIdModal] = useState(false);
-  const [createIdSuccess, setCreateIdSuccess] = useState(false);
-  const [create_direct, setCreate_direct] = useState(false);
-  const [createIdError, setCreateIdError] = useState(false);
+
   const { data } = useGetIndex({ type: "panel_sites", b2c: Settings.b2c });
+  const [createIdModal, setCreateIdModal] = useState(null);
+  const [alert, setAlert] = useState(null);
   const { data: my_panels, refetch: refetchMyPanel } = useGetIndex({
     type: "my_panels",
     b2c: Settings.b2c,
@@ -61,32 +59,18 @@ const Panels = () => {
       {createIdModal && (
         <CreateIdModal
           setCreateIdModal={setCreateIdModal}
-          setCreateIdSuccess={setCreateIdSuccess}
+          setAlert={setAlert}
           createIdModal={createIdModal}
-          setCreateIdError={setCreateIdError}
-          setCreate_direct={setCreate_direct}
           refetchMyPanel={refetchMyPanel}
         />
       )}
-      {create_direct && (
-        <CreateIdSuccess
-          title="Request Placed"
-          description="Account creation request has been sent successfully placed. We will shortly confirm the status"
-          setAlert={setCreate_direct}
-        />
-      )}
-      {createIdSuccess && (
-        <CreateIdSuccess
-          title="YaY!! Instant Account Created"
-          description="Your account has been successfully created. Have fun with Games!"
-          setAlert={setCreateIdSuccess}
-        />
-      )}
-      {createIdError && (
-        <CreateIdError
-          title="Alert"
-          description="You already have 2 active IDs for this site. Maximum ID creation limit reached for this site. Please close any unused ID or contact support for limit increment."
-          setAlert={setCreateIdError}
+
+      {alert && (
+        <Toast
+          title={alert?.title}
+          description={alert?.message}
+          success={alert?.success}
+          setAlert={setAlert}
         />
       )}
 

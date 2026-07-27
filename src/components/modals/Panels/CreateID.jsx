@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreateIdModal({
   setCreateIdModal,
-  setCreateIdSuccess,
+  setAlert,
   createIdModal,
-  setCreateIdError,
-  setCreate_direct,
   refetchMyPanel,
 }) {
   const navigate = useNavigate();
@@ -30,22 +28,15 @@ export default function CreateIdModal({
     };
     const res = await mutateAsync(payload);
 
-    if (res?.success) {
-      // toast.success(res?.result?.message);
-
-      if (!createIdModal?.create_direct) {
-        setCreateIdModal(false);
-        setCreate_direct(true);
-      } else {
-        refetchMyPanel();
-        setCreateIdSuccess(true);
-        setCreateIdModal(false);
-        navigate("/panels?tab=0");
-      }
-    } else {
-      setCreateIdError(true);
-      setCreateIdModal(false);
+    setAlert({
+      success: res?.success,
+      ...res?.result,
+    });
+    if (createIdModal?.create_direct) {
+      refetchMyPanel();
+      navigate("/panels?tab=0");
     }
+    setCreateIdModal(false);
   };
 
   return (
