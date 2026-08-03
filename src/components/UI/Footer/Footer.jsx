@@ -114,7 +114,7 @@ const Footer = () => {
               <span className="mat-mdc-focus-indicator" />
               <span className="mat-mdc-button-touch-target" />
             </button>
-            {!token ? (
+            {/* {!token ? (
               <button
                 onClick={() => handleNavigate("/offers")}
                 className={`offers mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted ${pathname === "/offers" ? "active-link" : ""}`}
@@ -130,7 +130,7 @@ const Footer = () => {
               </button>
             ) : (
               <Fragment>
-                {/* <button
+                <button
                   onClick={() => setShowMyMarket(true)}
                   className="market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
                 >
@@ -168,9 +168,9 @@ const Footer = () => {
                   </span>
                   <span className="mat-mdc-focus-indicator" />
                   <span className="mat-mdc-button-touch-target" />
-                </button> */}
+                </button>
               </Fragment>
-            )}
+            )} */}
             <button
               onClick={() => handleNavigate("/panels?tab=1")}
               className={`market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname === "panels" ? "active-link" : ""}`}

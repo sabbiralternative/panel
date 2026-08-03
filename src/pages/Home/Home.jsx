@@ -9,8 +9,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "../../components/modules/Home/Search";
 import { Settings } from "../../api";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowLoginModal } from "../../redux/features/global/globalSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { data } = useBannerImage();
 
@@ -24,6 +28,14 @@ const Home = () => {
       item?.remove();
     });
   }, [data]);
+
+  const handleNavigateToIFrame = (code, name) => {
+    if (token) {
+      navigate(`/casino/${name}/${code}`);
+    } else {
+      dispatch(setShowLoginModal(true));
+    }
+  };
   return (
     <div className="page-body" style={{ overflow: "auto" }}>
       <div className="ion-content-wrapper">
@@ -53,7 +65,10 @@ const Home = () => {
                         Create {Settings.b2c ? "IDs" : "Panels"}{" "}
                       </div>
                     </button>
-                    <div className="hGame-btn-wrap ng-star-inserted">
+                    <div
+                      onClick={() => handleNavigateToIFrame(201206, "aviator")}
+                      className="hGame-btn-wrap ng-star-inserted"
+                    >
                       <div className="jetBtnWrap ng-star-inserted">
                         <button className="jetxBtn animated-border-box-glow mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base">
                           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
@@ -77,7 +92,12 @@ const Home = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="hGame-btn-wrap ng-star-inserted">
+                    <div
+                      onClick={() =>
+                        handleNavigateToIFrame(251005, "chicken-road")
+                      }
+                      className="hGame-btn-wrap ng-star-inserted"
+                    >
                       <div className="jetBtnWrap ng-star-inserted">
                         <button className="jetxBtn animated-border-box-glow mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base">
                           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />

@@ -60,8 +60,6 @@ export default function Search() {
     setCategories(categories);
   }, [data]);
 
-  console.log(data, isOpen);
-
   return (
     <div className="search-wrap" ref={containerRef}>
       <div className={`search-bar ${isOpen ? "search-bar--open" : ""}`}>
