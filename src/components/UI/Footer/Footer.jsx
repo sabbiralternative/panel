@@ -8,7 +8,7 @@ import { LanguageKey } from "../../../const";
 import MyMarket from "../../modals/MyMarket/MyMarket";
 import {
   setShowLoginModal,
-  setShowReferralModal,
+  // setShowReferralModal,
 } from "../../../redux/features/global/globalSlice";
 import { Settings } from "../../../api";
 
@@ -130,7 +130,7 @@ const Footer = () => {
               </button>
             ) : (
               <Fragment>
-                <button
+                {/* <button
                   onClick={() => setShowMyMarket(true)}
                   className="market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
                 >
@@ -168,7 +168,7 @@ const Footer = () => {
                   </span>
                   <span className="mat-mdc-focus-indicator" />
                   <span className="mat-mdc-button-touch-target" />
-                </button>
+                </button> */}
               </Fragment>
             )}
             <button

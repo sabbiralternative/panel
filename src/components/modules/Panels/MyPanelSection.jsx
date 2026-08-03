@@ -196,16 +196,14 @@ const MyPanelSection = ({ data }) => {
                         </div>
                       </div>
                     </div>
-                    {selectedDropdown &&
-                      item?.hyper_master_id ===
-                        selectedDropdown?.hyper_master_id && (
-                        <Dropdown
-                          setClosePanel={setClosePanel}
-                          setSelectedDropdown={setSelectedDropdown}
-                          setAlert={setAlert}
-                          selectedDropdown={selectedDropdown}
-                        />
-                      )}
+                    {selectedDropdown && item?.id === selectedDropdown?.id && (
+                      <Dropdown
+                        setClosePanel={setClosePanel}
+                        setSelectedDropdown={setSelectedDropdown}
+                        setAlert={setAlert}
+                        selectedDropdown={selectedDropdown}
+                      />
+                    )}
                   </div>
                 );
               })}
