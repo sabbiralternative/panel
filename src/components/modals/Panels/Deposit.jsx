@@ -5,7 +5,6 @@ import { useDepositBreakdownQuery } from "../../../hooks/depositBreakdown";
 import { useIndex } from "../../../hooks";
 
 const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
-  console.log(depositPayload);
   const { mutateAsync } = useIndex();
   const [amount, setAmount] = useState("");
   const ref = useRef();
@@ -135,6 +134,9 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
                       </div>
                       <div className="modal-footer">
                         <button
+                          disabled={
+                            !amount || amount < depositBreakdown?.minimumDeposit
+                          }
                           type="submit"
                           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
                         >

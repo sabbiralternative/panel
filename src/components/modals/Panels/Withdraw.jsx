@@ -113,6 +113,7 @@ const Withdraw = ({ setWithdrawPayload, setMessage, depositPayload }) => {
                         </div>
                         <div className="modal-footer">
                           <button
+                            disabled={!amount || amount < data?.minimumWithdraw}
                             type="submit"
                             className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
                           >
