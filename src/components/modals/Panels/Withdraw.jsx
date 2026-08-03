@@ -18,8 +18,9 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
       type: "withdraw_panel",
       site_url: withdrawPayload?.site_url,
       site_id: withdrawPayload?.site_id,
-      child_id: withdrawPayload?.child_id,
       amount: amount,
+      child_id: withdrawPayload?.child_id,
+      external: withdrawPayload?.external,
     };
     const res = await mutateAsync(payload);
     setMessage({
