@@ -3,7 +3,7 @@ import useWithdrawBreakdown from "../../../hooks/withdrawBreakdown";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import { useIndex } from "../../../hooks";
 
-const Withdraw = ({ setWithdrawPayload, setMessage, depositPayload }) => {
+const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
   const [amount, setAmount] = useState();
   const { data } = useWithdrawBreakdown();
   const { mutateAsync } = useIndex();
@@ -16,8 +16,9 @@ const Withdraw = ({ setWithdrawPayload, setMessage, depositPayload }) => {
     e.preventDefault();
     const payload = {
       type: "withdraw_panel",
-      site_url: depositPayload?.site_url,
-      site_id: depositPayload?.site_id,
+      site_url: withdrawPayload?.site_url,
+      site_id: withdrawPayload?.site_id,
+      child_id: withdrawPayload?.child_id,
       amount: amount,
     };
     const res = await mutateAsync(payload);

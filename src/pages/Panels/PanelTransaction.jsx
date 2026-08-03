@@ -6,9 +6,11 @@ const PanelTransaction = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
+  const child_id = params.get("child_id");
   const { data } = useGetIndex({
     type: "view_panel_transaction",
     id,
+    child_id,
   });
 
   const result = data?.result;

@@ -25,7 +25,9 @@ export default function CreateIdModal({
       username: user,
       site: createIdModal?.site_url,
       create_direct: createIdModal?.create_direct,
+      // child_id: createIdModal?.child_id,
     };
+
     const res = await mutateAsync(payload);
 
     setAlert({

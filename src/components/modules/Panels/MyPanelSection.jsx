@@ -42,7 +42,7 @@ const MyPanelSection = ({ data }) => {
         <Withdraw
           setWithdrawPayload={setWithdrawPayload}
           setMessage={setMessage}
-          depositPayload={depositPayload}
+          withdrawPayload={withdrawPayload}
         />
       )}
       {alert && (

@@ -27,8 +27,11 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
       site_url: depositPayload?.site_url,
       site_id: depositPayload?.site_id,
       amount: amount,
+      child_id: depositPayload?.child_id,
     };
+
     const res = await mutateAsync(payload);
+
     setMessage({
       success: res?.success,
       ...res?.result,
