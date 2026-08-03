@@ -140,6 +140,9 @@ export default function CreatePanel() {
       )}
       {alert && (
         <Alert
+          onOkayClick={() => {
+            setAlert(false);
+          }}
           setAlert={setAlert}
           title="Alert"
           description="Username is required !"

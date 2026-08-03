@@ -6,6 +6,7 @@ const Dropdown = ({
   setSelectedDropdown,
   setAlert,
   // setClosePanel,
+  setChangePasswordPayload,
   selectedDropdown,
   handleOpen,
 }) => {
@@ -101,8 +102,13 @@ const Dropdown = ({
               </button>
               <button
                 onClick={() => {
-                  setSelectedDropdown(null);
-                  setAlert(true);
+                  if (selectedDropdown?.external === 1) {
+                    setSelectedDropdown(null);
+                    setAlert(selectedDropdown);
+                  } else {
+                    setChangePasswordPayload(selectedDropdown);
+                    setSelectedDropdown(null);
+                  }
                 }}
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
                 role="menuitem"

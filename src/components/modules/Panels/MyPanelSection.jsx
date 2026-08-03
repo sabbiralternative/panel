@@ -7,6 +7,7 @@ import { Settings } from "../../../api";
 import Deposit from "../../modals/Panels/Deposit";
 import Toast from "../../modals/Panels/Toast";
 import Withdraw from "../../modals/Panels/Withdraw";
+import ChangePassword from "../../modals/Panels/ChangePassword";
 
 const MyPanelSection = ({ data }) => {
   const [alert, setAlert] = useState(false);
@@ -16,6 +17,7 @@ const MyPanelSection = ({ data }) => {
   const [depositPayload, setDepositPayload] = useState(null);
   const [withdrawPayload, setWithdrawPayload] = useState(null);
   const [message, setMessage] = useState(null);
+  const [changePasswordPayload, setChangePasswordPayload] = useState(null);
 
   const handleNavigate = (link, type, item) => {
     if (Settings.b2c) {
@@ -45,8 +47,19 @@ const MyPanelSection = ({ data }) => {
           withdrawPayload={withdrawPayload}
         />
       )}
+      {changePasswordPayload && (
+        <ChangePassword
+          setChangePasswordPayload={setChangePasswordPayload}
+          setMessage={setMessage}
+          changePasswordPayload={changePasswordPayload}
+        />
+      )}
       {alert && (
         <Alert
+          onOkayClick={() => {
+            setChangePasswordPayload(alert);
+            setAlert(false);
+          }}
           setAlert={setAlert}
           title="Request Panel's Password"
           description="Are you sure you want to request for new panel password"
@@ -204,6 +217,7 @@ const MyPanelSection = ({ data }) => {
                         setAlert={setAlert}
                         selectedDropdown={selectedDropdown}
                         handleOpen={handleNavigate}
+                        setChangePasswordPayload={setChangePasswordPayload}
                       />
                     )}
                   </div>

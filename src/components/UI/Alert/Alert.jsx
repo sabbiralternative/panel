@@ -2,7 +2,7 @@ import { useRef } from "react";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 
-const Alert = ({ setAlert, title, description }) => {
+const Alert = ({ setAlert, title, description, onOkayClick }) => {
   const ref = useRef();
 
   useCloseModalClickOutside(ref, () => {
@@ -86,7 +86,7 @@ const Alert = ({ setAlert, title, description }) => {
         <div className="swal2-actions" style={{ display: "flex" }}>
           <div className="swal2-loader" />
           <button
-            onClick={() => setAlert(false)}
+            onClick={onOkayClick}
             type="button"
             className="swal2-confirm swal2-styled"
             aria-label
