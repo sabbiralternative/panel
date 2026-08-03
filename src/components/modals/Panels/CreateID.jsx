@@ -32,7 +32,7 @@ export default function CreateIdModal({
       success: res?.success,
       ...res?.result,
     });
-    if (createIdModal?.create_direct) {
+    if (createIdModal?.create_direct && res?.success) {
       refetchMyPanel();
       navigate("/panels?tab=0");
     }

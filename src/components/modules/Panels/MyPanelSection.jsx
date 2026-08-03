@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
 import Alert from "../../UI/Alert/Alert";
-import ClosePanel from "../../modals/ClosePanel/ClosePanel";
+// import ClosePanel from "../../modals/ClosePanel/ClosePanel";
 import { Settings } from "../../../api";
 import Deposit from "../../modals/Panels/Deposit";
 import Toast from "../../modals/Panels/Toast";
@@ -10,7 +10,7 @@ import Withdraw from "../../modals/Panels/Withdraw";
 
 const MyPanelSection = ({ data }) => {
   const [alert, setAlert] = useState(false);
-  const [closePanel, setClosePanel] = useState(false);
+  // const [closePanel, setClosePanel] = useState(false);
   const navigate = useNavigate();
   const [selectedDropdown, setSelectedDropdown] = useState(false);
   const [depositPayload, setDepositPayload] = useState(null);
@@ -24,6 +24,7 @@ const MyPanelSection = ({ data }) => {
       } else if (type === "withdraw") {
         setWithdrawPayload(item);
       }
+      setSelectedDropdown(null);
     } else {
       navigate(link);
     }
@@ -59,7 +60,7 @@ const MyPanelSection = ({ data }) => {
           title={message?.title}
         />
       )}
-      {closePanel && <ClosePanel setClosePanel={setClosePanel} />}
+      {/* {closePanel && <ClosePanel setClosePanel={setClosePanel} />} */}
       <div
         role="tabpanel"
         className="mat-mdc-tab-body ng-tns-c737557735-58 ng-star-inserted mat-mdc-tab-body-active mat-tab-body"
@@ -153,7 +154,7 @@ const MyPanelSection = ({ data }) => {
                               className="d-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
                               <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
-                              <span className="mdc-button__label"> D </span>
+                              <span className="mdc-button__label"> D</span>
                               <span className="mat-mdc-focus-indicator" />
                               <span className="mat-mdc-button-touch-target" />
                             </button>
@@ -198,10 +199,11 @@ const MyPanelSection = ({ data }) => {
                     </div>
                     {selectedDropdown && item?.id === selectedDropdown?.id && (
                       <Dropdown
-                        setClosePanel={setClosePanel}
+                        // setClosePanel={setClosePanel}
                         setSelectedDropdown={setSelectedDropdown}
                         setAlert={setAlert}
                         selectedDropdown={selectedDropdown}
+                        handleOpen={handleNavigate}
                       />
                     )}
                   </div>

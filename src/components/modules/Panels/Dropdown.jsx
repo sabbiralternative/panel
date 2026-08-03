@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 const Dropdown = ({
   setSelectedDropdown,
   setAlert,
-  setClosePanel,
+  // setClosePanel,
   selectedDropdown,
+  handleOpen,
 }) => {
   const ref = useRef();
   const navigate = useNavigate();
@@ -50,8 +51,10 @@ const Dropdown = ({
             <div className="mat-mdc-menu-content ng-tns-c2786309385-114">
               <button
                 onClick={() =>
-                  handleNavigate(
+                  handleOpen(
                     `/panel-dw?id=${selectedDropdown?.id}&type=deposit`,
+                    "deposit",
+                    selectedDropdown,
                   )
                 }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
@@ -66,8 +69,10 @@ const Dropdown = ({
 
               <button
                 onClick={() =>
-                  handleNavigate(
+                  handleOpen(
                     `/panel-dw?id=${selectedDropdown?.id}&type=withdraw`,
+                    "withdraw",
+                    selectedDropdown,
                   )
                 }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114 ng-star-inserted"
@@ -109,7 +114,7 @@ const Dropdown = ({
                 <div className="mat-ripple mat-mdc-menu-ripple" />
               </button>
 
-              <button
+              {/* <button
                 onClick={() => {
                   setSelectedDropdown(null);
                   setClosePanel(true);
@@ -122,7 +127,7 @@ const Dropdown = ({
               >
                 <span className="mat-mdc-menu-item-text">Close Panel</span>
                 <div className="mat-ripple mat-mdc-menu-ripple" />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
