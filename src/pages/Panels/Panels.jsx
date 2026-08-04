@@ -46,7 +46,7 @@ const Panels = () => {
   }, [site, siteType, data]);
 
   return (
-    <div className="page-body notranslate">
+    <div className="page-body notranslate" style={{ paddingBottom: "70px" }}>
       {createIdWarning && (
         <CreateIdWarning
           title="Create Id"

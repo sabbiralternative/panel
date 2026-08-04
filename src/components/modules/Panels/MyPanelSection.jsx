@@ -8,8 +8,10 @@ import Deposit from "../../modals/Panels/Deposit";
 import Toast from "../../modals/Panels/Toast";
 import Withdraw from "../../modals/Panels/Withdraw";
 import ChangePassword from "../../modals/Panels/ChangePassword";
+import { useIndex } from "../../../hooks";
 
 const MyPanelSection = ({ data }) => {
+  const { mutateAsync } = useIndex();
   const [alert, setAlert] = useState(false);
   // const [closePanel, setClosePanel] = useState(false);
   const navigate = useNavigate();
@@ -30,6 +32,25 @@ const MyPanelSection = ({ data }) => {
     } else {
       navigate(link);
     }
+  };
+
+  const handleChangePassword = async () => {
+    const payload = {
+      type: "change_password",
+      site_url: alert?.site_url,
+      site_id: alert?.site_id,
+      child_id: alert?.child_id,
+      external: alert?.external,
+    };
+
+    const res = await mutateAsync(payload);
+
+    setMessage({
+      success: res?.success,
+      ...res?.result,
+    });
+
+    setAlert(false);
   };
   return (
     <div className="mat-mdc-tab-body-wrapper" style={{}}>
@@ -57,8 +78,7 @@ const MyPanelSection = ({ data }) => {
       {alert && (
         <Alert
           onOkayClick={() => {
-            setChangePasswordPayload(alert);
-            setAlert(false);
+            handleChangePassword();
           }}
           setAlert={setAlert}
           title="Request Panel's Password"

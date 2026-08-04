@@ -130,7 +130,10 @@ export default function CreatePanel() {
   return (
     <div
       className="page-body notranslate"
-      style={{ height: "calc(100% - 100px)", overflow: "auto" }}
+      style={{
+        height: "calc(100% - 100px)",
+        overflow: "auto",
+      }}
     >
       {buyPanelPayload?.site_id && username && (
         <BuyPanel

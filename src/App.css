@@ -6739,9 +6739,12 @@ svg.mdc-button__icon {
 }
 .page-body {
   padding: 0;
+  max-height: 100%;
   max-height: calc(100% - 25px);
   height: calc(100% - 25px);
+  height: 100%;
   overflow: hidden;
+  /* padding-bottom: 90px; */
 }
 .page-body.demoID {
   max-height: calc(100% - 145px);

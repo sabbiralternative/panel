@@ -16,7 +16,7 @@ const CasinoGames = ({ data }) => {
   };
 
   return (
-    <div className="page-body">
+    <div className="page-body" style={{ paddingBottom: "40px" }}>
       <div className="providers-section ng-star-inserted">
         <div className="providers-list">
           <ul className="sRowScroll">
