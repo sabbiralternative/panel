@@ -17,7 +17,7 @@ export default function CreateIdModal({
   useCloseModalClickOutside(ref, () => {
     setCreateIdModal(false);
   });
-
+  console.log(createIdModal);
   const handleCreateIdSuccess = async (e) => {
     e.preventDefault();
     const payload = {
@@ -26,6 +26,7 @@ export default function CreateIdModal({
       site: createIdModal?.site_url,
       create_direct: createIdModal?.create_direct,
       // child_id: createIdModal?.child_id,
+      site_id: createIdModal?.id,
     };
 
     const res = await mutateAsync(payload);
