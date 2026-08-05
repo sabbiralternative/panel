@@ -89,7 +89,7 @@ const Dropdown = ({
               <button
                 onClick={() =>
                   handleNavigate(
-                    `/panel-transaction?id=${selectedDropdown?.id}&child_id=${selectedDropdown?.child_id}`,
+                    `/panel-transaction?id=${selectedDropdown?.id}&child_id=${selectedDropdown?.child_id}&username=${selectedDropdown?.username}`,
                   )
                 }
                 className="mat-mdc-menu-item mat-mdc-focus-indicator ng-tns-c2786309385-114"

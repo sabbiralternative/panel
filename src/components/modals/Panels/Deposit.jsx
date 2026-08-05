@@ -29,6 +29,7 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
       amount: amount,
       child_id: depositPayload?.child_id,
       external: depositPayload?.external,
+      username: depositPayload?.username,
     };
 
     const res = await mutateAsync(payload);

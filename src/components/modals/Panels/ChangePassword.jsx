@@ -26,6 +26,7 @@ const ChangePassword = ({
       confirm_password: confirmPassword,
       child_id: changePasswordPayload?.child_id,
       external: changePasswordPayload?.external,
+      username: changePasswordPayload?.username,
     };
 
     const res = await mutateAsync(payload);

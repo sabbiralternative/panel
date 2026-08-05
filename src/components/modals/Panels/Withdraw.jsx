@@ -21,6 +21,7 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
       amount: amount,
       child_id: withdrawPayload?.child_id,
       external: withdrawPayload?.external,
+      username: withdrawPayload?.username,
     };
     const res = await mutateAsync(payload);
     setMessage({
