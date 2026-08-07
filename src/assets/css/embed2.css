@@ -12543,7 +12543,7 @@ p.report-issue .link-text {
 .betslip-toprow h2 {
   margin: 0 5px 0 0;
   font-size: 0.75rem;
-  color: var(--dark-text);
+  color: #000;
   min-width: 60%;
   line-height: 1.2;
   text-transform: capitalize;
@@ -12663,6 +12663,7 @@ p.report-issue .link-text {
   font-size: 10px;
   font-family: open_semiBold;
   margin-bottom: 5px;
+  color: #000;
 }
 
 .betvalue-wrap .bet-action-grid .bet-action-item input {
@@ -12752,6 +12753,7 @@ p.report-issue .link-text {
   justify-content: space-between;
   width: 100%;
   font-family: open_semiBold;
+  color: #000;
 }
 
 .betvalue-wrap .slip-btn {

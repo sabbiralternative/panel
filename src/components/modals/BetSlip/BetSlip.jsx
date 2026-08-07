@@ -236,6 +236,8 @@ const BetSlip = () => {
     closeModal();
   });
 
+  console.log(placeBetValues, "ok");
+
   return (
     <Fragment>
       {loading && (
@@ -408,6 +410,10 @@ const BetSlip = () => {
                           </div>
                           <div className="bet-action-submit">
                             <button
+                              style={{
+                                color: "white",
+                                background: "var(--green-color)",
+                              }}
                               onClick={handleOrderBets}
                               className="slip-btn notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
                             >
@@ -425,6 +431,7 @@ const BetSlip = () => {
                                 {predictOdd?.map((predictOdd, i) => {
                                   return (
                                     <p
+                                      style={{ color: "black" }}
                                       key={i}
                                       className="pred-pl-row ng-star-inserted"
                                     >
