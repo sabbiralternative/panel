@@ -11,6 +11,7 @@ import Search from "../../components/modules/Home/Search";
 import { Settings } from "../../api";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowLoginModal } from "../../redux/features/global/globalSlice";
+import CryptoReferTab from "../../components/modules/Home/CryptoReferTab";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -125,6 +126,8 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              {Settings.referral && <CryptoReferTab />}
+
               <Search />
               <CasinoProviders />
               <InPlay />

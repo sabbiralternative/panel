@@ -32,8 +32,34 @@ import frame from "../img/frame.webp";
 import install_android from "../img/header_image.png";
 import telegram from "../img/telegram.png";
 import whatsAppSVG from "../img/whatsapp-icon.svg";
+import dashboard from "../img/dashboard-ft.02d913bd.svg";
+import graph from "../img/graph-ft.01703183.svg";
+import userList from "../img/user-list-ft.ad2d77b8.svg";
+import calendar from "../img/affi-calendar.57b07b6a.svg";
+import commission from "../img/affi-commision-icon.ddf556a3.svg";
+import user from "../img/affi-user-icn.b08f83a6.svg";
+import share from "../img/af-share-img.51df8801.svg";
+import affiliate from "../img/affiliate.png";
+import usdt from "../img/usdt.svg";
+import promotionBanner from "../img/promotionBanner.webp";
+import cashBundle from "../img/cash-bundle.webp";
+import giftCard from "../img/giftCard.webp";
+import redeemCardGift from "../img/redeemCardGift.svg";
 
 export default {
+  redeemCardGift,
+  giftCard,
+  cashBundle,
+  promotionBanner,
+  usdt,
+  affiliate,
+  share,
+  user,
+  commission,
+  calendar,
+  userList,
+  graph,
+  dashboard,
   whatsAppSVG,
   telegram,
   install_android,

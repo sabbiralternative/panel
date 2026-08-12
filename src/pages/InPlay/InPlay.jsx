@@ -2,7 +2,7 @@ import InPlay from "../../components/modules/Home/InPlay";
 
 const InPlayPage = () => {
   return (
-    <div className="page-body">
+    <div className="page-body" style={{ overflow: "auto" }}>
       <div className="ion-content-wrapper">
         <div
           role="main"

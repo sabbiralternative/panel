@@ -236,8 +236,6 @@ const BetSlip = () => {
     closeModal();
   });
 
-  console.log(placeBetValues, "ok");
-
   return (
     <Fragment>
       {loading && (

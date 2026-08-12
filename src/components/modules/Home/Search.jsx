@@ -61,7 +61,11 @@ export default function Search() {
   }, [data]);
 
   return (
-    <div className="search-wrap" ref={containerRef}>
+    <div
+      className="search-wrap"
+      ref={containerRef}
+      style={{ padding: "0px  4px", marginTop: "5px" }}
+    >
       <div className={`search-bar ${isOpen ? "search-bar--open" : ""}`}>
         <svg
           className="search-icon"

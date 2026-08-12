@@ -43,6 +43,9 @@ export const LanguageKey = {
   USER_ID: "USER_ID",
   WITHDRAW: "WITHDRAW",
   WITHDRAW_STATMENT: "WITHDRAW_STATMENT",
+  EARN_COMMISSIONS: "EARN_COMMISSIONS",
+  REFER_AND_EARN: "REFER_AND_EARN",
+  BUY_CRYPTO: "BUY_CRYPTO",
 };
 
 export const settingsAPI = "https://api7.live/api/exchange/diamond/settings";

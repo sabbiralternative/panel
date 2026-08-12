@@ -12,7 +12,7 @@ import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 
 const MatchOdds = ({ data }) => {
-  const [speedCashOut, setSpeedCashOut] = useState(null);
+  // const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
   const dispatch = useDispatch();
@@ -292,6 +292,7 @@ const MatchOdds = ({ data }) => {
                         // const predictOddValues = predictOdd?.find(
                         //   (val) => val?.id === runner?.id,
                         // );
+
                         return (
                           <div
                             key={runner?.id}

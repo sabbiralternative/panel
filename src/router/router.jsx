@@ -30,6 +30,7 @@ import Panels from "../pages/Panels/Panels";
 import CreatePanel from "../pages/CreatePanel/CreatePanel";
 import PanelDW from "../pages/Panels/PanelDW";
 import PanelTransaction from "../pages/Panels/PanelTransaction";
+import Affiliate from "../pages/Affiliate/Affiliate";
 
 export const router = createBrowserRouter(
   [
@@ -157,6 +158,10 @@ export const router = createBrowserRouter(
         {
           path: "/panel-transaction",
           element: <PanelTransaction />,
+        },
+        {
+          path: "/affiliate",
+          element: <Affiliate />,
         },
       ],
     },
