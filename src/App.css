@@ -306,10 +306,11 @@ input:-moz-autofill {
   font-size: 0.95rem;
   line-height: 1.5;
   margin-bottom: 10px;
-  color: #000;
+  color: var(--grey-900);
 }
 
 .benefits-title {
+  color: var(--grey-900);
   font-size: 1.1rem;
   margin-bottom: 10px;
 }
@@ -324,6 +325,7 @@ input:-moz-autofill {
   padding-left: 30px;
   position: relative;
   font-size: 0.9rem;
+  color: var(--grey-900);
 }
 
 /* Custom Checkmark */
@@ -344,7 +346,7 @@ input:-moz-autofill {
 }
 
 .benefits-list strong {
-  color: #000;
+  color: var(--grey-900);
   font-weight: 700;
 }
 
