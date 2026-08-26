@@ -94,12 +94,15 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
                         className="ng-pristine ng-invalid ng-touched"
                       >
                         <div className="modal-body">
-                          <div className="card-wrap">
-                            <div className="avl-bal show-bal">
-                              <div>Available Balance</div>
-                              <p>{data?.mainWallet}</p>
+                          {withdrawPayload?.external !== 1 && (
+                            <div className="card-wrap">
+                              <div className="avl-bal show-bal">
+                                <div>Available Balance</div>
+                                <p>{data?.mainWallet}</p>
+                              </div>
                             </div>
-                          </div>
+                          )}
+
                           <div className="form-wrap">
                             <label>Withdraw Coins</label>
                             <input
@@ -108,10 +111,12 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
                               type="number"
                               className="ng-pristine ng-invalid ng-touched"
                             />
-                            <p className="note-message ng-star-inserted">
-                              Minimum withdrawal amount is{" "}
-                              {data?.minimumWithdraw} coins
-                            </p>
+                            {withdrawPayload?.external !== 1 && (
+                              <p className="note-message ng-star-inserted">
+                                Minimum withdrawal amount is{" "}
+                                {data?.minimumWithdraw} coins
+                              </p>
+                            )}
                           </div>
                         </div>
                         <div className="modal-footer">

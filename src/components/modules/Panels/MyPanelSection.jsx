@@ -187,7 +187,13 @@ const MyPanelSection = ({ data }) => {
                               className="d-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
                               <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
-                              <span className="mdc-button__label"> D</span>
+                              <span
+                                className="mdc-button__label"
+                                style={{ fontSize: "11px" }}
+                              >
+                                {" "}
+                                D
+                              </span>
                               <span className="mat-mdc-focus-indicator" />
                               <span className="mat-mdc-button-touch-target" />
                             </button>
@@ -203,7 +209,13 @@ const MyPanelSection = ({ data }) => {
                               className="w-btn mdc-fab mdc-fab--mini mat-mdc-mini-fab mat-accent mat-mdc-button-base"
                             >
                               <span className="mat-mdc-button-persistent-ripple mdc-fab__ripple" />
-                              <span className="mdc-button__label"> W </span>
+                              <span
+                                className="mdc-button__label"
+                                style={{ fontSize: "11px" }}
+                              >
+                                {" "}
+                                W{" "}
+                              </span>
                               <span className="mat-mdc-focus-indicator" />
                               <span className="mat-mdc-button-touch-target" />
                             </button>
