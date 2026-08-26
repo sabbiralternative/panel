@@ -31,6 +31,8 @@ const Group = () => {
     return Object.entries(data).reduce(
       (acc, [key, value]) => {
         if (!value.visible) return acc;
+        const isSRL = value.eventName?.toLowerCase().includes("srl") ?? false;
+        if (isSRL) return acc;
 
         const matchDate = moment(value.date, "DD/MM/YYYY HH:mm");
 

@@ -8,11 +8,11 @@ import { GoClock } from "react-icons/go";
 import { useLanguage } from "../../../context/LanguageProvider";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
-import LiveVirtual from "./LiveVirtual";
+// import LiveVirtual from "./LiveVirtual";
 import { filterLiveVirtual } from "../../../utils/filter-live-virtual";
 
 const InPlay = () => {
-  const [liveVirtual, setLiveVirtual] = useState([]);
+  // const [liveVirtual, setLiveVirtual] = useState([]);
   const { valueByLanguage } = useLanguage();
   const { group } = useSelector((state) => state.global);
   const { data } = useGroupQuery(
@@ -62,7 +62,7 @@ const InPlay = () => {
         //     obj[key] = value;
         //     return obj;
         //   }, {});
-        const groupedData = filterLiveVirtual(liveVirtual, category, data);
+        const groupedData = filterLiveVirtual(category, data);
         return (
           <div
             key={category}
@@ -72,10 +72,10 @@ const InPlay = () => {
               <h2>{eventName[category]}</h2>
 
               <a className="view-all-link ng-star-inserted">
-                <LiveVirtual
+                {/* <LiveVirtual
                   setLiveVirtual={setLiveVirtual}
                   category={category}
-                />
+                /> */}
                 <span style={{ marginLeft: "5px" }}> All</span>
                 <span
                   role="img"

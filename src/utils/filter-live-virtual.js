@@ -1,15 +1,15 @@
-export const filterLiveVirtual = (liveVirtual, category, data) => {
+export const filterLiveVirtual = (category, data) => {
   if (!data) return [];
-  const categorySettings = liveVirtual.filter(
-    (item) => item.eventTypeId === category,
-  );
+  // const categorySettings = liveVirtual.filter(
+  //   (item) => item.eventTypeId === category,
+  // );
 
-  const live =
-    categorySettings.find((item) => item.type === "live")?.isChecked ?? false;
+  // const live =
+  //   categorySettings.find((item) => item.type === "live")?.isChecked ?? false;
 
-  const virtual =
-    categorySettings.find((item) => item.type === "virtual")?.isChecked ??
-    false;
+  // const virtual =
+  //   categorySettings.find((item) => item.type === "virtual")?.isChecked ??
+  //   false;
 
   const groupedData = Object.entries(data)
     .filter(([, value]) => {
@@ -20,13 +20,16 @@ export const filterLiveVirtual = (liveVirtual, category, data) => {
       const isSRL = value.eventName?.toLowerCase().includes("srl") ?? false;
 
       // both checked OR both unchecked => show all
-      if (live === virtual) return true;
+      // if (live === virtual) return true;
 
       // live only
-      if (live) return !isSRL;
+      // if (live) return !isSRL;
+
+      // not srl
+      return !isSRL;
 
       // virtual only
-      return isSRL;
+      // return isSRL;
     })
     .sort(([, a], [, b]) => b.inPlay - a.inPlay);
   // .sort(([, a], [, b]) => a.sort - b.sort);
