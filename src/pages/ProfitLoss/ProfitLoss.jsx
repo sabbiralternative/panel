@@ -21,7 +21,14 @@ const ProfitLoss = () => {
   const fourteenDaysBack = new Date();
   fourteenDaysBack.setDate(today.getDate() - 14);
 
-  const getDateString = (date) => date.toISOString().split("T")[0];
+  // const getDateString = (date) => date.toISOString().split("T")[0];
+
+  const getDateString = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
   const minDate = getDateString(fourteenDaysBack);
   const maxDate = getDateString(today);
 
@@ -43,7 +50,10 @@ const ProfitLoss = () => {
               <label htmlFor="from">From</label>
               <div className="input-wrap">
                 <input
-                  onChange={(e) => setFrom(e.target.value)}
+                  onChange={(e) => {
+                    setFrom(e.target.value);
+                    console.log(e);
+                  }}
                   value={from}
                   onClick={(e) => e.target.showPicker()}
                   type="date"
@@ -189,23 +199,27 @@ const ProfitLoss = () => {
           <div className="txn-tbl ng-star-inserted">
             <div className="header-wrap">
               <ul className="tbl-head">
-                <li>Date</li>
-
+                <li style={{ background: "var(--grey-50)" }}>Remark</li>
                 <li>Member Win</li>
                 <li>Balance</li>
-                <li style={{ background: "var(--grey-50)" }}>Remark</li>
+                <li>Date</li>
               </ul>
             </div>
             <div className="body-wrap">
               {data?.result?.map((item, index) => {
                 return (
                   <ul key={index} className="ng-star-inserted">
-                    <li>
-                      <span style={{ color: "var(--grey-00)" }}>
-                        {item?.settledTime}
-                      </span>
+                    <li className="narration-cell">
+                      <a
+                        onClick={() => setMarketId(item?.marketId)}
+                        style={{
+                          cursor: "pointer",
+                          color: "black",
+                        }}
+                      >
+                        {item?.narration}
+                      </a>
                     </li>
-
                     <li
                       className={`${item?.memberWin > 0 ? "success-text" : "danger-text"}`}
                     >
@@ -213,12 +227,9 @@ const ProfitLoss = () => {
                     </li>
                     <li style={{ color: "var(--grey-00)" }}>{item?.balance}</li>
                     <li>
-                      <a
-                        onClick={() => setMarketId(item?.marketId)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {item?.narration}
-                      </a>
+                      <span style={{ color: "var(--grey-00)" }}>
+                        {item?.settledTime}
+                      </span>
                     </li>
                   </ul>
                 );

@@ -705,3 +705,14 @@ html * {
   width: 100%;
   max-width: calc(100% - 20px);
 }
+.narration-cell {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.narration-cell a {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
