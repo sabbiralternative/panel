@@ -228,7 +228,7 @@ const ProfitLoss = () => {
                     <li style={{ color: "var(--grey-00)" }}>{item?.balance}</li>
                     <li>
                       <span style={{ color: "var(--grey-00)" }}>
-                        {item?.settledTime}
+                        {item?.settledTime} {item?.time}
                       </span>
                     </li>
                   </ul>
