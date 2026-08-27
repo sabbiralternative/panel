@@ -159,8 +159,8 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                       alignItems: "end",
                     }}
                   >
-                    <p style={{ color: "white" }}>{data?.availBalance}</p>
-                    <p style={{ color: "white" }}>{data?.deductedExposure}</p>
+                    <p style={{ color: "black" }}>{data?.availBalance}</p>
+                    <p style={{ color: "black" }}>{data?.deductedExposure}</p>
                   </div>
                   <div
                     style={{
@@ -169,8 +169,8 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                       alignItems: "start",
                     }}
                   >
-                    <p style={{ color: "white" }}>Bal</p>
-                    <p style={{ color: "white" }}>Exp</p>
+                    <p style={{ color: "black" }}>Bal</p>
+                    <p style={{ color: "black" }}>Exp</p>
                   </div>
                 </div>
               ) : (
@@ -219,10 +219,15 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                     justifyContent: "center",
                     gap: "3px",
                     cursor: "pointer",
+                    color: "black",
                   }}
                   className="notranslate selected-lang ng-star-inserted"
                 >
-                  <img style={{ height: "20px" }} src={images.globe} alt="" />
+                  <img
+                    style={{ height: "20px", filter: "invert(1)" }}
+                    src={images.globe}
+                    alt=""
+                  />
                   <span> {language || "EN"}</span>
                 </div>
               )}
