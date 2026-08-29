@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useLanguage from "../../../hooks/useLanguage";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import "./CryptoReferTab.css";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
 
 const CryptoReferTab = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -44,7 +43,7 @@ const CryptoReferTab = () => {
             </div>
             <div className="crt-text-wrap">
               <div className="crt-title crt-title-buy">
-                {languageValue(valueByLanguage, LanguageKey.BUY_CRYPTO)}
+                {getLanguage(LanguageKey.BUY_CRYPTO)}
               </div>
               <div className="crt-subtitle crt-subtitle-buy">
                 USDT, BTC, etc.
@@ -82,10 +81,10 @@ const CryptoReferTab = () => {
             </div>
             <div className="crt-text-wrap">
               <div className="crt-title crt-title-refer">
-                {languageValue(valueByLanguage, LanguageKey.REFER_AND_EARN)}
+                {getLanguage(LanguageKey.REFER_AND_EARN)}
               </div>
               <div className="crt-subtitle crt-subtitle-refer">
-                {languageValue(valueByLanguage, LanguageKey.EARN_COMMISSIONS)}
+                {getLanguage(LanguageKey.EARN_COMMISSIONS)}
               </div>
             </div>
           </div>

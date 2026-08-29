@@ -3,8 +3,11 @@ import { useAccountStatement } from "../../hooks/accountStatement";
 import SingleProfitLoss from "../../components/modals/SingleProfitLoss/SingleProfitLoss";
 import { fromDate, toDate } from "../../utils/default-date";
 import moment from "moment";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const ProfitLoss = () => {
+  const { getLanguage } = useLanguage();
   const [marketId, setMarketId] = useState(null);
   const [from, setFrom] = useState(fromDate);
   const [to, setTo] = useState(toDate);
@@ -47,7 +50,7 @@ const ProfitLoss = () => {
         <div className="txn-filter ng-star-inserted">
           <div className="date_time">
             <div className="dt_col">
-              <label htmlFor="from">From</label>
+              <label htmlFor="from">{getLanguage(LanguageKey.FROM_DATE)}</label>
               <div className="input-wrap">
                 <input
                   onChange={(e) => {
@@ -66,7 +69,7 @@ const ProfitLoss = () => {
               </div>
             </div>
             <div className="dt_col">
-              <label htmlFor="to">To</label>
+              <label htmlFor="to">{getLanguage(LanguageKey.TO_DATE)}</label>
               <div className="input-wrap">
                 <input
                   onChange={(e) => setTo(e.target.value)}
@@ -163,7 +166,7 @@ const ProfitLoss = () => {
               >
                 filter_alt_off
               </div>
-              Clear filter
+              {getLanguage(LanguageKey.CLEAR_FILTER)}
             </button>
           </div>
         </div>
@@ -199,10 +202,12 @@ const ProfitLoss = () => {
           <div className="txn-tbl ng-star-inserted">
             <div className="header-wrap">
               <ul className="tbl-head">
-                <li style={{ background: "var(--grey-50)" }}>Remark</li>
-                <li>Member Win</li>
-                <li>Balance</li>
-                <li>Date</li>
+                <li style={{ background: "var(--grey-50)" }}>
+                  {getLanguage(LanguageKey.REMARK)}
+                </li>
+                <li>{getLanguage(LanguageKey.MEMBER_WIN)}</li>
+                <li>{getLanguage(LanguageKey.BALANCE)}</li>
+                <li>{getLanguage(LanguageKey.DATE)}</li>
               </ul>
             </div>
             <div className="body-wrap">

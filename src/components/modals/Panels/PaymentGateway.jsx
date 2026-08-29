@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import useBalance from "../../../hooks/balance";
 import { useIndex } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const DepositPaymentGateway = ({
   setDepositTab,
@@ -18,6 +20,7 @@ const DepositPaymentGateway = ({
   current_wallet,
   setCurrent_wallet,
 }) => {
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const { data } = useBalance();
   const { mutateAsync } = useIndex();
@@ -116,7 +119,8 @@ const DepositPaymentGateway = ({
           </button> */}
           <h2>
             {" "}
-            Pay <span className="amount"> ₹{buyPanelPayload?.amount}</span>
+            {getLanguage(LanguageKey.PAY)}{" "}
+            <span className="amount"> ₹{buyPanelPayload?.amount}</span>
           </h2>
           <button
             onClick={() => {
@@ -160,10 +164,11 @@ const DepositPaymentGateway = ({
                 />
                 <div style={{}}>
                   <p style={{ color: "white", fontSize: "12px" }}>
-                    Current Wallet balance {data?.availBalance}{" "}
+                    {getLanguage(LanguageKey.CURRENT_WALLET_BALANCE)}{" "}
+                    {data?.availBalance}{" "}
                   </p>
                   <p style={{ color: "white", fontSize: "10px" }}>
-                    Pay from wallet
+                    {getLanguage(LanguageKey.PAY_FROM_WALLET)}
                   </p>
                 </div>
               </div>
@@ -228,7 +233,7 @@ const DepositPaymentGateway = ({
                 className="btn secondary-btn ng-star-inserted"
                 style={{ padding: "14px 0px" }}
               >
-                Create Panel
+                {getLanguage(LanguageKey.CREATE_PANEL)}
               </button>
             )}
           </div>

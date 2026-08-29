@@ -13,13 +13,13 @@ import SocialLinks from "../../modules/Home/SocialLinks";
 import { Settings } from "../../../api";
 import { useLogo } from "../../../context/ApiProvider";
 import images from "../../../assets/images";
-import { useLanguage } from "../../../context/LanguageProvider";
-import { languageValue } from "../../../utils/language";
+
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 const LeftSidebar = ({ children }) => {
   const { logo } = useLogo();
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { user, token } = useSelector((state) => state.auth);
@@ -161,24 +161,30 @@ const LeftSidebar = ({ children }) => {
                           alt="Menu Icon"
                           src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bonus.svg"
                         />
-                        <span style={{ color: "var(--grey-00)" }}>Bonus</span>
+                        <span style={{ color: "var(--grey-00)" }}>
+                          {getLanguage(LanguageKey.BONUS)}
+                        </span>
                         <span
                           className="rules-text"
                           style={{ color: "var(--grey-00)" }}
                         >
-                          Rules
+                          {getLanguage(LanguageKey.RULES)}
                         </span>
-                        <span className="rules-text statement">Statement</span>
+                        <span className="rules-text statement">
+                          {getLanguage(LanguageKey.STATEMENT)}
+                        </span>
                       </div>
                       <div>
                         <div className="bonus-wrap">
                           <div className="bonus-details">
                             <div className="bonus-info">
-                              <p>Total Bonus: 0</p>
+                              <p>{getLanguage(LanguageKey.TOTAL_BONUS)}: 0</p>
                               <div className="claim-btn">
-                                <p>Claimable Bonus: 0</p>
+                                <p>
+                                  {getLanguage(LanguageKey.CLAIMABLE_BONUS)}: 0
+                                </p>
                                 <button className="btn secondary-btn" disabled>
-                                  Claim
+                                  {getLanguage(LanguageKey.CLAIM)}
                                 </button>
                               </div>
                               <p className="n-msg">Min. Claimable Coins: 100</p>
@@ -217,7 +223,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
                       />
-                      <span>Profile</span>
+                      <span>{getLanguage(LanguageKey.PROFILE)}</span>
                     </a>
                   </li>
                   <li className="smenu-item ng-star-inserted">
@@ -229,7 +235,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
                       />
-                      <span>Withdrawal Details</span>
+                      <span>{getLanguage(LanguageKey.WITHDRAWL_DETAILS)}</span>
                     </a>
                   </li>
 
@@ -242,7 +248,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
                       />
-                      <span>Account Statement</span>
+                      <span>{getLanguage(LanguageKey.ACCOUNT_STATEMENT)}</span>
                     </a>
                   </li>
                   <li className="smenu-item">
@@ -256,7 +262,9 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
                       />
-                      <span>Deposit/Withdraw Report</span>
+                      <span>
+                        {getLanguage(LanguageKey.DEPOSIT_WITHDRAW_REPORT)}
+                      </span>
                     </a>
                   </li>
                   <li className="smenu-item">
@@ -268,7 +276,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                       />
-                      <span>Active Bets</span>
+                      <span>{getLanguage(LanguageKey.ACTIVE_BETS)}</span>
                     </a>
                   </li>
                   <li className="smenu-item">
@@ -282,13 +290,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                       />
-                      <span>
-                        {" "}
-                        {languageValue(
-                          valueByLanguage,
-                          LanguageKey.BONUS_STATEMENT,
-                        )}
-                      </span>
+                      <span> {getLanguage(LanguageKey.BONUS_STATEMENT)}</span>
                     </a>
                   </li>
                   <li className="smenu-item">
@@ -300,7 +302,10 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                       />
-                      <span> Promos & Bonus</span>
+                      <span>
+                        {" "}
+                        {getLanguage(LanguageKey.PROMOTION_AND_BONUSES)}
+                      </span>
                     </a>
                   </li>
                   <li className="smenu-item">
@@ -314,7 +319,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                       />
-                      <span>Lossback Bonus</span>
+                      <span>{getLanguage(LanguageKey.LOSSBACK_BONUS)}</span>
                     </a>
                   </li>
                   {token && (
@@ -327,7 +332,7 @@ const LeftSidebar = ({ children }) => {
                           alt="Menu Icon"
                           src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_edit.svg"
                         />
-                        <span>Edit Stakes</span>
+                        <span>{getLanguage(LanguageKey.EDIT_STAKE)}</span>
                       </a>
                     </li>
                   )}
@@ -343,7 +348,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_notification.svg"
                       />
-                      <span>Notifications</span>
+                      <span>{getLanguage(LanguageKey.NOTIFICATIONS)}</span>
                     </a>
                   </li>
                   {token && (
@@ -367,7 +372,7 @@ const LeftSidebar = ({ children }) => {
                         alt="Menu Icon"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
                       />
-                      <span>Rules</span>
+                      <span>{getLanguage(LanguageKey.RULES)}</span>
                     </a>
                   </li>
                   {token &&
@@ -381,7 +386,7 @@ const LeftSidebar = ({ children }) => {
                             alt="Menu Icon"
                             src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_help.svg"
                           />
-                          <span>Help</span>
+                          <span>{getLanguage(LanguageKey.HELP)}</span>
                         </a>
                       </li>
                     )}
@@ -450,7 +455,7 @@ const LeftSidebar = ({ children }) => {
                           }}
                           className="btn secondary-btn notranslate"
                         >
-                          Logout
+                          {getLanguage(LanguageKey.LOGOUT)}
                         </button>
                       </div>
                     </li>

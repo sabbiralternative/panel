@@ -1,7 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 // import { eventNameList } from "../../../static/event-name-list";
 
 const Header = () => {
+  const { getLanguage } = useLanguage();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
@@ -43,7 +46,9 @@ const Header = () => {
                     src="https://cdnimg.manage63.com/cricflags/trophy.svg"
                     className="ng-star-inserted"
                   />
-                  <p className="ng-star-inserted">Tournaments</p>
+                  <p className="ng-star-inserted">
+                    {getLanguage(LanguageKey.TOURNAMENTS)}
+                  </p>
                 </span>
               </span>
               <span className="mdc-tab-indicator">
@@ -71,7 +76,9 @@ const Header = () => {
                     src="https://cdnimg.manage63.com/games_icon/ball.svg"
                     className="ng-star-inserted"
                   />
-                  <p className="ng-star-inserted">Cricket</p>
+                  <p className="ng-star-inserted">
+                    {getLanguage(LanguageKey.CRICKET)}
+                  </p>
                 </span>
               </span>
               <span className="mdc-tab-indicator">
@@ -99,7 +106,9 @@ const Header = () => {
                     src="https://cdnimg.manage63.com/games_icon/soccer.svg"
                     className="ng-star-inserted"
                   />
-                  <p className="ng-star-inserted">Soccer</p>
+                  <p className="ng-star-inserted">
+                    {getLanguage(LanguageKey.FOOTBALL)}
+                  </p>
                 </span>
               </span>
               <span className="mdc-tab-indicator">
@@ -127,7 +136,9 @@ const Header = () => {
                     src="https://cdnimg.manage63.com/games_icon/tennis.svg"
                     className="ng-star-inserted"
                   />
-                  <p className="ng-star-inserted">Tennis</p>
+                  <p className="ng-star-inserted">
+                    {getLanguage(LanguageKey.TENNIS)}
+                  </p>
                 </span>
               </span>
               <span className="mdc-tab-indicator">

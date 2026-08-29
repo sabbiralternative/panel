@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Dropdown = ({
   setSelectedDropdown,
@@ -10,6 +12,7 @@ const Dropdown = ({
   selectedDropdown,
   handleOpen,
 }) => {
+  const { getLanguage } = useLanguage();
   const ref = useRef();
   const navigate = useNavigate();
   useCloseModalClickOutside(ref, () => {
@@ -64,7 +67,9 @@ const Dropdown = ({
                 aria-disabled="false"
                 style={{}}
               >
-                <span className="mat-mdc-menu-item-text">Deposit</span>
+                <span className="mat-mdc-menu-item-text">
+                  {getLanguage(LanguageKey.DEPOSIT)}
+                </span>
                 <div className="mat-ripple mat-mdc-menu-ripple" />
               </button>
 
@@ -82,7 +87,9 @@ const Dropdown = ({
                 aria-disabled="false"
                 style={{}}
               >
-                <span className="mat-mdc-menu-item-text">Withdraw</span>
+                <span className="mat-mdc-menu-item-text">
+                  {getLanguage(LanguageKey.WITHDRAW)}
+                </span>
                 <div className="mat-ripple mat-mdc-menu-ripple" />
               </button>
 
@@ -97,7 +104,9 @@ const Dropdown = ({
                 tabIndex={0}
                 aria-disabled="false"
               >
-                <span className="mat-mdc-menu-item-text">View Transaction</span>
+                <span className="mat-mdc-menu-item-text">
+                  {getLanguage(LanguageKey.VIEW_TRANSACTION)}
+                </span>
                 <div className="mat-ripple mat-mdc-menu-ripple" />
               </button>
               <button
@@ -116,7 +125,9 @@ const Dropdown = ({
                 aria-disabled="false"
                 style={{}}
               >
-                <span className="mat-mdc-menu-item-text">Change Password</span>
+                <span className="mat-mdc-menu-item-text">
+                  {getLanguage(LanguageKey.CHANGE_PASSWORD)}
+                </span>
                 <div className="mat-ripple mat-mdc-menu-ripple" />
               </button>
 

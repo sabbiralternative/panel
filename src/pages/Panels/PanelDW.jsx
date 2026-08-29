@@ -2,8 +2,11 @@ import { useLocation } from "react-router-dom";
 import { useGetIndex } from "../../hooks";
 import { useMemo, useState } from "react";
 import { numberToWordsIndian } from "../../utils/numberToWordsIndian";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const PanelDW = () => {
+  const { getLanguage } = useLanguage();
   const [coins, setCoins] = useState(null);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -55,7 +58,7 @@ const PanelDW = () => {
                     {" "}
                     person{" "}
                   </div>{" "}
-                  Username
+                  {getLanguage(LanguageKey.USERNAME)}
                 </label>
                 <p> {selectedPanel?.username} </p>
               </li>
@@ -70,7 +73,7 @@ const PanelDW = () => {
                     {" "}
                     toll{" "}
                   </div>{" "}
-                  Rate
+                  {getLanguage(LanguageKey.RATE)}
                 </label>
                 <p> {selectedPanel?.panel_rate}</p>
               </li>
@@ -78,7 +81,10 @@ const PanelDW = () => {
           </div>
         </div>
         <div className="form-wrap" style={{ margin: "10px 5px" }}>
-          <label>{type === "deposit" ? "Deposit" : "Withdraw"} Coins</label>
+          <label>
+            {type === "deposit" ? "Deposit" : "Withdraw"}{" "}
+            {getLanguage(LanguageKey.COINS)}
+          </label>
           <input
             value={coins ? coins : ""}
             onChange={(e) => setCoins(Number(e.target.value))}
@@ -102,7 +108,9 @@ const PanelDW = () => {
             <label className="radio-wrapper">
               <input type="radio" name="withdraw" />
               <span className="custom-radio"></span>
-              <span className="label-text">Withdraw to wallet</span>
+              <span className="label-text">
+                {getLanguage(LanguageKey.WITHDRAW_TO_WALLET)}
+              </span>
             </label>
           </div>
         )}
@@ -122,7 +130,9 @@ const PanelDW = () => {
           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
         >
           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-          <span className="mdc-button__label">Add to Cart </span>
+          <span className="mdc-button__label">
+            {getLanguage(LanguageKey.ADD_TO_CART)}{" "}
+          </span>
           <span className="mat-mdc-focus-indicator" />
           <span className="mat-mdc-button-touch-target" />
           <span className="mat-ripple mat-mdc-button-ripple" />
@@ -132,7 +142,9 @@ const PanelDW = () => {
           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
         >
           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-          <span className="mdc-button__label">Buy Now </span>
+          <span className="mdc-button__label">
+            {getLanguage(LanguageKey.BUY_NOW)}{" "}
+          </span>
           <span className="mat-mdc-focus-indicator" />
           <span className="mat-mdc-button-touch-target" />
         </button>

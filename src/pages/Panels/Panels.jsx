@@ -7,8 +7,11 @@ import { Settings } from "../../api";
 import CreateIdWarning from "../../components/modals/Panels/CreateIdWarning";
 import CreateIdModal from "../../components/modals/Panels/CreateID";
 import Toast from "../../components/modals/Panels/Toast";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const Panels = () => {
+  const { getLanguage } = useLanguage();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const tab = params.get("tab");
@@ -159,8 +162,11 @@ const Panels = () => {
                     <div className="mat-ripple mat-mdc-tab-ripple" />
                     <span className="mdc-tab__content">
                       <span className="mdc-tab__text-label">
-                        MY {Settings.b2c ? "IDs" : "PANELS"} (
-                        {my_panels?.result?.length})
+                        MY{" "}
+                        {Settings.b2c
+                          ? getLanguage(LanguageKey.IDS)
+                          : getLanguage(LanguageKey.PANELS)}{" "}
+                        ({my_panels?.result?.length})
                       </span>
                     </span>
                     <span className="mdc-tab-indicator">
@@ -183,7 +189,10 @@ const Panels = () => {
                     <div className="mat-ripple mat-mdc-tab-ripple" />
                     <span className="mdc-tab__content">
                       <span className="mdc-tab__text-label">
-                        CREATE {Settings.b2c ? "ID" : "PANEL"}
+                        {getLanguage(LanguageKey.CREATE)}{" "}
+                        {Settings.b2c
+                          ? getLanguage(LanguageKey.ID)
+                          : getLanguage(LanguageKey.PANEL)}
                       </span>
                     </span>
                     <span className="mdc-tab-indicator">

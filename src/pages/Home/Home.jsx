@@ -12,8 +12,11 @@ import { Settings } from "../../api";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowLoginModal } from "../../redux/features/global/globalSlice";
 import CryptoReferTab from "../../components/modules/Home/CryptoReferTab";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const Home = () => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -63,7 +66,10 @@ const Home = () => {
                     >
                       <div className="create-icon-wrap">
                         {" "}
-                        Create {Settings.b2c ? "IDs" : "Panels"}{" "}
+                        {getLanguage(LanguageKey.CREATE)}{" "}
+                        {Settings.b2c
+                          ? getLanguage(LanguageKey.IDS)
+                          : getLanguage(LanguageKey.PANELS)}{" "}
                       </div>
                     </button>
                     <div

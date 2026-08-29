@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useIndex } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 export default function CreateIdModal({
   setCreateIdModal,
@@ -9,6 +11,7 @@ export default function CreateIdModal({
   createIdModal,
   refetchMyPanel,
 }) {
+  const { getLanguage } = useLanguage();
   const navigate = useNavigate();
   const { mutateAsync } = useIndex();
   const [user, setUser] = useState("");
@@ -80,7 +83,7 @@ export default function CreateIdModal({
                 <div className="ng-star-inserted">
                   <div className="transaction-modal ng-star-inserted">
                     <div className="modal-header">
-                      <h2>Create ID</h2>
+                      <h2>{getLanguage(LanguageKey.CREATE_ID)}</h2>
                       <button
                         onClick={() => setCreateIdModal(false)}
                         className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -119,7 +122,7 @@ export default function CreateIdModal({
                           </div>
                         </div>
                         <div className="form-wrap">
-                          <label>Username *</label>
+                          <label>{getLanguage(LanguageKey.USERNAME)} *</label>
                           <input
                             onChange={(e) => setUser(e.target.value)}
                             placeholder="Enter username"
@@ -138,7 +141,7 @@ export default function CreateIdModal({
                         >
                           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
                           <span className="mdc-button__label">
-                            Create Instant ID
+                            {getLanguage(LanguageKey.CREATE_INSTANT_ID)}
                           </span>
                           <span className="mat-mdc-focus-indicator" />
                           <span className="mat-mdc-button-touch-target" />

@@ -9,8 +9,11 @@ import Toast from "../../modals/Panels/Toast";
 import Withdraw from "../../modals/Panels/Withdraw";
 import ChangePassword from "../../modals/Panels/ChangePassword";
 import { useIndex } from "../../../hooks";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const MyPanelSection = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const { mutateAsync } = useIndex();
   const [alert, setAlert] = useState(false);
   // const [closePanel, setClosePanel] = useState(false);
@@ -154,7 +157,8 @@ const MyPanelSection = ({ data }) => {
                             {!Settings.b2c && (
                               <Fragment>
                                 <p className="currency-type">
-                                  Rate @ {item?.panel_rate}
+                                  {getLanguage(LanguageKey.RATE)} @{" "}
+                                  {item?.panel_rate}
                                 </p>
                                 <p className="rate-account-type">
                                   {" "}
@@ -162,7 +166,7 @@ const MyPanelSection = ({ data }) => {
                                 </p>
                                 <p className="currency-typee">
                                   {" "}
-                                  Admin Link :{" "}
+                                  {getLanguage(LanguageKey.ADMIN_LINK)} :{" "}
                                   <a
                                     onClick={() => window.open(item.admin_url)}
                                   >

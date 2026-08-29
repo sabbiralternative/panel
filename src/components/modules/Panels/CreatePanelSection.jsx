@@ -4,6 +4,8 @@ import SiteSelects from "./SiteSelect";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 import { Settings } from "../../../api";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const CreatePanelSection = ({
   data,
@@ -14,6 +16,7 @@ const CreatePanelSection = ({
   filterData,
   setCreateIdWarning,
 }) => {
+  const { getLanguage } = useLanguage();
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -171,7 +174,10 @@ const CreatePanelSection = ({
                               className="btn dark-outlined-btn create-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
                             >
                               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-                              <span className="mdc-button__label"> Create</span>
+                              <span className="mdc-button__label">
+                                {" "}
+                                {getLanguage(LanguageKey.CREATE)}
+                              </span>
                               <span className="mat-mdc-focus-indicator" />
                               <span className="mat-mdc-button-touch-target" />
                             </button>

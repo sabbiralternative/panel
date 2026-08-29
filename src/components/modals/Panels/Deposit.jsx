@@ -3,8 +3,11 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useBankAccountQuery } from "../../../hooks/bankAccount";
 import { useDepositBreakdownQuery } from "../../../hooks/depositBreakdown";
 import { useIndex } from "../../../hooks";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
+  const { getLanguage } = useLanguage();
   const { mutateAsync } = useIndex();
   const [amount, setAmount] = useState("");
   const ref = useRef();
@@ -79,7 +82,7 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
                 <div className="ng-star-inserted">
                   <div className="transaction-modal ng-star-inserted">
                     <div className="modal-header">
-                      <h2>Deposit</h2>
+                      <h2>{getLanguage(LanguageKey.DEPOSIT)}</h2>
                       <button
                         onClick={() => setDepositPayload(null)}
                         className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -107,7 +110,9 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
                       <div className="modal-body">
                         <div className="card-wrap">
                           <div className="avl-bal show-bal">
-                            <span className="mat-label">Available Balance</span>
+                            <span className="mat-label">
+                              {getLanguage(LanguageKey.AVAILABLE_BALANCE)}
+                            </span>
                             <p className="ng-star-inserted">
                               {" "}
                               {bankAccount?.availableBalance}
@@ -115,7 +120,9 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
                           </div>
                         </div>
                         <div className="form-wrap">
-                          <label>Deposit Coins</label>
+                          <label>
+                            {getLanguage(LanguageKey.DEPOSIT_COINS)}
+                          </label>
                           <input
                             onChange={(e) =>
                               setAmount(
@@ -132,8 +139,9 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
                             aria-required="true"
                           />
                           <p className="note-message ng-star-inserted">
-                            Minimum deposit amount is{" "}
-                            {depositBreakdown?.minimumDeposit} coins
+                            {getLanguage(LanguageKey.MINIMUM_DEPOSIT_AMOUNT)}{" "}
+                            {depositBreakdown?.minimumDeposit}{" "}
+                            {getLanguage(LanguageKey.COINS)}
                           </p>
                         </div>
                       </div>
@@ -147,7 +155,7 @@ const Deposit = ({ setDepositPayload, setMessage, depositPayload }) => {
                         >
                           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
                           <span className="mdc-button__label">
-                            Make Payment
+                            {getLanguage(LanguageKey.MAKE_PAYMENTS)}
                           </span>
                           <span className="mat-mdc-focus-indicator" />
                           <span className="mat-mdc-button-touch-target" />

@@ -1,12 +1,15 @@
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useIndex } from "../../../hooks";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const ChangePassword = ({
   setChangePasswordPayload,
   setMessage,
   changePasswordPayload,
 }) => {
+  const { getLanguage } = useLanguage();
   const { mutateAsync } = useIndex();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -76,7 +79,7 @@ const ChangePassword = ({
                 <div className="ng-star-inserted">
                   <div className="transaction-modal ng-star-inserted">
                     <div className="modal-header">
-                      <h2>Change Password</h2>
+                      <h2>{getLanguage(LanguageKey.CHANGE_PASSWORD)}</h2>
                       <button
                         onClick={() => setChangePasswordPayload(null)}
                         className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -103,7 +106,7 @@ const ChangePassword = ({
                     >
                       <div className="modal-body">
                         <div className="form-wrap">
-                          <label>Password</label>
+                          <label>{getLanguage(LanguageKey.PASSWORD)}</label>
                           <input
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter Password"
@@ -115,7 +118,9 @@ const ChangePassword = ({
                           />
                         </div>
                         <div className="form-wrap">
-                          <label>Confirm Password</label>
+                          <label>
+                            {getLanguage(LanguageKey.CONFIRM_PASSWORD)}
+                          </label>
                           <input
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="Confirm Password"
@@ -133,7 +138,10 @@ const ChangePassword = ({
                           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
                         >
                           <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-                          <span className="mdc-button__label"> Submit</span>
+                          <span className="mdc-button__label">
+                            {" "}
+                            {getLanguage(LanguageKey.SUBMIT)}
+                          </span>
                           <span className="mat-mdc-focus-indicator" />
                           <span className="mat-mdc-button-touch-target" />
                         </button>

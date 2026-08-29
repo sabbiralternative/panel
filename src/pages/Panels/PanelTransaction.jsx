@@ -1,8 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { useGetIndex } from "../../hooks";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const PanelTransaction = () => {
+  const { getLanguage } = useLanguage();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
@@ -59,7 +62,7 @@ const PanelTransaction = () => {
                   >
                     person
                   </div>{" "}
-                  Username: {result?.username}{" "}
+                  {getLanguage(LanguageKey.USERNAME)}: {result?.username}{" "}
                   <div
                     onClick={() => handleCopyToClipBoard(result?.username)}
                     role="img"
@@ -79,7 +82,7 @@ const PanelTransaction = () => {
                   >
                     key
                   </div>{" "}
-                  Password: {result?.password}{" "}
+                  {getLanguage(LanguageKey.PASSWORD)}: {result?.password}{" "}
                   <div
                     onClick={() => handleCopyToClipBoard(result?.password)}
                     role="img"
@@ -96,7 +99,11 @@ const PanelTransaction = () => {
                   Pasword is with capital T{" "}
                 </p> */}
               </div>
-              <p className="data-time"> ID Created on: {result?.date_added} </p>
+              <p className="data-time">
+                {" "}
+                {getLanguage(LanguageKey.ID_CREATED_ON)}: {result?.password} :{" "}
+                {result?.date_added}{" "}
+              </p>
             </div>
           </div>
 

@@ -2,8 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetIndex } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { setShowLoginModal } from "../../redux/features/global/globalSlice";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const CrashGames = () => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
@@ -38,7 +41,7 @@ const CrashGames = () => {
                     alt="Lobby"
                   />
                 </div>
-                <p>Lobby</p>
+                <p>{getLanguage(LanguageKey.LOBBY)}</p>
               </a>
             </li>
             {data?.result?.game_providers?.map((provider, index) => {

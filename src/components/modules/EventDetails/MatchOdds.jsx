@@ -10,8 +10,11 @@ import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 import isOddSuspended from "../../../utils/isOddSuspended";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const MatchOdds = ({ data }) => {
+  const { getLanguage } = useLanguage();
   // const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -45,7 +48,7 @@ const MatchOdds = ({ data }) => {
         runnerId = games.runners.map((runner) => runner.id);
         eventTypeId = games?.eventTypeId;
         games?.runners?.forEach((rnr) => {
-          const pnl = pnlBySelection?.find((p) => p?.RunnerId === rnr?.id);
+          const pnl = pnlBySelection?.find((p) => p?.RunnerId == rnr?.id);
           if (pnl) {
             updatedPnl.push({
               exposure: pnl?.pnl,
@@ -262,7 +265,7 @@ const MatchOdds = ({ data }) => {
                               <span className="mat-mdc-button-persistent-ripple mdc-button_ripple"></span>
                               <span className="mdc-button_label">
                                 {" "}
-                                Cashout{" "}
+                                {getLanguage(LanguageKey.CASHOUT)}{" "}
                                 {teamProfitForGame?.profit &&
                                   `(${teamProfitForGame.profit.toFixed(0)})`}
                               </span>
@@ -276,7 +279,9 @@ const MatchOdds = ({ data }) => {
                     <div className="card-header">
                       <h3 className="card-title">
                         {" "}
-                        Min: {game?.minLiabilityPerBet} | Max:{" "}
+                        {getLanguage(LanguageKey.MIN)}:{" "}
+                        {game?.minLiabilityPerBet} |{" "}
+                        {getLanguage(LanguageKey.MAX)}:{" "}
                         {game?.maxLiabilityPerBet}{" "}
                       </h3>
                       <div className="lay-back-wrap">
@@ -315,7 +320,7 @@ const MatchOdds = ({ data }) => {
                             <div className="flex-row-right rt-wrap">
                               {isOddSuspended(runner) && (
                                 <div className="suspended-wrap ng-star-inserted">
-                                  <h4>Suspended</h4>
+                                  <h4>{getLanguage(LanguageKey.SUSPENDED)}</h4>
                                 </div>
                               )}
                               <div className="count-v-wrap ng-star-inserted">

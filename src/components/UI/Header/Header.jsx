@@ -22,15 +22,11 @@ import { Settings } from "../../../api";
 import AppPopup from "./AppPopUp";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import Notification from "./Notification";
-// import { useLanguage } from "../../../context/LanguageProvider";
-// import { languageValue } from "../../../utils/language";
-// import { LanguageKey } from "../../../const";
 import TopPart from "./TopPart";
 import Withdraw from "../../modals/Withdraw/Withdraw";
 
 const Header = () => {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
-  // const { valueByLanguage } = useLanguage();
   const headerRef = useRef(null);
   const location = useLocation();
   const [showLanguage, setShowLanguage] = useState(false);

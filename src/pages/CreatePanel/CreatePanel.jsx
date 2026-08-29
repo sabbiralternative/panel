@@ -6,8 +6,11 @@ import BuyPanel from "../../components/modals/Panels/BuyPanel";
 import Alert from "../../components/UI/Alert/Alert";
 import toast from "react-hot-toast";
 import { numberToWordsIndian } from "../../utils/numberToWordsIndian";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 export default function CreatePanel() {
+  const { getLanguage } = useLanguage();
   const [alert, setAlert] = useState(false);
   const [buyPanelPayload, setBuyPanelPayload] = useState({});
   const location = useLocation();
@@ -186,7 +189,7 @@ export default function CreatePanel() {
           <div className="ge-card ge-section">
             <div className="ge-field">
               <label className="ge-label" htmlFor="username">
-                Preferred Username
+                {getLanguage(LanguageKey.PREFERRED_USERNAME)}
               </label>
               <input
                 id="username"
@@ -200,7 +203,8 @@ export default function CreatePanel() {
 
             <div className="ge-field">
               <label className="ge-label">
-                Rate Type<span className="ge-required">*</span>
+                {getLanguage(LanguageKey.RATE_TYPE)}
+                <span className="ge-required">*</span>
               </label>
               <div className="ge-radio-row">
                 {result?.rateType?.map((item) => {
@@ -229,7 +233,8 @@ export default function CreatePanel() {
 
             <div className="ge-field">
               <label className="ge-label" htmlFor="accountType">
-                Account Type<span className="ge-required">*</span>
+                {getLanguage(LanguageKey.ACCOUNT_TYPE)}
+                <span className="ge-required">*</span>
               </label>
               <div className="ge-select-wrap">
                 <select
@@ -262,17 +267,21 @@ export default function CreatePanel() {
                   />
                 </svg>
               </div>
-              <div className="ge-hint">Non Refundable coins</div>
+              <div className="ge-hint">
+                {getLanguage(LanguageKey.NON_REFUNDABLE_COINS)}
+              </div>
             </div>
           </div>
 
           <div className="ge-card ge-section">
-            <h2 className="ge-section-title">Deposit Coins</h2>
+            <h2 className="ge-section-title">
+              {getLanguage(LanguageKey.DEPOSIT_COINS)}
+            </h2>
 
             <div className="ge-grid">
               <div className="ge-field">
                 <label className="ge-label" htmlFor="currency">
-                  Select Currency
+                  {getLanguage(LanguageKey.SELECT_CURRENCY)}
                 </label>
                 <div className="ge-select-wrap">
                   <select
@@ -312,7 +321,7 @@ export default function CreatePanel() {
 
               <div className="ge-field">
                 <label className="ge-label" htmlFor="coins">
-                  Enter Coins
+                  {getLanguage(LanguageKey.ENTER_COINS)}
                 </label>
                 <input
                   id="coins"
@@ -328,7 +337,8 @@ export default function CreatePanel() {
 
             <div className="ge-field">
               <label className="ge-label" htmlFor="rate">
-                Rate<span className="ge-required">*</span>
+                {getLanguage(LanguageKey.RATE)}
+                <span className="ge-required">*</span>
               </label>
               <input
                 type="text"
@@ -339,7 +349,9 @@ export default function CreatePanel() {
                 onChange={handleRateChange}
               />
               {rateType === "Purchase" ? (
-                <div className="ge-hint">Fixed Rate</div>
+                <div className="ge-hint">
+                  {getLanguage(LanguageKey.FIXED_RATE)}
+                </div>
               ) : (
                 <div className="ge-hint">
                   {" "}
@@ -350,7 +362,9 @@ export default function CreatePanel() {
             </div>
 
             <div className="ge-total">
-              <div className="ge-total-label">Total Calculated Amount</div>
+              <div className="ge-total-label">
+                {getLanguage(LanguageKey.TOTAL_CALCULATED_AMOUNT)}
+              </div>
               <div className="ge-total-amount">{totalFormatted}</div>
               <div className="ge-total-words">{totalInWords}</div>
             </div>
@@ -362,7 +376,7 @@ export default function CreatePanel() {
               type="button"
               className="ge-btn ge-btn-fill"
             >
-              Buy Now
+              {getLanguage(LanguageKey.BUY_NOWS)}
             </button>
           </div>
         </div>

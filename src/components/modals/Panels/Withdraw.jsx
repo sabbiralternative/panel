@@ -2,8 +2,11 @@ import { useState } from "react";
 import useWithdrawBreakdown from "../../../hooks/withdrawBreakdown";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import { useIndex } from "../../../hooks";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
+  const { getLanguage } = useLanguage();
   const [amount, setAmount] = useState();
   const { data } = useWithdrawBreakdown();
   const { mutateAsync } = useIndex();
@@ -67,7 +70,7 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
                   <div className="ng-star-inserted">
                     <div className="transaction-modal ng-star-inserted">
                       <div className="modal-header">
-                        <h2>Withdraw</h2>
+                        <h2>{getLanguage(LanguageKey.WITHDRAW)}</h2>
                         <button
                           onClick={closeModal}
                           className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -97,14 +100,18 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
                           {withdrawPayload?.external !== 1 && (
                             <div className="card-wrap">
                               <div className="avl-bal show-bal">
-                                <div>Available Balance</div>
+                                <div>
+                                  {getLanguage(LanguageKey.AVAILABLE_BALANCE)}
+                                </div>
                                 <p>{data?.mainWallet}</p>
                               </div>
                             </div>
                           )}
 
                           <div className="form-wrap">
-                            <label>Withdraw Coins</label>
+                            <label>
+                              {getLanguage(LanguageKey.WITHDRAW_COINS)}
+                            </label>
                             <input
                               onChange={(e) => setAmount(e.target.value)}
                               placeholder="Enter Coins"
@@ -113,8 +120,11 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
                             />
                             {withdrawPayload?.external !== 1 && (
                               <p className="note-message ng-star-inserted">
-                                Minimum withdrawal amount is{" "}
-                                {data?.minimumWithdraw} coins
+                                {getLanguage(
+                                  LanguageKey.MINIMUM_WITHDRAW_AMOUNT,
+                                )}{" "}
+                                {data?.minimumWithdraw}{" "}
+                                {getLanguage(LanguageKey.COINS)}
                               </p>
                             )}
                           </div>
@@ -128,7 +138,7 @@ const Withdraw = ({ setWithdrawPayload, setMessage, withdrawPayload }) => {
                             <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
                             <span className="mdc-button__label">
                               {" "}
-                              Withdraw Coins
+                              {getLanguage(LanguageKey.WITHDRAW_COINS)}
                             </span>
                             <span className="mat-mdc-focus-indicator" />
                             <span className="mat-mdc-button-touch-target" />

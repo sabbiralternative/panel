@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLanguage } from "../../../context/LanguageProvider";
 import "./TopPart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Settings } from "../../../api";
@@ -11,7 +10,6 @@ import {
   setShowRegisterModal,
   setShowSidebar,
 } from "../../../redux/features/global/globalSlice";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import images from "../../../assets/images";
 import { IoDocumentText } from "react-icons/io5";
@@ -22,6 +20,7 @@ import { useLogo } from "../../../context/ApiProvider";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 import { useBankAccountMutation } from "../../../hooks/bankAccount";
+import useLanguage from "../../../hooks/use-language";
 
 const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
   const { mutateAsync } = useBankAccountMutation();
@@ -31,7 +30,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
   const { data } = useBalance();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const language = localStorage.getItem("language");
   const dispatch = useDispatch();
   const [handleLogin] = useLoginMutation();
@@ -179,7 +178,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
                     <span className="mdc-button__label">
                       <span onClick={() => dispatch(setShowLoginModal(true))}>
-                        {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                        {getLanguage(LanguageKey.LOGIN)}
                       </span>{" "}
                       {Settings.registration && (
                         <Fragment>
@@ -187,7 +186,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                           <span
                             onClick={() => dispatch(setShowRegisterModal(true))}
                           >
-                            Signup
+                            {getLanguage(LanguageKey.REGISTER)}
                           </span>
                         </Fragment>
                       )}
@@ -201,7 +200,9 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                     className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
                   >
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple" />
-                    <span className="mdc-button__label">Demo</span>
+                    <span className="mdc-button__label">
+                      {getLanguage(LanguageKey.DEMO_LOGIN)}
+                    </span>
                     <span className="mat-mdc-focus-indicator" />
                     <span className="mat-mdc-button-touch-target" />
                   </button>
@@ -267,7 +268,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
             className="wa-item"
           >
             <div className="deposit-wrap">
-              <p>Deposit</p>
+              <p>{getLanguage(LanguageKey.DEPOSIT)}</p>
               <div className="img-wrap">
                 <img alt="" src="/assets/arrow-up.svg" />
               </div>
@@ -282,7 +283,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
                 className="balance-info notranslate"
                 style={{ flexDirection: "column" }}
               >
-                <h3>Wallet Balance</h3>
+                <h3>{getLanguage(LanguageKey.WALLET_BALANCE)}</h3>
                 <p>
                   <img
                     alt="logo"
@@ -296,7 +297,7 @@ const TopPart = ({ setShowLanguage, setShowWithdrawModal }) => {
           </div>
           <div onClick={handleShowWithdrawModal} className="wa-item">
             <div className="withdraw-wrap">
-              <p>Withdraw</p>
+              <p>{getLanguage(LanguageKey.WITHDRAW)}</p>
               <div className="img-wrap">
                 <img alt="" src="/assets/arrow-down.svg" />
               </div>

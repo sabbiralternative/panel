@@ -6,6 +6,8 @@ import UPIDetails from "./UPIDetails";
 import QRDetails from "./QRDetails";
 import USDTDetails from "./USDTDetails";
 import PGDetails from "./PGDetails";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const DepositPaymentProof = ({
   amount,
@@ -16,7 +18,7 @@ const DepositPaymentProof = ({
   methodTitle,
 }) => {
   const dispatch = useDispatch();
-
+  const { getLanguage } = useLanguage();
   return (
     <div className="ng-star-inserted">
       <div className="deposit-system-modal">
@@ -42,7 +44,8 @@ const DepositPaymentProof = ({
           </button>
           <h2>
             {" "}
-            Deposit <span className="amount"> ₹{amount}</span>
+            {getLanguage(LanguageKey.DEPOSIT)}{" "}
+            <span className="amount"> ₹{amount}</span>
           </h2>
           <button
             onClick={() => {

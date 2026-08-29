@@ -3,8 +3,11 @@ import images from "../../../assets/images";
 import { useBankAccountMutation } from "../../../hooks/bankAccount";
 import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const DeleteBank = ({ setDeleteBankId, deleteBankId, refetchBankAccounts }) => {
+  const { getLanguage } = useLanguage();
   const closeModal = () => {
     setDeleteBankId(null);
   };
@@ -121,7 +124,7 @@ const DeleteBank = ({ setDeleteBankId, deleteBankId, refetchBankAccounts }) => {
                 "0 0 0 3px rgba(112, 102, 224, 0.5)",
             }}
           >
-            Yes, Delete
+            {getLanguage(LanguageKey.YES)}, {getLanguage(LanguageKey.DELETE)}
           </button>
           <button
             type="button"
@@ -146,7 +149,7 @@ const DeleteBank = ({ setDeleteBankId, deleteBankId, refetchBankAccounts }) => {
                 "0 0 0 3px rgba(110, 120, 129, 0.5)",
             }}
           >
-            Cancel
+            {getLanguage(LanguageKey.CANCEL)}
           </button>
         </div>
         <div className="swal2-footer" style={{ display: "none" }} />

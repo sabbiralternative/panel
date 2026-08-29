@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const CreateIdWarning = ({
   setAlert,
@@ -9,6 +11,7 @@ const CreateIdWarning = ({
   setCreateIdModal,
   createIdWarning,
 }) => {
+  const { getLanguage } = useLanguage();
   const ref = useRef();
 
   useCloseModalClickOutside(ref, () => {
@@ -100,7 +103,8 @@ const CreateIdWarning = ({
             aria-label
             style={{ display: "inline-block", width: "100%" }}
           >
-            Yes, Play Directly
+            {getLanguage(LanguageKey.YES)},{" "}
+            {getLanguage(LanguageKey.PLAY_DIRECTLY)}
           </button>
           <button
             onClick={() => {
@@ -112,7 +116,7 @@ const CreateIdWarning = ({
             aria-label
             style={{ display: "inline-block", width: "100%" }}
           >
-            No, Create ID
+            {getLanguage(LanguageKey.NO)}, {getLanguage(LanguageKey.CREATE_ID)}
           </button>
         </div>
       </div>
