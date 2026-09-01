@@ -31,13 +31,14 @@ import CreatePanel from "../pages/CreatePanel/CreatePanel";
 import PanelDW from "../pages/Panels/PanelDW";
 import PanelTransaction from "../pages/Panels/PanelTransaction";
 import Affiliate from "../pages/Affiliate/Affiliate";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter(
   [
     {
       path: "/",
       element: <App />,
-
+      errorElement: <NotFound />,
       children: [
         {
           index: true,

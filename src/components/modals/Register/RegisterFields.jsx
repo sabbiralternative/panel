@@ -212,6 +212,7 @@ const RegisterFields = ({ mobile, order }) => {
                               <div className="input-container">
                                 <input
                                   readOnly={referralCode}
+                                  value={referralCode || ""}
                                   {...register("referralCode")}
                                   type="text"
                                   placeholder="Enter Referral Code"

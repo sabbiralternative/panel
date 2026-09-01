@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-
 import useWhatsApp from "../../hooks/whatsapp";
 import AddNewUser from "../../components/modals/Affiliate/AddNewUser";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
@@ -61,7 +60,7 @@ const InviteSection = () => {
             >
               <span data-v-4c49d924>
                 <img
-                  style={{ height: "20px", width: "20px" }}
+                  style={{ height: "20px", width: "20px", filter: "invert(1)" }}
                   src={images.affiAddUser}
                   alt="affi-add-user"
                   data-v-4c49d924
@@ -97,7 +96,12 @@ const InviteSection = () => {
                 data-v-4c49d924
                 className="thm-but thm-bdr-btn affi-cancel-btn affi-yellow-btn"
               >
-                <img data-v-4c49d924 src={images.affiCopy} alt="affi-copy" />
+                <img
+                  data-v-4c49d924
+                  src={images.affiCopy}
+                  style={{ filter: "invert(1)" }}
+                  alt="affi-copy"
+                />
               </button>
             </div>
           </div>
