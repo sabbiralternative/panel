@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
-import { setAddBank } from "../../../redux/features/global/globalSlice";
+import {
+  setAddBank,
+  setAddUSDTAccount,
+} from "../../../redux/features/global/globalSlice";
 import { useBankAccountMutation } from "../../../hooks/bankAccount";
 import { Fragment, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -17,7 +20,7 @@ const AddBankAccount = () => {
   const closeModal = () => {
     dispatch(setAddBank(false));
   };
-
+  const { addBank, addUSDTAccount } = useSelector((state) => state.global);
   const { mutate } = useBankAccountMutation();
   const [isFormValid, setIsFormValid] = useState(false);
   const [mobile, setMobile] = useState(null);
@@ -215,6 +218,54 @@ const AddBankAccount = () => {
                         className="ng-untouched ng-pristine ng-invalid"
                       >
                         <div className="modal-body">
+                          <div
+                            style={{
+                              display: "flex",
+                              width: "100%",
+                              gap: "0px 10px",
+                            }}
+                          >
+                            <div
+                              onClick={() => {
+                                dispatch(setAddBank(true));
+                                dispatch(setAddUSDTAccount(false));
+                              }}
+                              className="action-btn ng-star-inserted"
+                              style={{ width: "100%" }}
+                            >
+                              <button
+                                type="button"
+                                className="btn secondary-btn ng-star-inserted"
+                                style={{
+                                  background: addBank
+                                    ? "var(--highlight-color)"
+                                    : "var(--primary-color-contrast)",
+                                }}
+                              >
+                                {getLanguage(LanguageKey.ADD_NEW_BANK)}
+                              </button>
+                            </div>
+                            <div
+                              onClick={() => {
+                                dispatch(setAddUSDTAccount(true));
+                                dispatch(setAddBank(false));
+                              }}
+                              className="action-btn ng-star-inserted"
+                              style={{ width: "100%" }}
+                            >
+                              <button
+                                style={{
+                                  background: addUSDTAccount
+                                    ? "var(--highlight-color)"
+                                    : "var(--primary-color-contrast)",
+                                }}
+                                type="button"
+                                className="btn secondary-btn ng-star-inserted"
+                              >
+                                {getLanguage(LanguageKey.ADD_USDT_ACCOUNT)}
+                              </button>
+                            </div>
+                          </div>
                           <div className="form-wrap">
                             <div className="input-wrap ng-star-inserted">
                               <label>
