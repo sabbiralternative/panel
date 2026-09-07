@@ -7,15 +7,16 @@ import {
   setRunnerId,
 } from "../../../redux/features/events/eventSlice";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
-import isOddSuspended from "../../../utils/isOddSuspended";
+import isOddSuspended, { isGameSuspended } from "../../../utils/isOddSuspended";
 import { Settings } from "../../../api";
 import { handleCashOutPlaceBet } from "../../../utils/handleCashoutPlaceBet";
 import useLanguage from "../../../hooks/use-language";
 import { LanguageKey } from "../../../const";
+import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 
 const Bookmaker = ({ data }) => {
   const { getLanguage } = useLanguage();
-  // const [speedCashOut, setSpeedCashOut] = useState(null);
+  const [speedCashOut, setSpeedCashOut] = useState(null);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
   const dispatch = useDispatch();
@@ -225,6 +226,12 @@ const Bookmaker = ({ data }) => {
 
   return (
     <Fragment>
+      {speedCashOut && (
+        <SpeedCashOut
+          speedCashOut={speedCashOut}
+          setSpeedCashOut={setSpeedCashOut}
+        />
+      )}
       {data?.length > 0 &&
         data?.map((game) => {
           const teamProfitForGame = teamProfit?.find(
@@ -269,6 +276,33 @@ const Bookmaker = ({ data }) => {
                                 {getLanguage(LanguageKey.CASHOUT)}{" "}
                                 {teamProfitForGame?.profit &&
                                   `(${teamProfitForGame.profit.toFixed(0)})`}
+                              </span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                              <span className="mat-ripple mat-mdc-button-ripple"></span>
+                            </button>
+                          )}
+
+                        {Settings.cashout &&
+                          game?.runners?.length !== 3 &&
+                          game?.status === "OPEN" &&
+                          game?.name !== "toss" &&
+                          speedCashOut && (
+                            <button
+                              onClick={() =>
+                                setSpeedCashOut({
+                                  ...speedCashOut,
+                                  market_name: game?.name,
+                                  event_name: game?.eventName,
+                                })
+                              }
+                              disabled={isGameSuspended(game)}
+                              className="mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button_ripple"></span>
+                              <span className="mdc-button_label">
+                                {" "}
+                                {getLanguage(LanguageKey.SPEED_CASHOUT)}{" "}
                               </span>
                               <span className="mat-mdc-focus-indicator"></span>
                               <span className="mat-mdc-button-touch-target"></span>
