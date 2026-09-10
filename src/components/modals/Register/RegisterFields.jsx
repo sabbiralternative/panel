@@ -14,14 +14,7 @@ import toast from "react-hot-toast";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import { LanguageKey } from "../../../const";
 import useLanguage from "../../../hooks/use-language";
-const RegisterFields = ({
-  mobile,
-  order,
-  tab,
-
-  setUsername,
-  username,
-}) => {
+const RegisterFields = ({ mobile, order, tab, setUsername, username }) => {
   const { getLanguage } = useLanguage();
   const affnook_token = localStorage.getItem("affnook_token");
   const referralCode = localStorage.getItem("referralCode");
@@ -36,7 +29,7 @@ const RegisterFields = ({
 
   const onSubmit = async (data) => {
     const registerData = {
-      username: "",
+      username: username,
       password: data?.password,
       confirmPassword: data?.confirmPassword,
       mobile: mobile,
@@ -46,6 +39,8 @@ const RegisterFields = ({
       orderId: order.orderId,
       orderMethod: order.otpMethod,
       affnook_token: affnook_token || null,
+      registration_mobile: Settings.registration_mobile,
+      registration_username: Settings.registration_username,
     };
 
     const result = await handleRegister(registerData).unwrap();

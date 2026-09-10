@@ -17,7 +17,6 @@ const GetOPT = ({
   mobile,
   setMobile,
   tab,
-
   setTab,
   setUsername,
   username,
