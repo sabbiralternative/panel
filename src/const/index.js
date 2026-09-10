@@ -507,6 +507,9 @@ export const LanguageKey = {
   MEMBER_WIN: "MEMBER_WIN",
   CLEAR_FILTER: "CLEAR_FILTER",
   SERIES_WINNER: "SERIES_WINNER",
+  BY_USERNAME: "BY_USERNAME",
+  BY_PHONE: "BY_PHONE",
+  NEXT: "NEXT",
 };
 
 export const settingsAPI = "https://api7.live/api/exchange/diamond/settings";
