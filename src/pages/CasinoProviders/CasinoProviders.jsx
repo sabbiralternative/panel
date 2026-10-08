@@ -23,7 +23,7 @@ const CasinoProviders = () => {
     }
   };
   return (
-    <div className="page-body">
+    <div className="page-body" style={{ overflow: "auto" }}>
       <div
         role="main"
         className="ion-content md content-ltr hydrated"
