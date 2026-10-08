@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setShowLoginModal } from "../../../redux/features/global/globalSlice";
 import useLanguage from "../../../hooks/use-language";
 import { LanguageKey } from "../../../const";
+// import { useState } from "react";
 
 const CasinoProviders = () => {
+  // const [showAll, setShowAll] = useState(false);
   const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const CasinoProviders = () => {
         <Link to="/casino-providers" className="view-all-link">
           {getLanguage(LanguageKey.ALL)}
           <span
+            // onClick={() => setShowAll((prev) => !prev)}
             role="img"
             className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
             aria-hidden="true"
@@ -42,7 +45,13 @@ const CasinoProviders = () => {
         </Link>
       </div>
       <div className="providers-list">
-        <ul>
+        <ul
+        // style={{
+        //   display: "grid",
+        //   gridAutoFlow: "column",
+        //   gridAutoColumns: "calc(34% - 14px)",
+        // }}
+        >
           {data?.casinoProviders?.slice(0, 10)?.map((item) => (
             <li key={item?.product} className="p-item ng-star-inserted">
               <a

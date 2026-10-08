@@ -70,7 +70,14 @@ const InPlay = () => {
             <div className="game-play-heading" tabIndex={0}>
               <h2>{eventName[category]}</h2>
 
-              <a className="view-all-link ng-star-inserted">
+              <a
+                onClick={() =>
+                  navigate(
+                    `/group/${eventName[category]?.toLowerCase()}/${category}?type=inPlay`,
+                  )
+                }
+                className="view-all-link ng-star-inserted"
+              >
                 {/* <LiveVirtual
                   setLiveVirtual={setLiveVirtual}
                   category={category}

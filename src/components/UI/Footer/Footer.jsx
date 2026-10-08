@@ -73,9 +73,7 @@ const Footer = () => {
               <span className="mat-mdc-button-touch-target" />
             </button>
             <button
-              onClick={() =>
-                handleNavigate("/group/tournaments/10?type=tournaments")
-              }
+              onClick={() => handleNavigate("/group/cricket/4?type=inPlay")}
               className={`home mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${pathname.includes("/group") ? "active-link" : ""} `}
               tabIndex={0}
             >
